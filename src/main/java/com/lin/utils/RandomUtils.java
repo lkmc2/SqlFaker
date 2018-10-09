@@ -9,6 +9,7 @@ import java.util.Random;
  * @author lkmc2
  * @date 2018/10/4
  * @description 随机数工具
+ * @since 1.0.0
  */
 public final class RandomUtils {
 

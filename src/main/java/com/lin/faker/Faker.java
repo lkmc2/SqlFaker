@@ -1,4 +1,4 @@
-package com.lin;
+package com.lin.faker;
 
 import com.lin.asserts.Asserts;
 import com.lin.datatype.DataType;
@@ -16,6 +16,7 @@ import java.util.*;
  * @author lkmc2
  * @date 2018/10/3
  * @description 数据伪造器
+ * @since 1.0.0
  */
 public final class Faker {
 

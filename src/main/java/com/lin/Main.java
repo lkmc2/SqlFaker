@@ -1,16 +1,20 @@
 package com.lin;
 
 import com.lin.datatype.DataType;
+import com.lin.faker.Faker;
 import com.lin.utils.DBTools;
 
 /**
  * @author lkmc2
  * @date 2018/10/3
- * @description 主测试类
+ * @description 基本使用示范类
+ * @since 1.0.0
  */
-public class MainTest {
+public class Main {
 
     public static void main(String[] args) {
+
+        // 更详细的使用例子参见 Example.java
 
         // 创建数据库连接
         DBTools.url("jdbc:mysql://localhost:3306/facker")

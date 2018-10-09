@@ -11,6 +11,7 @@ import java.util.Date;
  * @date 2018/10/3
  * @description 随机时间生成器
  * 一年前到现在的时间范围内任意选择一个时刻
+ * @since 1.0.0
  */
 public class TimeRandom implements RandomData<String> {
 

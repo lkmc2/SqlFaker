@@ -4,6 +4,7 @@ package com.lin.logger;
  * @author lkmc2
  * @date 2018/10/7
  * @description 日志记录器
+ * @since 1.0.0
  */
 public final class Logger {
 

@@ -7,6 +7,7 @@ import com.lin.worker.IdWorker;
  * @author lkmc2
  * @date 2018/10/7
  * @description ID随机生成器（生成19位的数字型UUID字符串，如：1049120504188764160）
+ * @since 1.0.0
  */
 public class IdRandom implements RandomData<Long> {
 

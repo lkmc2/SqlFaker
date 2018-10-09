@@ -12,9 +12,10 @@ import org.junit.Test;
 /**
  * @author lkmc2
  * @date 2018/10/4
- * @description 数据伪造器测试
+ * @description 示范例子
+ * @since 1.0.0
  */
-public class FakerParamMapTest {
+public class Example {
 
     @Before
     public void setUp() {
@@ -227,95 +228,6 @@ public class FakerParamMapTest {
                 .param("email", DataType.EMAIL)
                 .insertCount(10)
                 .ignored();
-    }
-
-    @Test
-    public void testInsertTimeRandom() {
-        Faker.tableName("user")
-                .param("birthday", DataType.TIME)
-                .insertCount(10)
-                .onlyShowSql();
-    }
-
-    @Test
-    public void testInsertPhoneRandom() {
-        Faker.tableName("user")
-                .param("phone", DataType.PHONE)
-                .insertCount(10)
-                .onlyShowSql();
-    }
-
-    @Test
-    public void testInsertIdRandom() {
-        Faker.tableName("test")
-                .param("id", DataType.ID)
-                .insertCount(10)
-                .onlyShowSql();
-    }
-
-    @Test
-    public void testInsertEmailRandom() {
-        Faker.tableName("test")
-                .param("email", DataType.EMAIL)
-                .insertCount(10)
-                .onlyShowSql();
-    }
-
-    /*****************  以下是错误例子 *******************/
-
-    @Test(expected = RuntimeException.class)
-    public void testInsertNoTableName() {
-        Faker.tableName("")
-                .param("name", DataType.USERNAME)
-                .param("age", DataType.AGE)
-                .param("sex", DataType.SEX)
-                .param("birthday", DataType.TIME)
-                .insertCount(5)
-                .execute();
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testInsertNotSetInsertCount() {
-        Faker.tableName("123")
-                .param("name", DataType.USERNAME)
-                .param("age", DataType.AGE)
-                .param("sex", DataType.SEX)
-                .param("birthday", DataType.TIME)
-                .execute();
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testInsertNegativeInsertCount() {
-        Faker.tableName("456")
-                .param("name", DataType.USERNAME)
-                .param("age", DataType.AGE)
-                .param("sex", DataType.SEX)
-                .param("birthday", DataType.TIME)
-                .insertCount(-3)
-                .execute();
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testInsertNoParam() {
-        Faker.tableName("789")
-                .insertCount(5)
-                .execute();
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testInsertNewErrorType() {
-        Faker.tableName("user")
-                .param("name", new Object())
-                .insertCount(5)
-                .execute();
-    }
-
-    @Test(expected = RuntimeException.class)
-    public void testInsertErrorClassType() {
-        Faker.tableName("user")
-                .param("name", Object.class)
-                .insertCount(5)
-                .execute();
     }
 
 }

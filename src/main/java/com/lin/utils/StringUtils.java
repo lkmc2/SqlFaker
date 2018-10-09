@@ -6,6 +6,7 @@ import java.util.List;
  * @author lkmc2
  * @date 2018/10/5
  * @description 字符串工具类
+ * @since 1.0.0
  */
 public final class StringUtils {
 

@@ -7,6 +7,7 @@ import com.lin.utils.RandomUtils;
  * @author lkmc2
  * @date 2018/10/7
  * @description 手机号随机生成器（11位手机号）
+ * @since 1.0.0
  */
 public class PhoneRandom implements RandomData<String> {
 

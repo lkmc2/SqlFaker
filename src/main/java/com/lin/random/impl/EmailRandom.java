@@ -7,6 +7,7 @@ import com.lin.utils.RandomUtils;
  * @author lkmc2
  * @date 2018/10/8
  * @description 邮箱随机生成器
+ * @since 1.0.0
  */
 public class EmailRandom implements RandomData<String> {
 

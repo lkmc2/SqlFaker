@@ -7,6 +7,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
  * @author lkmc2
  * @date 2018/10/6
  * @description 数据库连接配置工具
+ * @since 1.0.0
  */
 public final class DBTools {
 

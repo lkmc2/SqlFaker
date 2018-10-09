@@ -7,6 +7,7 @@ import com.lin.utils.RandomUtils;
  * @author lkmc2
  * @date 2018/10/3
  * @description 随机地址生成器（国内地址，详细到门牌号，如：四川省绵阳市盐亭县北利路738号）
+ * @since 1.0.0
  */
 public class AddressRandom implements RandomData<String> {
 

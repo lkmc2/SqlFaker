@@ -11,6 +11,7 @@ import java.util.Map;
  * @author lkmc2
  * @date 2018/10/7
  * @description 数据类型映射关系
+ * @since 1.0.0
  */
 public final class DataTypeMapping {
 

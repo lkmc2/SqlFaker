@@ -8,6 +8,7 @@ import com.lin.utils.RandomUtils;
  * @author lkmc2
  * @date 2018/10/5
  * @description 值的范围
+ * @since 1.0.0
  */
 public final class Values {
 
