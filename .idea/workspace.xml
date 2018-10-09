@@ -2,37 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a9d3c88-e72e-4d82-b61e-748d1a890247" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lin/Example.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data.sql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/Faker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/faker/Faker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/MainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/asserts/Asserts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/asserts/Asserts.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/custom/EnglishNameRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/custom/EnglishNameRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/datatype/DataType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/datatype/DataType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/helper/DatabaseHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/helper/DatabaseHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/logger/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/logger/Logger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/logger/LoggerFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/logger/LoggerFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/mapping/DataTypeMapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/mapping/DataTypeMapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/random/RandomData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/random/RandomData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/random/base/BaseRandomCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/random/base/BaseRandomCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/AddressRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/AddressRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/AgeRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/AgeRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/EmailRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/EmailRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/IdRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/IdRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/PhoneRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/PhoneRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/SexRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/SexRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/TimeRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/TimeRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/UserNameRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/UserNameRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/utils/DBTools.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/utils/DBTools.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/utils/FlyweightUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/utils/FlyweightUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/utils/RandomUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/utils/RandomUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/utils/StringUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/utils/StringUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/value/Times.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/value/Times.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/value/Values.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/value/Values.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/worker/IdWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/worker/IdWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/lin/FakerParamMapTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/lin/FakerParamMapTest.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -126,8 +97,8 @@
       <file leaf-file-name="Example.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/Example.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="15" lean-forward="true" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+            <state relative-caret-position="157">
+              <caret line="27" column="42" lean-forward="true" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -139,6 +110,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -283,6 +259,7 @@
       <recent name="com.lin" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\IntellJ Project\SqlFaker" />
       <recent name="F:\IntellJ Project\SqlFaker\src\main\resources" />
       <recent name="F:\IntellJ Project\SqlFaker\src\main\java" />
     </key>
@@ -396,7 +373,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539060730172</updated>
-      <workItem from="1539060734835" duration="3241000" />
+      <workItem from="1539060734835" duration="3494000" />
     </task>
     <task id="LOCAL-00001" summary="添加必要的类和依赖">
       <created>1539061756489</created>
@@ -405,7 +382,14 @@
       <option name="project" value="LOCAL" />
       <updated>1539061756489</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="添加示范例子">
+      <created>1539064028330</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1539064028330</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -414,11 +398,10 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3241000" />
+    <option name="totallyTimeSpent" value="3494000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="916" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" />
       <window_info anchor="right" id="RestServices" />
@@ -440,11 +423,11 @@
       <window_info anchor="right" id="Palette&#9;" />
       <window_info id="Image Layers" />
       <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Version Control" weight="0.32908162" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32908162" />
-      <window_info anchor="bottom" id="Terminal" weight="0.33419356" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.33418366" />
       <window_info anchor="bottom" id="MyBatis Sql Log" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.32378224" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.32378224" />
       <window_info id="JRebel" side_tool="true" />
       <window_info anchor="right" id="BPMNPalette" />
       <window_info id="Learn" weight="0.3295129" />
@@ -461,12 +444,39 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="添加必要的类和依赖" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加必要的类和依赖" />
+    <MESSAGE value="添加示范例子" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加示范例子" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -734,10 +744,18 @@
         <state relative-caret-position="-128" />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-1026" />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/Example.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="15" lean-forward="true" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+        <state relative-caret-position="157">
+          <caret line="27" column="42" lean-forward="true" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -761,7 +779,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited />
+          <last-edited>No facets are configured</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
