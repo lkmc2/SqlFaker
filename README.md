@@ -132,22 +132,27 @@ Faker.tableName("user")
       .ignored();
 ```
 可设置的属性如下表：
-|     属性名     |          说明           |              参数值类型               |
-| :---------: | :-------------------: | :------------------------------: |
-|  tableName  |         数据库表名         |              String              |
-|    param    |        数据库字段名         | String，DataType枚举值或实现了Random接口的类 |
-| insertCount |        插入数据条数         |             Integer              |
-|   execute   | 生成SQL，显示在控制台，并在数据库中执行 |                无                 |
-| onlyShowSql |     生成SQL，并显示在控制台     |                无                 |
-|   ignored   |        不执行任何操作        |                无                 |
 
 
+
+|         属性名          |          说明           |
+| :------------------: | :-------------------: |
+|   tableName(数据库表名)   |        设置数据库表名        |
+| param(字段名, 数据生成器类型①) | 设置数据库字段名，以及对应的数据生成器类型 |
+|  insertCount(插入条数)   |       设置插入数据条数        |
+|      execute( )      | 生成SQL，显示在控制台，并在数据库中执行 |
+|    onlyShowSql( )    |     生成SQL，并显示在控制台     |
+|      ignored( )      |        不执行任何操作        |
+
+注意：① 数据生成器类型，必须是DataType枚举值，或实现了Random接口的类。
+
+### 二、插入数据的方式
 
 本开源库一共支持三种插入数据的方式。
 
 #### 1. 使用DataType指定数据类型
 
-
+DataType一共支持8种枚举类型，如下表所示：
 
 |   属性名    |  说明  |         类型         |         示例值         |
 | :------: | :--: | :----------------: | :-----------------: |
@@ -160,3 +165,68 @@ Faker.tableName("user")
 |   SEX    |  性别  |     字符，0：男，1：女     |         '1'         |
 |  EMAIL   |  邮箱  |      常见邮箱字符串       |  Alex705@gmail.com  |
 
+使用示例：
+
+```java
+// 给user表的8个字段填充5条数据
+Faker.tableName("user")
+  	  .param("id", DataType.ID)
+      .param("name", DataType.USERNAME)
+      .param("birthday", DataType.TIME)
+      .param("phone", DataType.PHONE)
+      .param("address", DataType.ADDRESS)
+      .param("age", DataType.AGE)
+      .param("sex", DataType.SEX)
+  	  .param("email", DataType.EMAIL)
+      .insertCount(5)
+      .execute();
+```
+#### 2. 使用 Values.of()系列方法生成取值范围
+
+Values类共有以下8种生成取值范围方法，如下表：
+
+
+|               方法名               |               取值范围                |         示例值         |
+| :-----------------------------: | :-------------------------------: | :-----------------: |
+|        Values.of(可变长数组)         |            从数组中任意抽取一个值            |  "优品", "良品", "次品"   |
+|   Values.ofIntRange(起始值,结束值)    |        在[起始值, 结束值]的范围内取一个值        |         33          |
+|   Values.ofLongRange(起始值,结束值)   |        在[起始值, 结束值)的范围内取一个值        |     777777777L      |
+|  Values.ofFloatRange(起始值,结束值)   |  在[起始值, 结束值]的范围内取一个值，默认精确到小数点后2位  |       22.22f        |
+| Values.ofFloatRange(起始值,结束值,精度) | 在[起始值, 结束值]的范围内取一个值，精度根据参数设置，最多6位 |     123.333333f     |
+|  Values.ofDoubleRange(起始值,结束值)  |  在[起始值, 结束值]的范围内取一个值，默认精确到小数点后2位  |       788.31d       |
+| Values.ofFloatRange(起始值,结束值,精度) | 在[起始值, 结束值]的范围内取一个值，精度根据参数设置，最多6位 |     1820.4231d      |
+|  Values.ofTimeRange(开始时间，结束时间]  |    在[开始时间, 结束时间]的范围内取一个时间，精确到秒    | 2018-03-14 13:21:11 |
+
+另外，Times类中还有用于设定时间的两个方法：
+
+|          方法名          |     说明      |
+| :-------------------: | :---------: |
+|    Times.of(年,月,日)    | 用于生成时间，精确到日 |
+| Times.of(年,月,日,时,分,秒) | 用于生成时间，精确到秒 |
+
+
+
+使用示例：
+
+
+
+```java
+// 给product表的8个字段填充5条数据
+Faker.tableName("product")
+  	  .param("type", Values.of("优品", "良品", "次品"))
+      .param("person_count", Values.ofIntRange(20, 50))
+      .param("total_count", Values.ofLongRange(555555555L, 888888888L))
+      .param("enter_price", Values.ofFloatRange(12.33f, 34.57f))
+      .param("outcome_price", Values.ofFloatRange(100.004132f, 240.281424f, 6))
+      .param("speed", Values.ofDoubleRange(750.34d, 800.27d))
+      .param("salary", Values.ofDoubleRange(1980.3415d, 2700.2315d, 4))
+  	  .param("firstTime", Values.ofTimeRange(Times.of(2018,3,22), Times.of(2018,10,22)))
+      .param("secondTime", 
+             Values.ofTimeRange(
+                Times.of(2018,3,22,11,23,24), 
+                Times.of(2018,10,22,22,15,17)
+      		)
+       )
+      .insertCount(5)
+      .execute();
+```
