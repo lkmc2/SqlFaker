@@ -30,11 +30,11 @@ Faker.tableName("user")
 上述代码将生成如下SQL语句，并在数据库中执行：
 
 ```sql
-insert into user(name,age,sex,address,birthday) values('武叹霜','21','0','山西省晋城市泽州县庆达路463号','2018-02-24 10:56:37')
-insert into user(name,age,sex,address,birthday) values('顾什可','50','1','广西壮族自治区柳州市融水苗族自治县德堡路419号','2018-04-09 08:10:22')
-insert into user(name,age,sex,address,birthday) values('蔡静随','46','0','河南省郑州市巩义市广延路240号','2018-06-11 23:02:19')
-insert into user(name,age,sex,address,birthday) values('韦丸赤','27','0','河南省焦作市博爱县浦润路148号','2018-02-22 15:52:50')
-insert into user(name,age,sex,address,birthday) values('任徐','54','1','河南省新乡市延津县汉源路14号','2018-07-07 03:48:51')
+insert into user(name,age,sex,address,birthday) values('武叹霜',21,'0','山西省晋城市泽州县庆达路463号','2018-02-24 10:56:37')
+insert into user(name,age,sex,address,birthday) values('顾什可',50,'1','广西壮族自治区柳州市融水苗族自治县德堡路419号','2018-04-09 08:10:22')
+insert into user(name,age,sex,address,birthday) values('蔡静随',46,'0','河南省郑州市巩义市广延路240号','2018-06-11 23:02:19')
+insert into user(name,age,sex,address,birthday) values('韦丸赤',27,'0','河南省焦作市博爱县浦润路148号','2018-02-22 15:52:50')
+insert into user(name,age,sex,address,birthday) values('任徐',54,'1','河南省新乡市延津县汉源路14号','2018-07-07 03:48:51')
 ```
 
 ## 依赖添加
@@ -103,10 +103,25 @@ DBTools.url("jdbc:mysql://localhost:3306/facker")
 DBTools.dbName("facker").connect();
 ```
 
+**注意** ：数据库连接只需要设置一次，之后可以多次调用Faker进行插入数据操作。
+
 ## 数据插入
 
 ### 一、属性介绍
+可设置的属性如下表：
 
+|         属性名          |          说明           |
+| :------------------: | :-------------------: |
+|   tableName(数据库表名)   |        设置数据库表名        |
+| param(字段名, 数据生成器类型①) | 设置数据库字段名，以及对应的数据生成器类型 |
+|  insertCount(插入条数)   |       设置插入数据条数        |
+|      execute( )      | 生成SQL，显示在控制台，并在数据库中执行 |
+|    onlyShowSql( )    |     生成SQL，并显示在控制台     |
+|      ignored( )      |        不执行任何操作        |
+
+注意：① 数据生成器类型，必须是DataType枚举值，或实现了Random接口的类。
+
+使用示例：
 ``` java
 // 给user表的四个字段填充5条数据
 Faker.tableName("user")
@@ -131,24 +146,11 @@ Faker.tableName("user")
       .insertCount(5)
       .ignored();
 ```
-可设置的属性如下表：
 
-
-
-|         属性名          |          说明           |
-| :------------------: | :-------------------: |
-|   tableName(数据库表名)   |        设置数据库表名        |
-| param(字段名, 数据生成器类型①) | 设置数据库字段名，以及对应的数据生成器类型 |
-|  insertCount(插入条数)   |       设置插入数据条数        |
-|      execute( )      | 生成SQL，显示在控制台，并在数据库中执行 |
-|    onlyShowSql( )    |     生成SQL，并显示在控制台     |
-|      ignored( )      |        不执行任何操作        |
-
-注意：① 数据生成器类型，必须是DataType枚举值，或实现了Random接口的类。
 
 ### 二、插入数据的方式
 
-本开源库一共支持三种插入数据的方式。
+本开源库一共支持三种插入数据的方式，可以混合使用。
 
 #### 1. 使用DataType指定数据类型
 
@@ -168,34 +170,52 @@ DataType一共支持8种枚举类型，如下表所示：
 使用示例：
 
 ```java
-// 给user表的8个字段填充5条数据
+// 给user表的8个字段填充1条数据
 Faker.tableName("user")
-  	  .param("id", DataType.ID)
+      .param("id", DataType.ID)
       .param("name", DataType.USERNAME)
       .param("birthday", DataType.TIME)
       .param("phone", DataType.PHONE)
       .param("address", DataType.ADDRESS)
       .param("age", DataType.AGE)
       .param("sex", DataType.SEX)
-  	  .param("email", DataType.EMAIL)
-      .insertCount(5)
+      .param("email", DataType.EMAIL)
+      .insertCount(1)
       .execute();
 ```
+对应生成的SQL语句如下：
+
+```sql
+insert into 
+user(
+  id, name, birthday,
+  phone, address, age,
+  sex, email
+) 
+values(
+  '1049120504188764160', '武叹霜', '2018-03-01 12:41:00',
+  '13192668109', '四川省绵阳市盐亭县北利路73号', 19,
+   '1', 'Alex705@gmail.com'
+)
+```
+
+
+
 #### 2. 使用 Values.of()系列方法生成取值范围
 
 Values类共有以下8种生成取值范围方法，如下表：
 
 
-|               方法名               |               取值范围                |         示例值         |
-| :-----------------------------: | :-------------------------------: | :-----------------: |
-|        Values.of(可变长数组)         |            从数组中任意抽取一个值            |  "优品", "良品", "次品"   |
-|   Values.ofIntRange(起始值,结束值)    |        在[起始值, 结束值]的范围内取一个值        |         33          |
-|   Values.ofLongRange(起始值,结束值)   |        在[起始值, 结束值)的范围内取一个值        |     777777777L      |
-|  Values.ofFloatRange(起始值,结束值)   |  在[起始值, 结束值]的范围内取一个值，默认精确到小数点后2位  |       22.22f        |
-| Values.ofFloatRange(起始值,结束值,精度) | 在[起始值, 结束值]的范围内取一个值，精度根据参数设置，最多6位 |     123.333333f     |
-|  Values.ofDoubleRange(起始值,结束值)  |  在[起始值, 结束值]的范围内取一个值，默认精确到小数点后2位  |       788.31d       |
-| Values.ofFloatRange(起始值,结束值,精度) | 在[起始值, 结束值]的范围内取一个值，精度根据参数设置，最多6位 |     1820.4231d      |
-|  Values.ofTimeRange(开始时间，结束时间]  |    在[开始时间, 结束时间]的范围内取一个时间，精确到秒    | 2018-03-14 13:21:11 |
+|               方法名                |               取值范围                |         示例值         |
+| :------------------------------: | :-------------------------------: | :-----------------: |
+|         Values.of(可变长数组)         |          从可变长数组中任意抽取一个值           |  "优品", "良品", "次品"   |
+|    Values.ofIntRange(起始值,结束值)    |        在[起始值, 结束值]的范围内取一个值        |         33          |
+|   Values.ofLongRange(起始值,结束值)    |        在[起始值, 结束值)的范围内取一个值        |     777777777L      |
+|   Values.ofFloatRange(起始值,结束值)   |  在[起始值, 结束值]的范围内取一个值，默认精确到小数点后2位  |       22.22f        |
+| Values.ofFloatRange(起始值,结束值,精度)  | 在[起始值, 结束值]的范围内取一个值，精度根据参数设置，最多6位 |     123.333333f     |
+|  Values.ofDoubleRange(起始值,结束值)   |  在[起始值, 结束值]的范围内取一个值，默认精确到小数点后2位  |       788.31d       |
+| Values.ofDoubleRange(起始值,结束值,精度) | 在[起始值, 结束值]的范围内取一个值，精度根据参数设置，最多6位 |     1820.4231d      |
+|  Values.ofTimeRange(开始时间，结束时间]   |    在[开始时间, 结束时间]的范围内取一个时间，精确到秒    | 2018-03-14 13:21:11 |
 
 另外，Times类中还有用于设定时间的两个方法：
 
@@ -211,22 +231,86 @@ Values类共有以下8种生成取值范围方法，如下表：
 
 
 ```java
-// 给product表的8个字段填充5条数据
+// 给product表的9个字段填充1条数据
 Faker.tableName("product")
-  	  .param("type", Values.of("优品", "良品", "次品"))
+      .param("type", Values.of("优品", "良品", "次品"))
       .param("person_count", Values.ofIntRange(20, 50))
       .param("total_count", Values.ofLongRange(555555555L, 888888888L))
       .param("enter_price", Values.ofFloatRange(12.33f, 34.57f))
       .param("outcome_price", Values.ofFloatRange(100.004132f, 240.281424f, 6))
       .param("speed", Values.ofDoubleRange(750.34d, 800.27d))
       .param("salary", Values.ofDoubleRange(1980.3415d, 2700.2315d, 4))
-  	  .param("firstTime", Values.ofTimeRange(Times.of(2018,3,22), Times.of(2018,10,22)))
+      .param("firstTime", Values.ofTimeRange(Times.of(2018,3,22), Times.of(2018,10,22)))
       .param("secondTime", 
              Values.ofTimeRange(
                 Times.of(2018,3,22,11,23,24), 
                 Times.of(2018,10,22,22,15,17)
-      		)
+             )
        )
-      .insertCount(5)
+      .insertCount(1)
       .execute();
+```
+
+对应生成的SQL语句如下：
+
+```sql
+insert into 
+product(
+  type, person_count, total_count,
+  enter_price, outcome_price, speed,
+  salary, firstTime, secondTime
+) 
+values(
+  '良品', 33, 777777777,
+  22.22, 123.333333, 788.31,
+  1820.4231, '2018-03-14 00:00:00', '2018-03-14 13:21:11'
+)
+```
+
+
+#### 3. 实现RandomData接口，提供可随机生成的返回值
+
+Random接口的代码如下：
+
+```java
+public interface RandomData<T> {
+    T next();
+}
+```
+
+实现该接口，并重写next( )方法提供一个返回值，该返回值就是数据库字段对应插入的值。
+
+使用示例：
+
+1. 创建一个自定义类EnglishNameRandom，实现Random<T>（泛型T可以是任意类型）接口，并提供一个随机生成的返回值。
+
+``` java
+// 英文名数据生成器
+public class EnglishNameRandom implements RandomData<String> {
+    @Override
+    public String next() {
+        // 候选值数组，从该数组中随机抽一个作为返回值
+        String[] names = new String[]{"Kim Lily", "Andy Wang", "July Six"};
+        // 从数组中随机选取一个值
+        return RandomUtils.selectOneInArray(names);
+    }
+}
+```
+
+2. 在Faker中给字段指定使用EnglishNameRandom.class类型的生成器。
+
+```java
+// 指定name字段使用EnglishNameRandom类进行随机值的生成
+Faker.tableName("user")
+       .param("name", EnglishNameRandom.class)
+       .param("age", Values.ofIntRange(20, 50))
+       .param("address", DataType.ADDRESS)
+       .insertCount(5)
+       .execute();
+```
+
+对应生成的SQL语句如下：
+```sql
+insert into user(name, age, address) 
+values('Andy Wang', 23, '四川省绵阳市盐亭县北利路73号')
 ```
