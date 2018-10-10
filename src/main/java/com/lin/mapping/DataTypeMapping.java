@@ -8,9 +8,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
+ * 数据类型映射关系
  * @author lkmc2
- * @date 2018/10/7
- * @description 数据类型映射关系
  * @since 1.0.0
  */
 public final class DataTypeMapping {
@@ -34,6 +33,7 @@ public final class DataTypeMapping {
 
     /**
      * 获取枚举对应的随机生成器类型
+     * @param dataType 数据类型枚举值
      * @return 枚举对应的随机生成器类型
      */
     public static Class<? extends RandomData> getMapping(DataType dataType) {

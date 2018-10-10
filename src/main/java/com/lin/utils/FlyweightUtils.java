@@ -4,9 +4,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
+ * 享元模式工具类（全局运行环境中，相同的类共享同一个实例对象）
  * @author lkmc2
- * @date 2018/10/7
- * @description 享元模式工具类（全局运行环境中，相同的类共享同一个实例对象）
  * @since 1.0.0
  */
 public class FlyweightUtils {

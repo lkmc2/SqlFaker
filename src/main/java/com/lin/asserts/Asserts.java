@@ -1,9 +1,8 @@
 package com.lin.asserts;
 
 /**
+ * 条件判断类
  * @author lkmc2
- * @date 2018/10/7
- * @description 条件判断类
  * @since 1.0.0
  */
 public final class Asserts {

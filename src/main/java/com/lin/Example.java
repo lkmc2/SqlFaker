@@ -10,9 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * 示范例子
  * @author lkmc2
- * @date 2018/10/4
- * @description 示范例子
  * @since 1.0.0
  */
 public class Example {

@@ -10,9 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
+ * 数据伪造器测试
  * @author lkmc2
- * @date 2018/10/4
- * @description 数据伪造器测试
  */
 public class FakerParamMapTest {
 

@@ -5,9 +5,8 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 
 /**
+ * ID自动增长器（Twitter的Snowflake JAVA实现方案，可生成19位数字型UUID字符串，每秒能够产生26万个ID左右）
  * @author lkmc2
- * @date 2018/10/8
- * @description ID自动增长器（Twitter的Snowflake JAVA实现方案，可生成19位数字型UUID字符串，每秒能够产生26万个ID左右）
  * @since 1.0.0
  */
 public class IdWorker {

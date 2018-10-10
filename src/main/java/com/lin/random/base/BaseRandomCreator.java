@@ -4,9 +4,8 @@ import com.lin.random.RandomData;
 import com.lin.utils.RandomUtils;
 
 /**
+ * 基础随机生成器
  * @author lkmc2
- * @date 2018/10/5
- * @description 基础随机生成器
  * @since 1.0.0
  */
 public abstract class BaseRandomCreator<T> implements RandomData<T> {

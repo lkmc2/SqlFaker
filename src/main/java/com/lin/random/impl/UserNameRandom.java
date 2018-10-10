@@ -4,9 +4,8 @@ import com.lin.random.RandomData;
 import com.lin.utils.RandomUtils;
 
 /**
+ * 随机用户名（中文名，长度为1到4个字）
  * @author lkmc2
- * @date 2018/10/3
- * @description 随机用户名（中文名，长度为1到4个字）
  * @since 1.0.0
  */
 public class UserNameRandom implements RandomData<String> {

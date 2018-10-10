@@ -5,9 +5,8 @@ import com.lin.faker.Faker;
 import com.lin.utils.DBTools;
 
 /**
+ * 基本使用示范类
  * @author lkmc2
- * @date 2018/10/3
- * @description 基本使用示范类
  * @since 1.0.0
  */
 public class Main {

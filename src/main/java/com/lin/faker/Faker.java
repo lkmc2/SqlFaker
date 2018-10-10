@@ -13,9 +13,8 @@ import com.lin.utils.StringUtils;
 import java.util.*;
 
 /**
+ * 数据伪造器
  * @author lkmc2
- * @date 2018/10/3
- * @description 数据伪造器
  * @since 1.0.0
  */
 public final class Faker {

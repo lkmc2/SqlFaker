@@ -12,9 +12,8 @@ import java.sql.SQLException;
 import java.util.*;
 
 /**
+ * 数据库操作助手类
  * @author lkmc2
- * @date 2018/10/4
- * @description 数据库操作助手类
  * @since 1.0.0
  */
 public final class DatabaseHelper {
@@ -41,7 +40,8 @@ public final class DatabaseHelper {
     }
 
     /**
-     * 获取数据源
+     * 获取数据源对象
+     * @return 数据源对象
      */
     public static BasicDataSource getDataSource() {
         return DATA_SOURCE;
@@ -49,6 +49,7 @@ public final class DatabaseHelper {
 
     /**
      * 获取数据库连接
+     * @return 数据库连接
      */
     public static Connection getConnection() {
         // 获取本地线程的数据库连接
@@ -141,6 +142,10 @@ public final class DatabaseHelper {
 
     /**
      * 查询并返回单个列值
+     * @param sql 查询语句
+     * @param params sql对应的参数
+     * @param <T> 返回值泛型
+     * @return 查询结果
      */
     public static <T> T query(String sql, Object... params) {
         T obj;
@@ -159,6 +164,10 @@ public final class DatabaseHelper {
 
     /**
      * 查询并返回多个列值
+     * @param sql 查询语句
+     * @param params sql对应的参数
+     * @param <T> 返回值泛型
+     * @return 查询结果列表
      */
     public static <T> List<T> queryList(String sql, Object... params) {
         List<T> list;
@@ -177,6 +186,10 @@ public final class DatabaseHelper {
 
     /**
      * 查询并返回多个列值（去重）
+     * @param sql 查询语句
+     * @param params 查询参数
+     * @param <T> 返回值泛型
+     * @return 查询结果集合
      */
     public static <T> Set<T> querySet(String sql, Object... params) {
         Collection<T> valueList = queryList(sql, params);

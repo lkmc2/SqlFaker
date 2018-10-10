@@ -1,9 +1,8 @@
 package com.lin.logger;
 
 /**
+ * 日志记录器生成工厂
  * @author lkmc2
- * @date 2018/10/7
- * @description 日志记录器生成工厂
  * @since 1.0.0
  */
 public final class LoggerFactory {

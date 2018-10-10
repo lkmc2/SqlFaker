@@ -1,9 +1,8 @@
 package com.lin.random;
 
 /**
+ * 随机数据接口
  * @author lkmc2
- * @date 2018/10/3
- * @description 随机数据接口
  * @since 1.0.0
  */
 public interface RandomData<T> {

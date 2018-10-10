@@ -5,9 +5,8 @@ import com.lin.random.base.BaseRandomCreator;
 import com.lin.utils.RandomUtils;
 
 /**
+ * 值的范围
  * @author lkmc2
- * @date 2018/10/5
- * @description 值的范围
  * @since 1.0.0
  */
 public final class Values {
@@ -15,6 +14,7 @@ public final class Values {
     /**
      * 设置候选值数组
      * @param data 候选值数组
+     * @param <T> 参数值泛型
      * @return 随机值生成器
      */
     public static <T> RandomData<T> of(final T... data) {

@@ -3,9 +3,8 @@ package com.lin.value;
 import java.util.Calendar;
 
 /**
+ * 时间生成器
  * @author lkmc2
- * @date 2018/10/5
- * @description 时间生成器
  * @since 1.0.0
  */
 public final class Times {

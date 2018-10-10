@@ -3,9 +3,8 @@ package com.lin.random.impl;
 import com.lin.random.base.BaseRandomCreator;
 
 /**
+ * 随机年龄生成器（18到60岁）
  * @author lkmc2
- * @date 2018/10/3
- * @description 随机年龄生成器（18到60岁）
  * @since 1.0.0
  */
 public class AgeRandom extends BaseRandomCreator<Integer> {

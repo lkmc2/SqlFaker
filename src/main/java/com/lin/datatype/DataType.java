@@ -1,9 +1,8 @@
 package com.lin.datatype;
 
 /**
+ * 支持的数据类型
  * @author lkmc2
- * @date 2018/10/3
- * @description 支持的数据类型
  * @since 1.0.0
  */
 public enum DataType {

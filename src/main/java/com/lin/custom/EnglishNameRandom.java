@@ -4,9 +4,8 @@ import com.lin.random.RandomData;
 import com.lin.utils.RandomUtils;
 
 /**
+ * 英文名随机生成器
  * @author lkmc2
- * @date 2018/10/4
- * @description 英文名随机生成器
  * @since 1.0.0
  */
 public class EnglishNameRandom implements RandomData<String> {

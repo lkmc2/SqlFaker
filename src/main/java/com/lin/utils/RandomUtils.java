@@ -6,9 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Random;
 
 /**
+ * 随机数工具
  * @author lkmc2
- * @date 2018/10/4
- * @description 随机数工具
  * @since 1.0.0
  */
 public final class RandomUtils {

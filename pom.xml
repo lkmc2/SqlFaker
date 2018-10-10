@@ -41,6 +41,7 @@
 
     <dependencies>
 
+        <!--JUnit单元测试-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -68,7 +69,6 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.46</version>
             <scope>runtime</scope>
-
         </dependency>
 
     </dependencies>
