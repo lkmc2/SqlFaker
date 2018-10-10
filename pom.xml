@@ -7,35 +7,37 @@
     <name>SqlFaker</name>
     <description>A lightweight SQL data creator.</description>
     <url>https://github.com/lkmc2/SqlFaker</url>
-    <groupId>com.github</groupId>
+    <groupId>com.github.lkmc2</groupId>
     <artifactId>sql-faker</artifactId>
 
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <version>1.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>6</source>
-                    <target>6</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
+    <developers>
+        <developer>
+            <name>Lin Change</name>
+            <email>lkmc2@163.com</email>
+            <url>https://github.com/lkmc2</url>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:lkmc2/SqlFaker.git</connection>
+        <developerConnection>scm:git:git@github.com:lkmc2/SqlFaker.git</developerConnection>
+        <url>git@github.com:lkmc2/SqlFaker.git</url>
+    </scm>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <dependencies>
 
@@ -43,7 +45,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.12</version>
-            <scope>test</scope>
+            <scope>compile</scope>
         </dependency>
 
         <!--dbcp2 数据库连接池-->
@@ -66,9 +68,41 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.46</version>
             <scope>runtime</scope>
+
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <version>3.7.0</version>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+        </plugins>
+
+
+        <sourceDirectory>src/main/java</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 
     <profiles>
         <profile>
@@ -115,31 +149,34 @@
                             </execution>
                         </executions>
                     </plugin>
+
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.7</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
                 </plugins>
             </build>
+
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+            </distributionManagement>
         </profile>
     </profiles>
 
-    <licenses>
-        <license>
-            <name>The Apache Software License, Version 2.0</name>
-            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-            <distribution>repo</distribution>
-        </license>
-    </licenses>
-
-    <scm>
-        <url>https://github.com/lkmc2/SqlFaker</url>
-        <connection>https://github.com/lkmc2/SqlFaker.git</connection>
-        <developerConnection>https://github.com/lkmc2</developerConnection>
-    </scm>
-
-    <developers>
-        <developer>
-            <name>Lin Change</name>
-            <email>lkmc2@163.com</email>
-            <url>https://github.com/lkmc2</url>
-        </developer>
-    </developers>
+    <!--发布命令：mvn clean deploy -P release -Dgpg.passphrse=GPG的密码-->
 
 </project>
