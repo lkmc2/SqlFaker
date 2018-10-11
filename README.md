@@ -284,7 +284,7 @@ public class EnglishNameRandom implements RandomData<String> {
     @Override
     public String next() {
         // 候选值数组，从该数组中随机抽一个作为返回值
-        String[] names = new String[]{"Kim Lily", "Andy Wang", "July Six"};
+        String[] names = {"Kim Lily", "Andy Wang", "July Six"};
         // 从数组中随机选取一个值
         return RandomUtils.selectOneInArray(names);
     }

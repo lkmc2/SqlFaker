@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3a9d3c88-e72e-4d82-b61e-748d1a890247" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -573,7 +571,7 @@
       <workItem from="1539163458202" duration="2612000" />
       <workItem from="1539171206596" duration="11045000" />
       <workItem from="1539220695888" duration="1313000" />
-      <workItem from="1539222395606" duration="15993000" />
+      <workItem from="1539222395606" duration="16051000" />
     </task>
     <task id="LOCAL-00001" summary="添加必要的类和依赖">
       <created>1539061756489</created>
@@ -645,7 +643,14 @@
       <option name="project" value="LOCAL" />
       <updated>1539229810820</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="修改pom.xml中关于依赖的描述">
+      <created>1539269071855</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1539269071855</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -663,7 +668,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45337000" />
+    <option name="totallyTimeSpent" value="45395000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="916" extended-state="6" />
@@ -750,7 +755,8 @@
     <MESSAGE value="添加pom.xml必要的插件" />
     <MESSAGE value="修改注释" />
     <MESSAGE value="简化随机年龄生成器的逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="简化随机年龄生成器的逻辑" />
+    <MESSAGE value="修改pom.xml中关于依赖的描述" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改pom.xml中关于依赖的描述" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

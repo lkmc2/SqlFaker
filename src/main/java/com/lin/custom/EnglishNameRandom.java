@@ -11,7 +11,9 @@ import com.lin.utils.RandomUtils;
 public class EnglishNameRandom implements RandomData<String> {
     @Override
     public String next() {
-        int random = RandomUtils.randomByLength(3);
-        return new String[]{"Kim Lily", "Andy Wang", "July Six"}[random];
+        // 候选值数组，从该数组中随机抽一个作为返回值
+        String[] names = {"Kim Lily", "Andy Wang", "July Six"};
+        // 从数组中随机选取一个值
+        return RandomUtils.selectOneInArray(names);
     }
 }
