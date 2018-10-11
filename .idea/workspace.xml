@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3a9d3c88-e72e-4d82-b61e-748d1a890247" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -18,47 +19,47 @@
       <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="56" column="21" lean-forward="true" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
+            <state relative-caret-position="579">
+              <caret line="179" column="66" lean-forward="true" selection-start-line="179" selection-start-column="66" selection-end-line="179" selection-end-column="66" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="589">
+              <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="95">
-              <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+              <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="EnglishNameRandom.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/custom/EnglishNameRandom.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="10" column="52" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="133">
-                <caret line="138" selection-start-line="138" selection-end-line="138" />
+                <caret line="139" selection-start-line="139" selection-end-line="139" />
               </first_editor>
               <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SexRandom.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/random/impl/SexRandom.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TimeRandom.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/random/impl/TimeRandom.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="9" column="32" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -84,8 +85,8 @@
       <file leaf-file-name="Faker.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/faker/Faker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="271" selection-start-line="271" selection-end-line="271" />
+            <state relative-caret-position="370">
+              <caret line="182" column="26" lean-forward="true" selection-start-line="182" selection-start-column="26" selection-end-line="182" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -93,7 +94,7 @@
       <file leaf-file-name="FakerParamMapTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/lin/FakerParamMapTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1273">
+            <state relative-caret-position="95">
               <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
             </state>
           </provider>
@@ -102,7 +103,7 @@
       <file leaf-file-name="Values.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/value/Values.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-209">
+            <state relative-caret-position="304">
               <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
             </state>
           </provider>
@@ -153,9 +154,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/lin/utils/StringUtils.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lin/value/Times.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lin/worker/IdWorker.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/lin/Main.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/lin/FakerParamMapTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/lin/custom/EnglishNameRandom.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lin/mapping/DataTypeMapping.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lin/value/Values.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lin/helper/DatabaseHelper.java" />
@@ -164,6 +163,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/lin/random/impl/EmailRandom.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lin/random/impl/B.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/main/java/com/lin/custom/EnglishNameRandom.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/lin/Main.java" />
       </list>
     </option>
   </component>
@@ -209,9 +210,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="AndroidView" />
       <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -432,7 +433,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.Example">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="B" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.lin.random.impl.B" />
       <module name="SqlFaker" />
@@ -550,6 +551,7 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.B" />
         <item itemvalue="JUnit.FakerParamMapTest" />
         <item itemvalue="JUnit.Example" />
@@ -572,6 +574,7 @@
       <workItem from="1539171206596" duration="11045000" />
       <workItem from="1539220695888" duration="1313000" />
       <workItem from="1539222395606" duration="16051000" />
+      <workItem from="1539269450328" duration="2371000" />
     </task>
     <task id="LOCAL-00001" summary="添加必要的类和依赖">
       <created>1539061756489</created>
@@ -650,7 +653,14 @@
       <option name="project" value="LOCAL" />
       <updated>1539269071855</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="修改pom.xml的介绍">
+      <created>1539269623434</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1539269623434</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -668,7 +678,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45395000" />
+    <option name="totallyTimeSpent" value="47766000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="916" extended-state="6" />
@@ -695,10 +705,10 @@
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32780612" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.48774195" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.38520408" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.4872449" />
       <window_info anchor="bottom" id="MyBatis Sql Log" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29512894" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29942694" />
       <window_info id="JRebel" order="2" side_tool="true" />
       <window_info anchor="right" id="BPMNPalette" order="3" />
       <window_info id="Learn" order="2" weight="0.3295129" />
@@ -756,7 +766,8 @@
     <MESSAGE value="修改注释" />
     <MESSAGE value="简化随机年龄生成器的逻辑" />
     <MESSAGE value="修改pom.xml中关于依赖的描述" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改pom.xml中关于依赖的描述" />
+    <MESSAGE value="修改pom.xml的介绍" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改pom.xml的介绍" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -965,13 +976,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/custom/EnglishNameRandom.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/datatype/DataType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -983,13 +987,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="191" column="21" selection-start-line="191" selection-start-column="21" selection-end-line="191" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="13" column="44" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
         </state>
       </provider>
     </entry>
@@ -1011,11 +1008,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="6" column="17" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#566#567#0" expanded="true" />
-            <element signature="e#593#594#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1047,21 +1039,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/random/impl/B.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="e#331#332#0" expanded="true" />
-            <element signature="e#360#361#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/random/impl/B.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/random/impl/TimeRandom.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="9" column="32" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/lin/FakerParamMapTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/value/Values.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="579">
+          <caret line="179" column="66" lean-forward="true" selection-start-line="179" selection-start-column="66" selection-end-line="179" selection-end-column="66" />
         </state>
       </provider>
     </entry>
@@ -1079,24 +1089,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/custom/EnglishNameRandom.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="10" column="52" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/faker/Faker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="271" selection-start-line="271" selection-end-line="271" />
+        <state relative-caret-position="370">
+          <caret line="182" column="26" lean-forward="true" selection-start-line="182" selection-start-column="26" selection-end-line="182" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/lin/FakerParamMapTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1273">
-          <caret line="12" column="10" selection-start-line="12" selection-start-column="10" selection-end-line="12" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/value/Values.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-209">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+        <state relative-caret-position="589">
+          <caret line="33" column="30" selection-start-line="33" selection-start-column="30" selection-end-line="33" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1104,23 +1114,9 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="133">
-            <caret line="138" selection-start-line="138" selection-end-line="138" />
+            <caret line="139" selection-start-line="139" selection-end-line="139" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="56" column="21" lean-forward="true" selection-start-line="56" selection-start-column="21" selection-end-line="56" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
         </state>
       </provider>
     </entry>
