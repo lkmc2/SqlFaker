@@ -37,33 +37,24 @@ insert into user(name,age,sex,address,birthday) values('韦丸赤',27,'0','河�
 insert into user(name,age,sex,address,birthday) values('任徐',54,'1','河南省新乡市延津县汉源路14号','2018-07-07 03:48:51')
 ```
 
+
+
 ## 依赖添加
 
-本开源库依赖commons-dbcp2、commons-dbutils，以及所需的数据库驱动包。
+本开源库已包含commons-dbcp2(2.0.1)、commons-dbutils(1.6)、junit(4.1.2)以及mysql-connector-java(5.1.46)的依赖。
 
 ``` xml
-<!--dbcp2 数据库连接池-->
+<!-- SqlFaker 数据库数据生成器 -->
 <dependency>
-  <groupId>org.apache.commons</groupId>
-  <artifactId>commons-dbcp2</artifactId>
-  <version>2.0.1</version>
-</dependency>
-
-<!--Apache Commons DbUtils-->
-<dependency>
-  <groupId>commons-dbutils</groupId>
-  <artifactId>commons-dbutils</artifactId>
-  <version>1.6</version>
-</dependency>
-
-<!--MySQL驱动（可换成其他数据库驱动，如：Oracle、SQL Server、H2等dbcp2连接池支持的数据库）-->
-<dependency>
-  <groupId>mysql</groupId>
-  <artifactId>mysql-connector-java</artifactId>
-  <version>5.1.46</version>
-  <scope>runtime</scope>
+  <groupId>com.github.lkmc2</groupId>
+  <artifactId>sql-faker</artifactId>
+  <version>1.0.0</version>
 </dependency>
 ```
+
+**注意**：默认使用MySQL数据库，如需更换成Oracle、SQL Server、H2等commons-dbcp2连接池支持的数据库，可另行添加依赖，并在DBTools的driverClassName(数据库驱动名)方法中指定数据库驱动名。
+
+
 
 ## 数据库连接
 
@@ -104,6 +95,8 @@ DBTools.dbName("facker").connect();
 ```
 
 **注意** ：数据库连接只需要设置一次，之后可以多次调用Faker进行插入数据操作。
+
+
 
 ## 数据插入
 
@@ -146,6 +139,7 @@ Faker.tableName("user")
       .insertCount(5)
       .ignored();
 ```
+
 
 
 ### 二、插入数据的方式
@@ -215,7 +209,7 @@ Values类共有以下8种生成取值范围方法，如下表：
 | Values.ofFloatRange(起始值,结束值,精度)  | 在[起始值, 结束值]的范围内取一个值，精度根据参数设置，最多6位 |     123.333333f     |
 |  Values.ofDoubleRange(起始值,结束值)   |  在[起始值, 结束值]的范围内取一个值，默认精确到小数点后2位  |       788.31d       |
 | Values.ofDoubleRange(起始值,结束值,精度) | 在[起始值, 结束值]的范围内取一个值，精度根据参数设置，最多6位 |     1820.4231d      |
-|  Values.ofTimeRange(开始时间，结束时间]   |    在[开始时间, 结束时间]的范围内取一个时间，精确到秒    | 2018-03-14 13:21:11 |
+|  Values.ofTimeRange(开始时间，结束时间)   |    在[开始时间, 结束时间]的范围内取一个时间，精确到秒    | 2018-03-14 13:21:11 |
 
 另外，Times类中还有用于设定时间的两个方法：
 
@@ -314,3 +308,12 @@ Faker.tableName("user")
 insert into user(name, age, address) 
 values('Andy Wang', 23, '四川省绵阳市盐亭县北利路73号')
 ```
+
+
+PS：如果有任何建议，可以在Issues中提出，如添加DataType的默认类型等。
+
+
+
+## License
+
+The SqlFaker is released under version 2.0 of the [Apache License](http://www.apache.org/licenses/LICENSE-2.0).
