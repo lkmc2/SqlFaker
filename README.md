@@ -282,10 +282,11 @@ public interface RandomData<T> {
 ``` java
 // 英文名数据生成器
 public class EnglishNameRandom implements RandomData<String> {
+    // 候选值数组，从该数组中随机抽一个作为返回值
+    private static final String[] names = {"Kim Lily", "Andy Wang", "July Six"};
+    
     @Override
     public String next() {
-        // 候选值数组，从该数组中随机抽一个作为返回值
-        String[] names = {"Kim Lily", "Andy Wang", "July Six"};
         // 从数组中随机选取一个值
         return RandomUtils.selectOneInArray(names);
     }
