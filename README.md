@@ -31,11 +31,11 @@ Faker.tableName("user")
 上述代码将生成如下SQL语句，并在数据库中执行：
 
 ```sql
-insert into user(name,age,sex,address,birthday) values('武叹霜',21,'0','山西省晋城市泽州县庆达路463号','2018-02-24 10:56:37')
-insert into user(name,age,sex,address,birthday) values('顾什可',50,'1','广西壮族自治区柳州市融水苗族自治县德堡路419号','2018-04-09 08:10:22')
-insert into user(name,age,sex,address,birthday) values('蔡静随',46,'0','河南省郑州市巩义市广延路240号','2018-06-11 23:02:19')
-insert into user(name,age,sex,address,birthday) values('韦丸赤',27,'0','河南省焦作市博爱县浦润路148号','2018-02-22 15:52:50')
-insert into user(name,age,sex,address,birthday) values('任徐',54,'1','河南省新乡市延津县汉源路14号','2018-07-07 03:48:51')
+insert into user(name,age,sex,address,birthday) values('武叹霜',21,'山西省晋城市泽州县庆达路463号','2018-02-24 10:56:37')
+insert into user(name,age,sex,address,birthday) values('顾什可',50,'广西壮族自治区柳州市融水苗族自治县德堡路419号','2018-04-09 08:10:22')
+insert into user(name,age,sex,address,birthday) values('蔡静随',46,'河南省郑州市巩义市广延路240号','2018-06-11 23:02:19')
+insert into user(name,age,sex,address,birthday) values('韦丸赤',27,'河南省焦作市博爱县浦润路148号','2018-02-22 15:52:50')
+insert into user(name,age,sex,address,birthday) values('任徐',54,'河南省新乡市延津县汉源路14号','2018-07-07 03:48:51')
 ```
 
 
@@ -201,16 +201,16 @@ values(
 Values类共有以下8种生成取值范围方法，如下表：
 
 
-|               方法名                |               取值范围                |         示例值         |
-| :------------------------------: | :-------------------------------: | :-----------------: |
-|         Values.of(可变长数组)         |          从可变长数组中任意抽取一个值           |  "优品", "良品", "次品"   |
-|    Values.ofIntRange(起始值,结束值)    |        在[起始值, 结束值]的范围内取一个值        |         33          |
-|   Values.ofLongRange(起始值,结束值)    |        在[起始值, 结束值)的范围内取一个值        |     777777777L      |
-|   Values.ofFloatRange(起始值,结束值)   |  在[起始值, 结束值]的范围内取一个值，默认精确到小数点后2位  |       22.22f        |
-| Values.ofFloatRange(起始值,结束值,精度)  | 在[起始值, 结束值]的范围内取一个值，精度根据参数设置，最多6位 |     123.333333f     |
-|  Values.ofDoubleRange(起始值,结束值)   |  在[起始值, 结束值]的范围内取一个值，默认精确到小数点后2位  |       788.31d       |
-| Values.ofDoubleRange(起始值,结束值,精度) | 在[起始值, 结束值]的范围内取一个值，精度根据参数设置，最多6位 |     1820.4231d      |
-|  Values.ofTimeRange(开始时间，结束时间)   |    在[开始时间, 结束时间]的范围内取一个时间，精确到秒    | 2018-03-14 13:21:11 |
+|               方法名                |                  取值范围                  |         示例值         |
+| :------------------------------: | :------------------------------------: | :-----------------: |
+|         Values.of(可变长数组)         |             从可变长数组中任意抽取一个值             |  "优品", "良品", "次品"   |
+|    Values.ofIntRange(起始值,结束值)    |          在[起始值, 结束值]的范围内取一个整数          |         33          |
+|   Values.ofLongRange(起始值,结束值)    |         在[起始值, 结束值)的范围内取一个长整型数         |     777777777L      |
+|   Values.ofFloatRange(起始值,结束值)   |  在[起始值, 结束值]的范围内取一个单精度浮点数，默认精确到小数点后2位  |       22.22f        |
+| Values.ofFloatRange(起始值,结束值,精度)  | 在[起始值, 结束值]的范围内取一个单精度浮点数，精度根据参数设置，最多6位 |     123.333333f     |
+|  Values.ofDoubleRange(起始值,结束值)   |  在[起始值, 结束值]的范围内取一个双精度浮点数，默认精确到小数点后2位  |       788.31d       |
+| Values.ofDoubleRange(起始值,结束值,精度) | 在[起始值, 结束值]的范围内取一个双精度浮点数，精度根据参数设置，最多6位 |     1820.4231d      |
+|  Values.ofTimeRange(开始时间，结束时间)   |      在[开始时间, 结束时间]的范围内取一个时间，精确到秒       | 2018-03-14 13:21:11 |
 
 另外，Times类中还有用于设定时间的两个方法：
 
@@ -265,7 +265,7 @@ values(
 
 #### 3. 实现RandomData接口，提供可随机生成的返回值
 
-Random接口的代码如下：
+RandomData接口的代码如下：
 
 ```java
 public interface RandomData<T> {
@@ -277,7 +277,7 @@ public interface RandomData<T> {
 
 使用示例：
 
-1. 创建一个自定义类EnglishNameRandom，实现Random<T>（泛型T可以是任意类型）接口，并提供一个随机生成的返回值。
+1. 创建一个自定义类EnglishNameRandom，实现RandomData<T>（泛型T可以是任意类型）接口，并提供一个随机生成的返回值。
 
 ``` java
 // 英文名数据生成器
