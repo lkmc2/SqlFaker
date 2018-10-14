@@ -20,7 +20,7 @@ public final class Times {
      * @return 时间值
      */
     public static long of(int year, int month, int day) {
-        CALENDAR.set(year, month, day);
+        CALENDAR.set(year, month - 1, day);
         return CALENDAR.getTimeInMillis();
     }
 
@@ -35,7 +35,7 @@ public final class Times {
      * @return 时间值
      */
     public static long of(int year, int month, int day, int hour, int minute, int second) {
-        CALENDAR.set(year, month, day, hour, minute, second);
+        CALENDAR.set(year, month - 1, day, hour, minute, second);
         return CALENDAR.getTimeInMillis();
     }
 
