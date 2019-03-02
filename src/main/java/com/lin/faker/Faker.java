@@ -49,7 +49,7 @@ public final class Faker {
     }
 
     // 静态单例
-    private static final class FackerHolder {
+    private static final class FakerHolder {
         private static final Faker INSTANCE = new Faker();
     }
 
@@ -59,7 +59,7 @@ public final class Faker {
      * @return 数据伪造器
      */
     public static Faker tableName(String tableName) {
-        return FackerHolder.INSTANCE.setTableName(tableName);
+        return FakerHolder.INSTANCE.setTableName(tableName);
     }
 
     /**
