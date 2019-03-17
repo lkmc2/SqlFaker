@@ -1,5 +1,7 @@
 # SqlFaker
 #### 轻量级、易拓展的数据库智能填充Java开源库
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.lkmc2/sql-faker.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.lkmc2%22%20AND%20a:%22sql-faker%22)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## 开源库特性
 
