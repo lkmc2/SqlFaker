@@ -150,6 +150,9 @@ public class MysqlFakerCreator {
      * 创建Faker表结构
      */
     public void build() {
+        this.username = (this.username != null) ? this.username : "root";
+        this.password = (this.password != null) ? this.password : "123456";
+
         try {
             // 执行主要逻辑
             executeMainLogic();
@@ -169,9 +172,9 @@ public class MysqlFakerCreator {
         validUrl();
 
         // 连接数据库
-        DBTools.url(url)
-                .username((username != null) ? username : "root")
-                .password((password != null) ? password : "123456")
+        DBTools.url(this.url)
+                .username(this.username)
+                .password(this.password)
                 .connect();
 
         // 获取所有的表信息（表名、表注释）

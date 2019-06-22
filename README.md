@@ -50,7 +50,7 @@ insert into user(name,age,sex,address,birthday) values('任徐',54,'河南省新
 <dependency>
   <groupId>com.github.lkmc2</groupId>
   <artifactId>sql-faker</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 
