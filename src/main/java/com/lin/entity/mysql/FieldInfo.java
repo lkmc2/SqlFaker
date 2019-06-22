@@ -3,6 +3,7 @@ package com.lin.entity.mysql;
 /**
  * 数据库表字段信息
  * @author lkmc2
+ * @since 1.0.1
  */
 public class FieldInfo {
     private String Field; // 字段名

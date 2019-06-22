@@ -8,6 +8,7 @@ import org.apache.commons.dbutils.handlers.*;
 
 import java.io.*;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -216,6 +217,46 @@ public final class DatabaseHelper {
         }
 
         return rows;
+    }
+
+    /**
+     * 执行更新语句（包括update、insert、delete）
+     * @param sqlList sql 列表
+     * @return 受影响行数
+     */
+    public static int executeInsertBatch(List<String> sqlList) {
+        // 受影响行数
+        int effectCount = 0;
+        // 当前行数
+        int rowsCount = 0;
+        // 批量提交条数
+        final int commitSize = 1000;
+
+        try {
+            // 获取数据库连接
+            Connection conn = getConnection();
+            conn.setAutoCommit(false);
+
+            for (String sql : sqlList) {
+                effectCount += QUERY_RUNNER.update(conn, sql);
+
+                rowsCount++;
+
+                if(rowsCount % commitSize == 0){
+                    conn.commit();
+                }
+            }
+
+            // 存在未处理的 sql
+            if(rowsCount % commitSize != 0){
+                conn.commit();
+            }
+        }catch (SQLException e) {
+            LOGGER.error("执行更新失败");
+            throw new RuntimeException(e);
+        }
+
+        return effectCount;
     }
 
     /**

@@ -205,19 +205,10 @@ public final class Faker {
             // 开始事务
             DatabaseHelper.beginTransaction();
 
-            // 遍历SQL列表中的语句
-            for (String sql : SQL_LIST) {
-                // 执行sql，获取受影响行数
-                int effectCount = DatabaseHelper.executeUpdate(sql);
-
-                // 统计总的插入条数
-                this.totalCount += effectCount;
-            }
+            // 批量执行sql语句，获取总的插入条数
+            this.totalCount = DatabaseHelper.executeInsertBatch(SQL_LIST);
 
             LOGGER.print(String.format("成功插入[ %s ]条数据",this.totalCount));
-
-            // 提交事务
-            DatabaseHelper.commitTransaction();
         } catch (Exception e) {
             // 事务回滚
             DatabaseHelper.rollbackTransaction();

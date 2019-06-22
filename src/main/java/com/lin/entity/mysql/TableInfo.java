@@ -3,6 +3,7 @@ package com.lin.entity.mysql;
 /**
  * 数据表信息
  * @author lkmc2
+ * @since 1.0.1
  */
 public class TableInfo {
     private String tableName; // 表名

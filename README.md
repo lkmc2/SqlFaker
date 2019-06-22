@@ -1,7 +1,6 @@
 # SqlFaker
 #### 轻量级、易拓展的数据库智能填充Java开源库
-[![Maven Central](https://img.shields.io/maven-central/v/com.github.lkmc2/sql-faker.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.lkmc2%22%20AND%20a:%22sql-faker%22)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Maven Central](https://img.shields.io/badge/maven--central-v1.0.1-blue.svg)](https://search.maven.org/search?q=g:%22com.github.lkmc2%22%20AND%20a:%22sql-faker%22)[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## 开源库特性
 
@@ -51,7 +50,7 @@ insert into user(name,age,sex,address,birthday) values('任徐',54,'河南省新
 <dependency>
   <groupId>com.github.lkmc2</groupId>
   <artifactId>sql-faker</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
@@ -312,6 +311,110 @@ Faker.tableName("user")
 insert into user(name, age, address) 
 values('Andy Wang', 23, '四川省绵阳市盐亭县北利路73号')
 ```
+
+
+
+## 使用Faker表创建器快速生成Java文件
+
+注意：目前仅针对mysql数据库设计了Faker表创建器。
+
+
+
+###使用示范
+
+如test数据库中含有如下两张表。
+
+```sql
+create table user
+(
+  id   int          null,
+  name varchar(120) null,
+  age  int          null
+) comment '用户表';
+
+create table product
+(
+  id         varchar(32) not null primary key,
+  name       varchar(32) null,
+  price      int         null,
+  tenant_id  varchar(32) null,
+  created_by varchar(32) null,
+  updated_by varchar(32) null,
+  created_at date        null,
+  updated_at date        null,
+  dr         int(1)      null
+) comment '产品表';
+```
+
+
+
+使用如下代码即可使用Faker表创建器快速为test数据库中的所有表生成带有Faker结构的java文件。
+
+```java
+// 方式1：简单设置数据库名，使用默认url、用户名和密码，并创建Faker表结构
+MysqlFakerCreator.dbName("test").build();
+
+// 方式2：完整设置数据库信息，并创建Faker表结构
+MysqlFakerCreator.url("jdbc:mysql://localhost:3306/test")
+                .username("root")
+                .password("123456")
+                .build();
+```
+
+
+
+执行上述代码，生成的java文件内容如下：
+
+``` java
+package com.lin.creator;
+
+import com.lin.datatype.DataType;
+import com.lin.faker.Faker;
+import com.lin.utils.DBTools;
+import com.lin.value.Times;
+import com.lin.value.Values;
+
+/**
+* Faker生成的表结构
+*/
+public class CreateFakerTable {
+
+   public static void main(String[] args) {
+      // 创建数据库连接
+      DBTools.url("jdbc:mysql://localhost:3306/test")
+            .username("root")
+            .password("123456")
+            .driverClassName("com.mysql.jdbc.Driver")
+            .connect();
+
+      // 用户表
+      Faker.tableName("user")
+            .param("id", Values.ofIntRange(1, 18))
+            .param("name", Values.of("example1", "example2", "example3"))
+            .param("age", Values.ofIntRange(1, 18))
+            .insertCount(5)
+            .onlyShowSql();
+      
+      // 产品表
+      Faker.tableName("product")
+            .param("id", DataType.ID)
+            .param("name", Values.of("example1", "example2", "example3"))
+            .param("price", Values.ofIntRange(1, 18))
+            .param("tenant_id", Values.of("example1", "example2", "example3"))
+            .param("created_by", Values.of("example1", "example2", "example3"))
+            .param("updated_by", Values.of("example1", "example2", "example3"))
+            .param("created_at", Values.ofTimeRange(Times.of(2019, 1, 1), Times.of(2019, 5, 1)))
+            .param("updated_at", Values.ofTimeRange(Times.of(2019, 1, 1), Times.of(2019, 5, 1)))
+            .param("dr", Values.ofIntRange(1, 18))
+            .insertCount(5)
+            .onlyShowSql();
+   }
+
+}
+```
+
+可以在此文件的基础上对进行开发。
+
 
 
 PS：如果有任何建议，可以在Issues中提出，如添加DataType的默认类型等。

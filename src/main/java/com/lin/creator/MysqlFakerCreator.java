@@ -73,6 +73,7 @@ public class MysqlFakerCreator {
         databaseInferMap.put("MEDIUMTEXT","TEXT");
         databaseInferMap.put("LONGBLOB",  "TEXT");
         databaseInferMap.put("LONGTEXT",  "TEXT");
+        databaseInferMap.put("VARBINARY",  "TEXT");
     }
 
     // 静态单例
@@ -375,7 +376,7 @@ public class MysqlFakerCreator {
             case "TEXT":
                 return "Values.of(\"example1\", \"example2\", \"example3\")";
             default:
-                throw new RuntimeException("生成的DataType类型错误");
+                throw new RuntimeException(String.format("生成的DataType类型错误，不支持的类型【%s】", tempType));
         }
     }
 

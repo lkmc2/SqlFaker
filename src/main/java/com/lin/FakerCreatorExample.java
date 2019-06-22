@@ -11,10 +11,10 @@ public class FakerCreatorExample {
 
     public static void main(String[] args) {
         // 简单设置数据库名，并创建Faker表结构
-//        MysqlFakerCreator.dbName("user").build();
+//        MysqlFakerCreator.dbName("test").build();
 
         // 完整设置数据库信息，并创建Faker表结构
-        MysqlFakerCreator.url("jdbc:mysql://localhost:3306/user")
+        MysqlFakerCreator.url("jdbc:mysql://localhost:3306/test")
                 .username("root")
                 .password("123456")
                 .build();

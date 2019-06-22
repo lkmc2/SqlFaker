@@ -3,6 +3,7 @@ package com.lin.entity.mysql;
 /**
  * 路径信息
  * @author lkmc2
+ * @since 1.0.1
  */
 public class PathInfo {
     private String packageName; // 包名
