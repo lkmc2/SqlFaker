@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3a9d3c88-e72e-4d82-b61e-748d1a890247" name="Default" comment="">
+    <list default="true" id="3a9d3c88-e72e-4d82-b61e-748d1a890247" name="Default" comment="修改注释">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lin/FakerCreatorExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lin/creator/MysqlFakerCreator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lin/entity/mysql/FieldInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lin/entity/mysql/PathInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lin/entity/mysql/TableInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/UserNameRandom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/random/impl/UserNameRandom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lin/value/Values.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lin/value/Values.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -31,46 +34,29 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/value/Times.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/Example.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+            <state relative-caret-position="76">
+              <caret line="11" selection-start-line="11" selection-end-line="15" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/value/Values.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="14" column="14" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="14" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/creator/MysqlFakerCreator.java">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/faker/Faker.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="221" column="12" selection-start-line="221" selection-start-column="12" selection-end-line="221" selection-end-column="19" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/entity/mysql/PathInfo.java">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="22" column="27" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="27" />
+            <state relative-caret-position="342">
+              <caret line="32" column="14" lean-forward="true" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,22 +64,23 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pom.xml">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/FakerCreatorExample.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1349">
-              <caret line="71" column="21" selection-start-line="51" selection-start-column="8" selection-end-line="71" selection-end-column="21" />
+            <state relative-caret-position="114">
+              <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/utils/DBTools.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2375">
-              <caret line="130" column="106" selection-start-line="130" selection-start-column="85" selection-end-line="130" selection-end-column="106" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/entity/mysql/FieldInfo.java">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/entity/mysql/TableInfo.java">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -161,7 +148,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/lin/Example.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lin/asserts/Asserts.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lin/datatype/DataType.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/lin/faker/Faker.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lin/logger/Logger.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lin/logger/LoggerFactory.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lin/random/base/BaseRandomCreator.java" />
@@ -191,6 +177,9 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/main/java/com/lin/asserts/Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/lin/value/Times.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/lin/faker/Faker.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/lin/creator/MysqlFakerCreator.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/lin/FakerCreatorExample.java" />
       </list>
     </option>
   </component>
@@ -218,9 +207,9 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-7" />
-    <option name="width" value="734" />
-    <option name="height" value="907" />
+    <option name="x" value="676" />
+    <option name="width" value="697" />
+    <option name="height" value="775" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -230,6 +219,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -276,13 +267,12 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1561208368082" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -293,20 +283,22 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.gutterIcons" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="F:\IntellJ Project\SqlFaker" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.lin" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com" />
-      <recent name="com.lin" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\IntellJ Project\SqlFaker\src\main\java\com\lin" />
       <recent name="F:\IntellJ Project\SqlFaker" />
       <recent name="F:\IntellJ Project\SqlFaker\src\main\resources" />
       <recent name="F:\IntellJ Project\SqlFaker\src\main\java" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.lin.creator" />
+      <recent name="com" />
+      <recent name="com.lin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\IntellJ Project\SqlFaker" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -440,6 +432,8 @@
       <workItem from="1539505518573" duration="20566000" />
       <workItem from="1539567566046" duration="566000" />
       <workItem from="1551452982537" duration="1378000" />
+      <workItem from="1551498715602" duration="2902000" />
+      <workItem from="1561208058147" duration="286000" />
     </task>
     <task id="LOCAL-00001" summary="添加必要的类和依赖">
       <created>1539061756489</created>
@@ -553,7 +547,14 @@
       <option name="project" value="LOCAL" />
       <updated>1539528531218</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="修改注释">
+      <created>1551498849380</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1551498849380</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -571,13 +572,13 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78798000" />
+    <option name="totallyTimeSpent" value="81986000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="734" height="907" extended-state="0" />
+    <frame x="676" y="0" width="697" height="775" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.5474777" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.59811616" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="JRebel" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -586,7 +587,6 @@
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="7" />
       <window_info id="Learn" order="8" weight="0.3295129" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.38520408" />
@@ -599,11 +599,12 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.49290323" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.32903227" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.39158162" />
+      <window_info anchor="bottom" id="Version Control" order="12" weight="0.39068565" />
       <window_info anchor="bottom" id="JRebel Console" order="13" side_tool="true" />
       <window_info anchor="bottom" id="JRebel Executor" order="14" />
       <window_info anchor="bottom" id="Tail" order="15" />
-      <window_info anchor="right" id="Maven" />
+      <window_info anchor="bottom" id="Docker" order="16" show_stripe_button="false" />
+      <window_info anchor="right" id="Mybatis datasource" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24925816" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -615,6 +616,7 @@
       <window_info anchor="right" id="Palette&#9;" order="8" />
       <window_info anchor="right" id="Theme Preview" order="9" />
       <window_info anchor="right" id="RestServices" order="10" />
+      <window_info anchor="right" id="Maven" order="11" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -669,13 +671,13 @@
     <MESSAGE value="添加pom.xml的项目描述" />
     <MESSAGE value="将项目改为快照版本" />
     <MESSAGE value="添加pom.xml必要的插件" />
-    <MESSAGE value="修改注释" />
     <MESSAGE value="简化随机年龄生成器的逻辑" />
     <MESSAGE value="修改pom.xml中关于依赖的描述" />
     <MESSAGE value="修改pom.xml的介绍" />
     <MESSAGE value="修改自定义生成器例子" />
     <MESSAGE value="修正时间生成器的误差" />
-    <option name="LAST_COMMIT_MESSAGE" value="修正时间生成器的误差" />
+    <MESSAGE value="修改注释" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改注释" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -728,16 +730,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="448">
-            <caret line="291" column="5" selection-start-line="285" selection-start-column="4" selection-end-line="291" selection-end-column="5" />
-          </first_editor>
-          <second_editor />
         </state>
       </provider>
     </entry>
@@ -861,6 +853,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/value/Values.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="16" column="23" lean-forward="true" selection-start-line="16" selection-start-column="23" selection-end-line="16" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="379">
+            <caret line="291" column="5" selection-start-line="285" selection-start-column="4" selection-end-line="291" selection-end-column="5" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="633" column="19" selection-start-line="633" selection-start-column="19" selection-end-line="633" selection-end-column="19" />
+          <folding>
+            <element signature="e#23072#23073#0" expanded="true" />
+            <element signature="e#23112#23113#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/value/Times.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -868,17 +888,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/Example.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/faker/Faker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/value/Values.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="14" column="14" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="14" />
+        <state relative-caret-position="703">
+          <caret line="47" column="21" selection-start-line="47" selection-start-column="21" selection-end-line="47" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -891,8 +904,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/utils/DBTools.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2375">
-          <caret line="130" column="106" selection-start-line="130" selection-start-column="85" selection-end-line="130" selection-end-column="106" />
+        <state relative-caret-position="2356">
+          <caret line="129" column="71" selection-start-line="129" selection-start-column="31" selection-end-line="129" selection-end-column="71" />
         </state>
       </provider>
     </entry>
@@ -924,20 +937,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/faker/Faker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="221" column="12" selection-start-line="221" selection-start-column="12" selection-end-line="221" selection-end-column="19" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/creator/MysqlFakerCreator.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/entity/mysql/PathInfo.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/entity/mysql/FieldInfo.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/entity/mysql/TableInfo.java">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="22" column="27" lean-forward="true" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="27" />
+        <state relative-caret-position="342">
+          <caret line="32" column="14" lean-forward="true" selection-start-line="32" selection-start-column="14" selection-end-line="32" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/Example.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="11" selection-start-line="11" selection-end-line="15" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/lin/FakerCreatorExample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="16" lean-forward="true" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
         </state>
       </provider>
     </entry>
