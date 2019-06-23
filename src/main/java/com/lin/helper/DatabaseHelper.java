@@ -411,6 +411,63 @@ public final class DatabaseHelper {
     }
 
     /**
+     * 执行sql文件
+     * @param file sql文件
+     */
+    public static int executeSqlFile(File file) {
+        InputStream is = null;
+        InputStreamReader isr = null;
+        BufferedReader reader = null;
+
+        // 受影响行数
+        int effectCount = 0;
+        // 当前行数
+        int rowsCount = 0;
+        // 批量提交条数
+        final int commitSize = 1000;
+
+        try {
+            is = new FileInputStream(file);
+            isr = new InputStreamReader(is);
+            reader = new BufferedReader(isr);
+
+            // 获取数据库连接
+            Connection conn = getConnection();
+            conn.setAutoCommit(false);
+
+            String sql;
+            // 执行文件中的每一条sql
+            while ((sql = reader.readLine()) != null) {
+                if (sql.isEmpty()) {
+                    continue;
+                }
+                effectCount += QUERY_RUNNER.update(conn, sql);
+
+                rowsCount++;
+
+                if(rowsCount % commitSize == 0){
+                    conn.commit();
+                }
+            }
+
+            // 存在未处理的 sql
+            if(rowsCount % commitSize != 0){
+                conn.commit();
+            }
+
+        }catch (Exception e) {
+            LOGGER.error("执行SQL文件失败");
+            throw new RuntimeException(e);
+        }  finally {
+            closeStream(reader);
+            closeStream(isr);
+            closeStream(is);
+        }
+
+        return effectCount;
+    }
+
+    /**
      * 关闭流
      * @param closeable 可关闭对象
      */

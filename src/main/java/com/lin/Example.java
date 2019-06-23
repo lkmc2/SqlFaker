@@ -25,6 +25,8 @@ public class Example {
 
     @Test
     public void testInsertByMapSuccess() {
+        long startTime = System.currentTimeMillis();
+
         // 给user表的四个字段填充5条数据
         Faker.tableName("user")
                 .param("name", DataType.USERNAME)
@@ -32,8 +34,12 @@ public class Example {
                 .param("sex", DataType.SEX)
                 .param("address", DataType.ADDRESS)
                 .param("birthday", DataType.TIME)
-                .insertCount(5)
+                .insertCount(1000000)
                 .execute();
+
+        long endTime = System.currentTimeMillis();
+
+        System.out.println("总共耗时：" + (endTime - startTime));
     }
 
     @Test

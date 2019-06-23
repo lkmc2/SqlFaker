@@ -11,6 +11,10 @@ import com.lin.utils.DBTools;
 import com.lin.utils.FlyweightUtils;
 import com.lin.utils.StringUtils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -35,11 +39,11 @@ public final class Faker {
     /** 存储属性的同步Map **/
     private final Map<String, Object> PARAM_MAP;
 
-    /** SQL记录列表 **/
-    private List<String> SQL_LIST;
-
     /** 日志记录器 **/
     private static final Logger LOGGER = LoggerFactory.getLogger(Faker.class);
+
+    /** sql 语句保存文件 **/
+    private File sqlFile;
 
     // 初始化参数存储Map和数据类型映射Map/
     {
@@ -47,6 +51,22 @@ public final class Faker {
     }
 
     private Faker() {
+        sqlFile = new File("my_sql.sql");
+        if (!sqlFile.exists()) {
+            try {
+                boolean success = sqlFile.createNewFile();
+                if (success) {
+                    System.out.println("创建文件 【my_sql.sql】 成功");
+                    System.out.println(sqlFile.getAbsolutePath());
+                } else {
+                    System.out.println("创建文件 【my_sql.sql】 失败");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println(sqlFile.getAbsolutePath());
+        }
     }
 
     // 静态单例
@@ -82,7 +102,6 @@ public final class Faker {
      */
     private void resetVariable() {
         this.PARAM_MAP.clear();
-        this.SQL_LIST = null;
         this.count = 0;
         this.totalCount = 0;
         this.isInsertDataToDB = false;
@@ -134,9 +153,6 @@ public final class Faker {
         // 设置插入数据到数据库
         this.isInsertDataToDB = true;
 
-        // 初始化SQL记录列表
-        SQL_LIST = Collections.synchronizedList(new ArrayList<String>(this.count));
-
         // 执行主要逻辑
         executeMainLogic();
     }
@@ -172,29 +188,42 @@ public final class Faker {
      * 执行生成SQL语句的逻辑
      */
     private void generateSql() {
-        for (int i = 0; i < count; i++) {
-            // 生成参数名和参数值列表
-            String[] paramNameAndValue = generateParamNameAndValue();
+        PrintWriter writer = null;
 
-            // 参数名，如：name,age,sex,birthday
-            String paramName = paramNameAndValue[0];
-            // 参数值，如：'jack','13','0','1999-9-9 12:12:12'
-            String paramValue = paramNameAndValue[1];
+        try {
+            writer = new PrintWriter(sqlFile);
 
-            // 拼接成insert语句
-            String sql = String.format("insert into %s(%s) values(%s)", tableName, paramName, paramValue);
+            for (int i = 0; i < count; i++) {
+                // 生成参数名和参数值列表
+                String[] paramNameAndValue = generateParamNameAndValue();
 
-            // 根据 url 判断是否 sql server 数据库，进行特别处理
-            String url = DatabaseHelper.getDataSource().getUrl();
-            if (url.contains("sqlserver")) {
-                sql = String.format("insert into [dbo].[%s](%s) values(%s)", tableName, paramName, paramValue);
+                // 参数名，如：name,age,sex,birthday
+                String paramName = paramNameAndValue[0];
+                // 参数值，如：'jack','13','0','1999-9-9 12:12:12'
+                String paramValue = paramNameAndValue[1];
+
+                // 拼接成insert语句
+                String sql = String.format("insert into %s(%s) values(%s)", tableName, paramName, paramValue);
+
+                // 根据 url 判断是否 sql server 数据库，进行特别处理
+                String url = DatabaseHelper.getDataSource().getUrl();
+                if (url.contains("sqlserver")) {
+                    sql = String.format("insert into [dbo].[%s](%s) values(%s)", tableName, paramName, paramValue);
+                }
+
+                LOGGER.info(sql);
+
+                // 如果需要插入到数据库，将生成的sql语句添加到LIST中
+                if (this.isInsertDataToDB) {
+                    writer.println(sql + ";");
+                    writer.flush();
+                }
             }
-
-            LOGGER.info(sql);
-
-            // 如果需要插入到数据库，将生成的sql语句添加到LIST中
-            if (this.isInsertDataToDB) {
-                SQL_LIST.add(sql);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            if (writer != null) {
+                writer.close();
             }
         }
     }
@@ -214,7 +243,7 @@ public final class Faker {
             DatabaseHelper.beginTransaction();
 
             // 批量执行sql语句，获取总的插入条数
-            this.totalCount = DatabaseHelper.executeInsertBatch(SQL_LIST);
+            this.totalCount = DatabaseHelper.executeSqlFile(sqlFile);
 
             LOGGER.print(String.format("成功插入[ %s ]条数据",this.totalCount));
         } catch (Exception e) {
@@ -222,6 +251,16 @@ public final class Faker {
 
             // 事务回滚
             DatabaseHelper.rollbackTransaction();
+        }
+
+        if (sqlFile.exists()) {
+            boolean success = sqlFile.delete();
+
+            if (success) {
+                System.out.println("删除文件成功");
+            } else {
+                System.out.println("删除文件失败");
+            }
         }
     }
 
