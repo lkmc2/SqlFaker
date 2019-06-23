@@ -49,14 +49,6 @@ public class MysqlFakerCreator extends BaseFakerCreator {
     }
 
     @Override
-    protected void setDbStringTypeList(List<String> dbStringTypeList) {
-        dbStringTypeList.addAll(Arrays.asList(
-                "CHAR", "VARCHAR", "TINYBLOB", "TINYTEXT", "BLOB",
-                "TEXT", "MEDIUMBLOB", "MEDIUMTEXT", "LONGBLOB", "LONGTEXT"
-        ));
-    }
-
-    @Override
     protected String getDefaultUsername() {
         return "root";
     }
@@ -74,6 +66,14 @@ public class MysqlFakerCreator extends BaseFakerCreator {
     @Override
     protected String getDefaultUrlPrefix() {
         return "jdbc:mysql://localhost:3306/";
+    }
+
+    @Override
+    protected void setDbStringTypeList(List<String> dbStringTypeList) {
+        dbStringTypeList.addAll(Arrays.asList(
+                "CHAR", "VARCHAR", "TINYBLOB", "TINYTEXT", "BLOB",
+                "TEXT", "MEDIUMBLOB", "MEDIUMTEXT", "LONGBLOB", "LONGTEXT"
+        ));
     }
 
     @Override

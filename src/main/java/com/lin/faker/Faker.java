@@ -7,6 +7,7 @@ import com.lin.logger.Logger;
 import com.lin.logger.LoggerFactory;
 import com.lin.mapping.DataTypeMapping;
 import com.lin.random.RandomData;
+import com.lin.utils.DBTools;
 import com.lin.utils.FlyweightUtils;
 import com.lin.utils.StringUtils;
 
@@ -182,6 +183,13 @@ public final class Faker {
 
             // 拼接成insert语句
             String sql = String.format("insert into %s(%s) values(%s)", tableName, paramName, paramValue);
+
+            // 根据 url 判断是否 sql server 数据库，进行特别处理
+            String url = DatabaseHelper.getDataSource().getUrl();
+            if (url.contains("sqlserver")) {
+                sql = String.format("insert into [dbo].[%s](%s) values(%s)", tableName, paramName, paramValue);
+            }
+
             LOGGER.info(sql);
 
             // 如果需要插入到数据库，将生成的sql语句添加到LIST中
@@ -210,6 +218,8 @@ public final class Faker {
 
             LOGGER.print(String.format("成功插入[ %s ]条数据",this.totalCount));
         } catch (Exception e) {
+            e.printStackTrace();
+
             // 事务回滚
             DatabaseHelper.rollbackTransaction();
         }

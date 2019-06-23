@@ -353,6 +353,11 @@ public abstract class BaseFakerCreator {
     private static String dbTypeToDataType(String fieldType) {
         // 将数据类类型转换成临时类型
         String tempType = DATABASE_INFER_MAP.get(fieldType);
+
+        if (tempType == null) {
+            throw new RuntimeException(String.format("无法转换 【%s】 类型的数据", fieldType));
+        }
+
         switch (tempType) {
             case "INT":
                 return "Values.ofIntRange(1, 18)";
