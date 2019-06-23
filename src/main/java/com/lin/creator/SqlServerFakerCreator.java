@@ -15,10 +15,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Faker表创建器（仅适用于MySQL数据库）
+ * Faker表创建器（仅适用于Sql Server数据库）
  * @author lkmc2
  */
-public class MysqlFakerCreator {
+public class SqlServerFakerCreator {
     /** 数据库中的字符串类型列表 **/
     private static final List<String> DB_STRING_TYPE_LIST = Arrays.asList(
             "CHAR","VARCHAR","TINYBLOB","TINYTEXT","BLOB",
@@ -76,12 +76,11 @@ public class MysqlFakerCreator {
         databaseInferMap.put("MEDIUMTEXT","TEXT");
         databaseInferMap.put("LONGBLOB",  "TEXT");
         databaseInferMap.put("LONGTEXT",  "TEXT");
-        databaseInferMap.put("VARBINARY",  "TEXT");
     }
 
     // 静态单例
     private static final class FakerCreatorHolder {
-        private static final MysqlFakerCreator INSTANCE = new MysqlFakerCreator();
+        private static final SqlServerFakerCreator INSTANCE = new SqlServerFakerCreator();
     }
 
     /**
@@ -89,7 +88,7 @@ public class MysqlFakerCreator {
      * @param url 数据库连接url
      * @return Faker表创建器
      */
-    public static MysqlFakerCreator url(String url) {
+    public static SqlServerFakerCreator url(String url) {
         return FakerCreatorHolder.INSTANCE.setUrl(url);
     }
 
@@ -98,7 +97,7 @@ public class MysqlFakerCreator {
      * @param url 数据库连接url
      * @return Faker表创建器
      */
-    private MysqlFakerCreator setUrl(String url) {
+    private SqlServerFakerCreator setUrl(String url) {
         this.url = url;
         this.dbName = url.substring(url.lastIndexOf("/") + 1);
         return this;
@@ -109,7 +108,7 @@ public class MysqlFakerCreator {
      * @param dbName 数据库名
      * @return Faker表创建器
      */
-    public static MysqlFakerCreator dbName(String dbName) {
+    public static SqlServerFakerCreator dbName(String dbName) {
         return FakerCreatorHolder.INSTANCE.setDbName(dbName);
     }
 
@@ -119,9 +118,9 @@ public class MysqlFakerCreator {
      * @return Faker表创建器
      * 默认会加上前缀：jdbc:mysql://localhost:3306/
      */
-    private MysqlFakerCreator setDbName(String dbName) {
+    private SqlServerFakerCreator setDbName(String dbName) {
         if (this.url == null) {
-            this.url = "jdbc:mysql://localhost:3306/" + dbName;
+            this.url = "jdbc:sqlserver://localhost:1433;DatabaseName=" + dbName;
         }
         this.dbName = dbName;
         return this;
@@ -133,7 +132,7 @@ public class MysqlFakerCreator {
      * @return Faker表创建器
      * 默认值为：root
      */
-    public MysqlFakerCreator username(String username) {
+    public SqlServerFakerCreator username(String username) {
         this.username = username;
         return this;
     }
@@ -144,7 +143,7 @@ public class MysqlFakerCreator {
      * @return Faker表创建器
      * 默认值为：123456
      */
-    public MysqlFakerCreator password(String password) {
+    public SqlServerFakerCreator password(String password) {
         this.password = password;
         return this;
     }
@@ -153,9 +152,9 @@ public class MysqlFakerCreator {
      * 设置连接的数据库的驱动名称
      * @param driverClassName 数据库的驱动名称
      * @return Faker表创建器
-     * 默认值为：com.mysql.jdbc.Driver
+     * 默认值为：com.microsoft.sqlserver.jdbc.SQLServerDriver
      */
-    public MysqlFakerCreator driverClassName(String driverClassName) {
+    public SqlServerFakerCreator driverClassName(String driverClassName) {
         this.driverClassName = driverClassName;
         return this;
     }
@@ -164,9 +163,9 @@ public class MysqlFakerCreator {
      * 创建Faker表结构
      */
     public void build() {
-        this.username = (this.username != null) ? this.username : "root";
+        this.username = (this.username != null) ? this.username : "sa";
         this.password = (this.password != null) ? this.password : "123456";
-        this.driverClassName = (this.driverClassName != null) ? this.driverClassName : "com.mysql.jdbc.Driver";
+        this.driverClassName = (this.driverClassName != null) ? this.driverClassName : "com.microsoft.sqlserver.jdbc.SQLServerDriver";
 
         try {
             // 执行主要逻辑
@@ -190,10 +189,18 @@ public class MysqlFakerCreator {
         DBTools.url(this.url)
                 .username(this.username)
                 .password(this.password)
+                .driverClassName(this.driverClassName)
                 .connect();
 
+
+
         // 获取所有的表信息（表名、表注释）
-        String queryTablesInfoSql = String.format("select table_name as tableName, table_comment as tableComment from information_schema.tables where table_schema='%s' and table_type='base table'", dbName);
+        String queryTablesInfoSql =
+                "select distinct d.name as tableName, convert(nvarchar(50),isnull(f.value,'')) as tableComment " +
+                "from syscolumns a " +
+                "inner join sysobjects d on a.id = d.id  and d.xtype = 'U' and  d.name <> 'dtproperties' " +
+                "left join sys.extended_properties f on d.id=f.major_id and f.minor_id = 0 " +
+                "where d.name is not null and d.name <> 'sysdiagrams'";
         List<TableInfo> tableInfoList = DatabaseHelper.queryEntityList(TableInfo.class, queryTablesInfoSql);
 
         // 生成Java文件的内容
@@ -210,7 +217,7 @@ public class MysqlFakerCreator {
         fileContent.append("public class CreateFakerTable {").append("\n\n");
         fileContent.append("\t").append("public static void main(String[] args) {").append("\n");
         fileContent.append("\t\t").append("// 创建数据库连接\n");
-        fileContent.append("\t\t").append(String.format("DBTools.url(\"/%s\")", this.url)).append("\n");
+        fileContent.append("\t\t").append(String.format("DBTools.url(\"%s\")", this.url)).append("\n");
         fileContent.append("\t\t\t\t").append(String.format(".username(\"%s\")", this.username)).append("\n");
         fileContent.append("\t\t\t\t").append(String.format(".password(\"%s\")", this.password)).append("\n");
         fileContent.append("\t\t\t\t").append(String.format(".driverClassName(\"%s\")", this.driverClassName)).append("\n");
@@ -222,11 +229,7 @@ public class MysqlFakerCreator {
             String tableName = tableInfo.getTableName();
 
             // 获取该表所有的字段信息
-            String queryFieldsInfoSql = String.format(
-                    "select column_name as fieldName,column_comment as comment,data_type as dataType " +
-                    "from information_schema.columns " +
-                    "where table_name='%s' and table_schema = '%s'", tableName, this.dbName);
-
+            String queryFieldsInfoSql = String.format("desc %s", tableName);
             List<FieldInfo> fieldInfoList = DatabaseHelper.queryEntityList(FieldInfo.class, queryFieldsInfoSql);
 
             // 创建一个Faker表
@@ -266,15 +269,6 @@ public class MysqlFakerCreator {
     private void validUrl() {
         if (url == null || url.isEmpty()) {
             throw new RuntimeException("数据库url不能为空");
-        }
-
-        // 对url进行处理
-        if (!url.contains("?")) {
-            // url不包括问号时，添加SSL和编码信息
-            url += "?useSSL=true&characterEncoding=utf8";
-        } else if (url.contains("?") && !url.toLowerCase().contains("utf8")) {
-            // url包括参数但不包括编码信息时，添加编码信息
-            url += "&characterEncoding=utf8";
         }
     }
 
@@ -342,25 +336,13 @@ public class MysqlFakerCreator {
 
         // 遍历生成参数信息
         for (FieldInfo fieldInfo : fieldInfoList) {
-            sb.append(String.format("\t\t\t\t.param(\"%s\", %s)%s\n",
-                    fieldInfo.getFieldName(), fieldToInferType(fieldInfo), addComment(fieldInfo)));
+            sb.append(String.format("\t\t\t\t.param(\"%s\", %s)\n",
+                    fieldInfo.getFieldName(), fieldToInferType(fieldInfo)));
         }
 
         sb.append("\t\t\t\t.insertCount(5)\n");
         sb.append("\t\t\t\t.onlyShowSql();\n");
         return sb.toString();
-    }
-
-    /**
-     * 添加字段的注释
-     * @param fieldInfo 字段信息
-     * @return 注释
-     */
-    private static String addComment(FieldInfo fieldInfo) {
-        String comment = fieldInfo.getComment();
-
-        // 当注释非空时，返回该注释，否则返回空字符串
-        return (comment != null && !"".equals(comment)) ? String.format(" // %s", comment) : "";
     }
 
     /**
@@ -408,7 +390,7 @@ public class MysqlFakerCreator {
             case "TEXT":
                 return "Values.of(\"example1\", \"example2\", \"example3\")";
             default:
-                throw new RuntimeException(String.format("生成的DataType类型错误，不支持的类型【%s】", tempType));
+                throw new RuntimeException("生成的DataType类型错误");
         }
     }
 

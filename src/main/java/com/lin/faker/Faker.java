@@ -19,28 +19,28 @@ import java.util.*;
  */
 public final class Faker {
 
-    // 数据库表名
+    /** 数据库表名 **/
     private String tableName;
 
-    // 插入数据条数
+    /** 插入数据条数 **/
     private int count;
 
-    // 总的插入行数
+    /** 总的插入行数 **/
     private int totalCount = 0;
 
-    // 是否插入数据到数据库
+    /** 是否插入数据到数据库 **/
     private boolean isInsertDataToDB;
 
-    // 存储属性的同步Map
+    /** 存储属性的同步Map **/
     private final Map<String, Object> PARAM_MAP;
 
-    // SQL记录列表
+    /** SQL记录列表 **/
     private List<String> SQL_LIST;
 
-    // 日志记录器
+    /** 日志记录器 **/
     private static final Logger LOGGER = LoggerFactory.getLogger(Faker.class);
 
-    // 初始化参数存储Map和数据类型映射Map
+    // 初始化参数存储Map和数据类型映射Map/
     {
         PARAM_MAP = Collections.synchronizedMap(new LinkedHashMap<String, Object>(10));
     }

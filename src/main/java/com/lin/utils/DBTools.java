@@ -115,13 +115,16 @@ public final class DBTools {
             throw new RuntimeException("数据库url不能为空");
         }
 
-        // 对url进行处理
-        if (!url.contains("?")) {
-            // url不包括问号时，添加SSL和编码信息
-            url += "?useSSL=true&characterEncoding=utf8";
-        } else if (url.contains("?") && !url.toLowerCase().contains("utf8")) {
-            // url包括参数但不包括编码信息时，添加编码信息
-            url += "&characterEncoding=utf8";
+        // 对 mysql 数据库进行处理
+        if (url.contains("jdbc:mysql")) {
+            // 对 url 进行处理
+            if (!url.contains("?")) {
+                // url不包括问号时，添加SSL和编码信息
+                url += "?useSSL=true&characterEncoding=utf8";
+            } else if (url.contains("?") && !url.toLowerCase().contains("utf8")) {
+                // url包括参数但不包括编码信息时，添加编码信息
+                url += "&characterEncoding=utf8";
+            }
         }
 
         // 设置数据库信息

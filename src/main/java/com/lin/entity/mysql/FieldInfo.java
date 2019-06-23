@@ -6,67 +6,47 @@ package com.lin.entity.mysql;
  * @since 1.0.1
  */
 public class FieldInfo {
-    private String Field; // 字段名
-    private String Type; // 字段类型
-    private String Null; // 是否可以为空
-    private String Key; // 是否是主键
-    private String Default; // 默认值
-    private String Extra; // 其他数据（auto_increment等）
+    /** 字段名 **/
+    private String fieldName;
 
-    public String getField() {
-        return Field;
+    /** 注释 **/
+    private String comment;
+
+    /** 字段类型 **/
+    private String dataType;
+
+
+    public String getFieldName() {
+        return fieldName;
     }
 
-    public void setField(String field) {
-        Field = field;
+    public void setFieldName(String fieldName) {
+        this.fieldName = fieldName;
     }
 
-    public String getType() {
-        return Type;
+    public String getComment() {
+        return comment;
     }
 
-    public void setType(String type) {
-        Type = type;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    public String getNull() {
-        return Null;
+    public String getDataType() {
+        return dataType;
     }
 
-    public void setNull(String aNull) {
-        Null = aNull;
-    }
-
-    public String getKey() {
-        return Key;
-    }
-
-    public void setKey(String key) {
-        Key = key;
-    }
-
-    public String getDefault() {
-        return Default;
-    }
-
-    public void setDefault(String aDefault) {
-        Default = aDefault;
-    }
-
-    public String getExtra() {
-        return Extra;
-    }
-
-    public void setExtra(String extra) {
-        Extra = extra;
+    public void setDataType(String dataType) {
+        this.dataType = dataType;
     }
 
     @Override
     public String toString() {
         return "FieldInfo{" +
-                "Field='" + Field + '\'' +
-                ", Type='" + Type + '\'' +
-                ", Key='" + Key + '\'' +
+                "fieldName='" + fieldName + '\'' +
+                ", comment='" + comment + '\'' +
+                ", dataType='" + dataType + '\'' +
                 '}';
     }
+
 }
