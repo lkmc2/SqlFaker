@@ -6,6 +6,7 @@ package com.lin.entity.mysql;
  * @since 1.0.1
  */
 public class FieldInfo {
+
     /** 字段名 **/
     private String fieldName;
 

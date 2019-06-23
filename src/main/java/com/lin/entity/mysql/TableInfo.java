@@ -6,8 +6,12 @@ package com.lin.entity.mysql;
  * @since 1.0.1
  */
 public class TableInfo {
-    private String tableName; // 表名
-    private String tableComment; // 表注释
+
+    /** 表名 **/
+    private String tableName;
+
+    /** 表注释 **/
+    private String tableComment;
 
     public String getTableName() {
         return tableName;

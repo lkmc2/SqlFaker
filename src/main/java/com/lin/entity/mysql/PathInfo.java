@@ -6,8 +6,12 @@ package com.lin.entity.mysql;
  * @since 1.0.1
  */
 public class PathInfo {
-    private String packageName; // 包名
-    private String currentFilePath; // 当前文件路径
+
+    /** 包名 **/
+    private String packageName;
+
+    /** 当前文件路径 **/
+    private String currentFilePath;
 
     public PathInfo() {
     }
@@ -32,4 +36,5 @@ public class PathInfo {
     public void setCurrentFilePath(String currentFilePath) {
         this.currentFilePath = currentFilePath;
     }
+
 }
