@@ -368,7 +368,7 @@ MysqlFakerCreator.dbName("test").build();
 MysqlFakerCreator.url("jdbc:mysql://localhost:3306/test")
                 .username("root")
                 .password("123456")
-    			.driverClassName("com.mysql.jdbc.Driver")
+    		.driverClassName("com.mysql.jdbc.Driver")
                 .build();
 
 // 为 Sql Server 数据库的所有表生成带 Faker 表结构的 java 文件
