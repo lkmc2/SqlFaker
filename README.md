@@ -1,6 +1,6 @@
 # SqlFaker
 #### 轻量级、易拓展的数据库智能填充Java开源库
-[![Maven Central](https://img.shields.io/badge/maven--central-v1.0.2-blue.svg)](https://search.maven.org/search?q=g:%22com.github.lkmc2%22%20AND%20a:%22sql-faker%22)[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Maven Central](https://img.shields.io/badge/maven--central-v1.0.3-blue.svg)](https://search.maven.org/search?q=g:%22com.github.lkmc2%22%20AND%20a:%22sql-faker%22)[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## 开源库特性
 
@@ -41,16 +41,25 @@ insert into user(name,age,sex,address,birthday) values('任徐',54,'河南省新
 
 
 
+## 更新日志
+
++ v1.0.3：添加针对SQL Server的FakerCreator。
++ v1.0.2：添加针对MySQL的FakerCreator。
++ v1.0.1：提高数据插入执行速度。
++ v1.0.0：可一次插入百万级别的仿真数据到数据库中。
+
+
+
 ## 依赖添加
 
-本开源库已包含commons-dbcp2(2.0.1)、commons-dbutils(1.6)、junit(4.1.2)以及mysql-connector-java(5.1.46)的依赖。
+本开源库已包含commons-dbcp2(2.0.1)、commons-dbutils(1.6)、junit(4.1.2)以及mysql-connector-java(5.1.46)、sqljdbc4(4.2)的依赖。
 
 ``` xml
 <!-- SqlFaker 数据库数据生成器 -->
 <dependency>
   <groupId>com.github.lkmc2</groupId>
   <artifactId>sql-faker</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
 </dependency>
 ```
 
@@ -316,7 +325,7 @@ values('Andy Wang', 23, '四川省绵阳市盐亭县北利路73号')
 
 ## 使用Faker表创建器快速生成Java文件
 
-注意：目前仅针对mysql数据库设计了Faker表创建器。
+注意：目前仅针为**MySQL**和**SQL Server**数据库设计了Faker表创建器。
 
 
 
@@ -351,6 +360,7 @@ create table product
 使用如下代码即可使用Faker表创建器快速为test数据库中的所有表生成带有Faker结构的java文件。
 
 ```java
+// 为 MySQL 数据库的所有表生成带 Faker 表结构的 java 文件
 // 方式1：简单设置数据库名，使用默认url、用户名和密码，并创建Faker表结构
 MysqlFakerCreator.dbName("test").build();
 
@@ -358,12 +368,24 @@ MysqlFakerCreator.dbName("test").build();
 MysqlFakerCreator.url("jdbc:mysql://localhost:3306/test")
                 .username("root")
                 .password("123456")
+    			.driverClassName("com.mysql.jdbc.Driver")
+                .build();
+
+// 为 Sql Server 数据库的所有表生成带 Faker 表结构的 java 文件
+// 方式1：简单设置数据库名，并创建Faker表结构
+SqlServerFakerCreator.dbName("test").build();
+
+// 方式2：完整设置数据库信息，并创建Faker表结构
+SqlServerFakerCreator.url("jdbc:sqlserver://localhost:1433;DatabaseName=test")
+                .username("sa")
+                .password("123456")
+                .driverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
                 .build();
 ```
 
 
 
-执行上述代码，生成的java文件内容如下：
+执行上述代码中的其中一个方式，生成的java文件内容如下：
 
 ``` java
 package com.lin.creator;
