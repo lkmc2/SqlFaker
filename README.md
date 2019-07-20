@@ -339,7 +339,7 @@ create table user_table
   id   varchar(32) not null primary key,
   name varchar(120) null,
   age  int          null
-) comment '用户表';
+) comments '用户表';
 
 create table product
 (
@@ -352,7 +352,7 @@ create table product
   created_at date        null,
   updated_at date        null,
   dr         int(1)      null
-) comment '产品表';
+) comments '产品表';
 ```
 
 

@@ -11,7 +11,7 @@ public class FieldInfo {
     private String fieldName;
 
     /** 注释 **/
-    private String comment;
+    private String comments;
 
     /** 字段类型 **/
     private String dataType;
@@ -25,12 +25,12 @@ public class FieldInfo {
         this.fieldName = fieldName;
     }
 
-    public String getComment() {
-        return comment;
+    public String getComments() {
+        return comments;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
     public String getDataType() {
@@ -45,7 +45,7 @@ public class FieldInfo {
     public String toString() {
         return "FieldInfo{" +
                 "fieldName='" + fieldName + '\'' +
-                ", comment='" + comment + '\'' +
+                ", comments='" + comments + '\'' +
                 ", dataType='" + dataType + '\'' +
                 '}';
     }

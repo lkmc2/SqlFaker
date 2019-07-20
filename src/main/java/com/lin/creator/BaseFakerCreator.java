@@ -312,7 +312,7 @@ public abstract class BaseFakerCreator {
      * @return 字段注释
      */
     private static String addCommon(FieldInfo fieldInfo) {
-        String comment = fieldInfo.getComment();
+        String comment = fieldInfo.getComments();
 
         // 注释非空时，返回字段的注释
         return (comment != null && !"".equals(comment)) ? String.format(" // %s", comment) : "";

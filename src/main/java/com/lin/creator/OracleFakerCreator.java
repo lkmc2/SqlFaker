@@ -2,7 +2,6 @@ package com.lin.creator;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -44,24 +43,20 @@ public class OracleFakerCreator extends BaseFakerCreator {
     protected String getQueryTablesInfoSql() {
         // 获取所有的表信息（表名、表注释）
         return
-                "select distinct d.name as tableName, convert(nvarchar(50),isnull(f.value,'')) as tableComment " +
-                "from syscolumns a " +
-                "inner join sysobjects d on a.id = d.id  and d.xtype = 'U' and  d.name <> 'dtproperties' " +
-                "left join sys.extended_properties f on d.id = f.major_id and f.minor_id = 0 " +
-                "where d.name is not null and d.name <> 'sysdiagrams'";
+                "select table_name as tableName, comments as tableComment " +
+                "from user_tab_comments";
     }
 
     @Override
     protected String getQueryFieldsInfoSql(String tableName) {
         // 获取表中信息（字段名、字段类型、字段注释）
         return String.format(
-                "select a.name as fieldName, b.name as dataType, convert(nvarchar(50),isnull(g.[value],'')) as comment " +
-                "from syscolumns a " +
-                "left join systypes b on a.xusertype = b.xusertype " +
-                "inner join sysobjects d on a.id = d.id  and d.xtype = 'U' and  d.name<>'dtproperties' " +
-                "left join sys.extended_properties g on a.id = g.major_id and a.colid = g.minor_id  " +
-                "where d.name='%s' " +
-                "order by a.id, a.colorder", tableName);
+                "select a.column_name as fieldName, a.data_type as dataType, b.comments as comments " +
+                "from user_tab_columns a " +
+                "left join user_col_comments b on b.column_name = a.column_name " +
+                "where a.table_name = '%s' " +
+                "and b.table_name = '%s' " +
+                "order by a.column_id", tableName.toUpperCase(), tableName.toUpperCase());
     }
 
     @Override
