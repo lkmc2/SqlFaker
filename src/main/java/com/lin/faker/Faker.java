@@ -10,10 +10,6 @@ import com.lin.random.RandomData;
 import com.lin.utils.FlyweightUtils;
 import com.lin.utils.StringUtils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -41,8 +37,6 @@ public final class Faker {
     /** 日志记录器 **/
     private static final Logger LOGGER = LoggerFactory.getLogger(Faker.class);
 
-    /** sql 语句保存文件 **/
-    private File sqlFile;
 
     // 初始化参数存储Map和数据类型映射Map/
     {
@@ -50,25 +44,9 @@ public final class Faker {
     }
 
     private Faker() {
-        sqlFile = new File("my_sql.sql");
-        if (!sqlFile.exists()) {
-            try {
-                boolean success = sqlFile.createNewFile();
-                if (success) {
-                    System.out.println("创建文件 【my_sql.sql】 成功");
-                    System.out.println(sqlFile.getAbsolutePath());
-                } else {
-                    System.out.println("创建文件 【my_sql.sql】 失败");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-            System.out.println(sqlFile.getAbsolutePath());
-        }
     }
 
-    // 静态单例
+    /** 静态单例 **/
     private static final class FakerHolder {
         private static final Faker INSTANCE = new Faker();
     }
@@ -163,11 +141,8 @@ public final class Faker {
         // 1.检查参数是否传入成功
         checkParams();
 
-        // 2.执行生成SQL语句的逻辑
-        generateSql();
-
-        // 3.执行SQL语句，插入数据到数据库
-        executeSql();
+        // 2.执行生成并执行SQL语句的逻辑
+        generateAndExecuteSql();
     }
 
     /**
@@ -184,13 +159,18 @@ public final class Faker {
     }
 
     /**
-     * 执行生成SQL语句的逻辑
+     * 执行生成并执行SQL语句的逻辑
      */
-    private void generateSql() {
-        PrintWriter writer = null;
+    private void generateAndExecuteSql() {
+        // 提交事务时生成的 sql 数量
+        int commitSize = 1000;
 
         try {
-            writer = new PrintWriter(sqlFile);
+            // 如果需要插入到数据库
+            if (this.isInsertDataToDb) {
+                // 开始事务
+                DatabaseHelper.beginTransaction();
+            }
 
             for (int i = 0; i < count; i++) {
                 // 生成参数名和参数值列表
@@ -212,53 +192,44 @@ public final class Faker {
 
                 LOGGER.info(sql);
 
-                // 如果需要插入到数据库，将生成的sql语句添加到LIST中
+                // 如果需要插入到数据库，执行生成的 sql 语句
                 if (this.isInsertDataToDb) {
-                    writer.println(sql);
-                    writer.flush();
+                    // 执行sql，获取受影响行数
+                    int effectCount = DatabaseHelper.executeUpdate(sql);
+
+                    // 统计总的插入条数
+                    this.totalCount += effectCount;
+
+                    if (this.totalCount % commitSize == 0) {
+                        // 每执行 1000 条 sql 就提交事务
+                        DatabaseHelper.commitTransaction();
+                    }
                 }
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            if (writer != null) {
-                writer.close();
+
+            // 如果需要插入到数据库
+            if (this.isInsertDataToDb) {
+                // 当还有未提交的 sql 时，提交事务
+                if (this.totalCount % commitSize != 0) {
+                    // 提交事务
+                    DatabaseHelper.commitTransaction();
+                }
             }
-        }
-    }
 
-    /**
-     * 执行SQL语句，插入数据到数据库
-     */
-    private void executeSql() {
-        // 不插入数据到数据库
-        if (!this.isInsertDataToDb) {
-            LOGGER.print(String.format("成功生成[ %s ]条数据", this.count));
-            return;
-        }
-
-        try {
-            // 开始事务
-            DatabaseHelper.beginTransaction();
-
-            // 批量执行sql语句，获取总的插入条数
-            this.totalCount = DatabaseHelper.executeSqlFile(sqlFile);
-
-            LOGGER.print(String.format("成功插入[ %s ]条数据",this.totalCount));
+            if (this.isInsertDataToDb) {
+                // 插入数据到数据库
+                LOGGER.print(String.format("成功插入[ %s ]条数据",this.totalCount));
+            } else {
+                // 不插入数据到数据库
+                LOGGER.print(String.format("成功生成[ %s ]条数据", this.count));
+            }
         } catch (Exception e) {
             e.printStackTrace();
 
-            // 事务回滚
-            DatabaseHelper.rollbackTransaction();
-        }
-
-        if (sqlFile.exists()) {
-            boolean success = sqlFile.delete();
-
-            if (success) {
-                System.out.println("删除文件成功");
-            } else {
-                System.out.println("删除文件失败");
+            // 如果需要插入到数据库
+            if (this.isInsertDataToDb) {
+                // 事务回滚
+                DatabaseHelper.rollbackTransaction();
             }
         }
     }
@@ -298,10 +269,10 @@ public final class Faker {
     /**
      * 创建参数值
      * @param paramType 参数类型
-     * @param paramValueSB 参数值字符串
+     * @param paramValueSb 参数值字符串
      */
     @SuppressWarnings("unchecked")
-    private void createParamValue(Object paramType, StringBuilder paramValueSB) {
+    private void createParamValue(Object paramType, StringBuilder paramValueSb) {
         Asserts.isTrue(paramType instanceof DataType
                         || paramType instanceof RandomData
                         || RandomData.class.isAssignableFrom((Class<?>) paramType),
@@ -333,7 +304,7 @@ public final class Faker {
         String data = (randomData instanceof String) ? (String) randomData : String.valueOf(randomData);
 
         // 在字符串两边加上单引号，然后加上逗号
-        paramValueSB.append(StringUtils.addSingleQuotesAround(data)).append(",");
+        paramValueSb.append(StringUtils.addSingleQuotesAround(data)).append(",");
     }
 
 }

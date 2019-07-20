@@ -15,8 +15,8 @@ public class Generator {
      * @return 顺序值生成器
      */
     @SuppressWarnings("unchecked")
-    public static <T> InnerRandom of(T... valueList) {
-        return new InnerRandom(valueList);
+    public static <T> RepeatCountRandom of(T... valueList) {
+        return new RepeatCountRandom(valueList);
     }
 
     /**
@@ -38,7 +38,7 @@ public class Generator {
     }
 
     /** 可以指定可变参数中每一个值重复出现次数的生成器 **/
-    public static class InnerRandom<T> implements RandomData<T> {
+    public static class RepeatCountRandom<T> implements RandomData<T> {
 
         /** 数组中每个值重复出现的次数 **/
         private int repeatCount = 1;
@@ -52,7 +52,7 @@ public class Generator {
         /** 全部遍历的次数 **/
         private int totalIndex = 0;
 
-        InnerRandom(T[] valueList) {
+        RepeatCountRandom(T[] valueList) {
             this.valueList = valueList;
         }
 
