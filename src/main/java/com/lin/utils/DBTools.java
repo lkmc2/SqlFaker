@@ -10,16 +10,16 @@ import org.apache.commons.dbcp2.BasicDataSource;
  */
 public final class DBTools {
 
-    // 数据库连接url
+    /** 数据库连接url **/
     private String url;
 
-    // 数据库用户名
+    /** 数据库用户名 **/
     private String username;
 
-    // 数据库密码
+    /** 数据库密码 **/
     private String password;
 
-    // 数据库驱动名
+    /** 数据库驱动名 **/
     private String driverClassName;
 
     private DBTools() {
@@ -119,11 +119,11 @@ public final class DBTools {
         if (url.contains("jdbc:mysql")) {
             // 对 url 进行处理
             if (!url.contains("?")) {
-                // url不包括问号时，添加SSL和编码信息
-                url += "?useSSL=true&characterEncoding=utf8";
-            } else if (url.contains("?") && !url.toLowerCase().contains("utf8")) {
-                // url包括参数但不包括编码信息时，添加编码信息
-                url += "&characterEncoding=utf8";
+                // url 不包括问号时，添加SSL、编码信息、时区等信息
+                url += "?useSSL=true&useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&autoReconnect=true&serverTimezone=UTC";
+            } else if (url.contains("?")) {
+                // url 包括问号时，添加SSL、编码信息、时区等信息
+                url += "&useSSL=true&useUnicode=true&characterEncoding=UTF-8&useOldAliasMetadataBehavior=true&autoReconnect=true&serverTimezone=UTC";
             }
         }
 
@@ -132,6 +132,12 @@ public final class DBTools {
         dataSource.setUsername((username != null) ? username : "root");
         dataSource.setPassword((password != null) ? password : "123456");
         dataSource.setDriverClassName((driverClassName != null) ? driverClassName : "com.mysql.jdbc.Driver");
+
+        // 对 Oracle 数据库进行处理
+        if (url.contains("jdbc:oracle")) {
+            // 修改 Oracle 数据库的日期格式
+            DatabaseHelper.executeUpdate("alter session set nls_date_format='yyyy-MM-dd hh24:mi:ss'");
+        }
     }
 
 }

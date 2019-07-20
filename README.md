@@ -334,9 +334,9 @@ values('Andy Wang', 23, '四川省绵阳市盐亭县北利路73号')
 如test数据库中含有如下两张表。
 
 ```sql
-create table user
+create table user_table
 (
-  id   int          null,
+  id   varchar(32) not null primary key,
   name varchar(120) null,
   age  int          null
 ) comment '用户表';

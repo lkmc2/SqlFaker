@@ -8,7 +8,6 @@ import org.apache.commons.dbutils.handlers.*;
 
 import java.io.*;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.*;
 

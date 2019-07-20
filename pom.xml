@@ -64,19 +64,33 @@
         </dependency>
 
         <!--MySQL驱动（可换成其他数据库驱动，如：Oracle、SQL Server、H2等dbcp2连接池支持的数据库）-->
+        <!--<dependency>-->
+            <!--<groupId>mysql</groupId>-->
+            <!--<artifactId>mysql-connector-java</artifactId>-->
+            <!--<version>5.1.46</version>-->
+            <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
+
+        <!-- MySQL驱动，适用于 MySQL 8.0 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.46</version>
-            <scope>runtime</scope>
+            <version>8.0.16</version>
         </dependency>
 
-        <!-- sql server jdbc 依赖 -->
+        <!-- SQL Server jdbc 依赖 -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>sqljdbc4</artifactId>
             <version>4.2</version>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- Oracle jdbc 依赖 -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.1.0</version>
         </dependency>
 
     </dependencies>

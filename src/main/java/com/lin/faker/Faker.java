@@ -7,7 +7,6 @@ import com.lin.logger.Logger;
 import com.lin.logger.LoggerFactory;
 import com.lin.mapping.DataTypeMapping;
 import com.lin.random.RandomData;
-import com.lin.utils.DBTools;
 import com.lin.utils.FlyweightUtils;
 import com.lin.utils.StringUtils;
 
@@ -34,7 +33,7 @@ public final class Faker {
     private int totalCount = 0;
 
     /** 是否插入数据到数据库 **/
-    private boolean isInsertDataToDB;
+    private boolean isInsertDataToDb;
 
     /** 存储属性的同步Map **/
     private final Map<String, Object> PARAM_MAP;
@@ -104,7 +103,7 @@ public final class Faker {
         this.PARAM_MAP.clear();
         this.count = 0;
         this.totalCount = 0;
-        this.isInsertDataToDB = false;
+        this.isInsertDataToDb = false;
     }
 
     /**
@@ -140,7 +139,7 @@ public final class Faker {
      */
     public void onlyShowSql() {
         // 设置不插入数据到数据库
-        this.isInsertDataToDB = false;
+        this.isInsertDataToDb = false;
 
         // 执行主要逻辑
         executeMainLogic();
@@ -151,7 +150,7 @@ public final class Faker {
      */
     public void execute() {
         // 设置插入数据到数据库
-        this.isInsertDataToDB = true;
+        this.isInsertDataToDb = true;
 
         // 执行主要逻辑
         executeMainLogic();
@@ -214,8 +213,8 @@ public final class Faker {
                 LOGGER.info(sql);
 
                 // 如果需要插入到数据库，将生成的sql语句添加到LIST中
-                if (this.isInsertDataToDB) {
-                    writer.println(sql + ";");
+                if (this.isInsertDataToDb) {
+                    writer.println(sql);
                     writer.flush();
                 }
             }
@@ -233,7 +232,7 @@ public final class Faker {
      */
     private void executeSql() {
         // 不插入数据到数据库
-        if (!this.isInsertDataToDB) {
+        if (!this.isInsertDataToDb) {
             LOGGER.print(String.format("成功生成[ %s ]条数据", this.count));
             return;
         }
@@ -272,8 +271,8 @@ public final class Faker {
      * @return 参数名和参数值列表数组
      */
     private String[] generateParamNameAndValue() {
-        StringBuilder paramNameSB = new StringBuilder();
-        StringBuilder paramValueSB = new StringBuilder();
+        StringBuilder paramNameSb = new StringBuilder();
+        StringBuilder paramValueSb = new StringBuilder();
 
         // 使用Map生成参数
         for (Map.Entry<String, Object> entry : PARAM_MAP.entrySet()) {
@@ -281,19 +280,19 @@ public final class Faker {
             Object paramType = entry.getValue();
 
             // 添加参数名
-            paramNameSB.append(paramName).append(",");
+            paramNameSb.append(paramName).append(",");
 
             // 创建参数值（添加参数值）
-            createParamValue(paramType, paramValueSB);
+            createParamValue(paramType, paramValueSb);
         }
 
         // 所有参数名，如：name,age,sex,birthday
-        String paramNames = StringUtils.deleteLastComma(paramNameSB);
+        String paramNames = StringUtils.deleteLastComma(paramNameSb);
 
         // 所有参数值，如：'jack','13','0','1999-9-9 12:12:12'
-        String paramValues = StringUtils.deleteLastComma(paramValueSB);
+        String paramValues = StringUtils.deleteLastComma(paramValueSb);
 
-        return new String[]{paramNames, paramValues};
+        return new String[]{ paramNames, paramValues };
     }
 
     /**

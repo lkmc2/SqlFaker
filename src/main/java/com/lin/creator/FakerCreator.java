@@ -1,5 +1,7 @@
 package com.lin.creator;
 
+import com.lin.creator.enums.DatabaseType;
+
 /**
  * Faker 表创建器
  * @author lkmc2
@@ -7,12 +9,8 @@ package com.lin.creator;
  */
 public class FakerCreator {
 
-    /** 数据库类型常量 **/
-    private static final String SQL_SERVER = "sqlServer";
-    private static final String MYSQL = "mysql";
-
     /** 记录数据库类型 **/
-    private static String databaseType = null;
+    private static DatabaseType databaseType = null;
 
     /** 静态单例 **/
     private static final class FakerCreatorHolder {
@@ -24,7 +22,7 @@ public class FakerCreator {
      * @return Faker表创建器
      */
     public static FakerCreator mysql() {
-        databaseType = MYSQL;
+        databaseType = DatabaseType.MYSQL;
         return FakerCreatorHolder.INSTANCE;
     }
 
@@ -33,7 +31,16 @@ public class FakerCreator {
      * @return Faker表创建器
      */
     public static FakerCreator sqlServer() {
-       databaseType = SQL_SERVER;
+       databaseType = DatabaseType.SQL_SERVER;
+        return FakerCreatorHolder.INSTANCE;
+    }
+
+    /**
+     * 获取 Oracle 数据库的 Faker 表创建器
+     * @return Faker表创建器
+     */
+    public static FakerCreator oracle() {
+        databaseType = DatabaseType.ORACLE;
         return FakerCreatorHolder.INSTANCE;
     }
 
@@ -48,6 +55,8 @@ public class FakerCreator {
                 return MysqlFakerCreator.url(url);
             case SQL_SERVER:
                 return SqlServerFakerCreator.url(url);
+            case ORACLE:
+                return OracleFakerCreator.url(url);
             default:
                 throw new RuntimeException("未找到合适的数据库类型！");
         }
@@ -64,6 +73,8 @@ public class FakerCreator {
                 return MysqlFakerCreator.dbName(dbName);
             case SQL_SERVER:
                 return SqlServerFakerCreator.dbName(dbName);
+            case ORACLE:
+                return OracleFakerCreator.dbName(dbName);
             default:
                 throw new RuntimeException("未找到合适的数据库类型！");
         }

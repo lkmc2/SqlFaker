@@ -45,6 +45,7 @@ public class SqlServerFakerCreator extends BaseFakerCreator {
 
     @Override
     protected String getQueryFieldsInfoSql(String tableName) {
+        // 获取表中信息（字段名、字段类型、字段注释）
         return String.format(
                 "select a.name as fieldName, b.name as dataType, convert(nvarchar(50),isnull(g.[value],'')) as comment " +
                 "from syscolumns a " +
