@@ -71,8 +71,8 @@ public class MysqlFakerCreator extends BaseFakerCreator {
     }
 
     @Override
-    protected void setDbStringTypeList(List<String> dbStringTypeList) {
-        dbStringTypeList.addAll(Arrays.asList(
+    protected void setDbStringTypeSet(Collection<String> dbStringTypeSet) {
+        dbStringTypeSet.addAll(Arrays.asList(
                 "CHAR", "VARCHAR", "TINYBLOB", "TINYTEXT", "BLOB",
                 "TEXT", "MEDIUMBLOB", "MEDIUMTEXT", "LONGBLOB", "LONGTEXT"
         ));

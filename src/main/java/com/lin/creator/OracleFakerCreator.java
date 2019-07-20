@@ -1,23 +1,28 @@
 package com.lin.creator;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 /**
  * Oracle 数据库 Faker 表创建器
- * @since 1.0.4
+ *
  * @author lkmc2
+ * @since 1.0.4
  */
 public class OracleFakerCreator extends BaseFakerCreator {
 
-    /** 静态单例 **/
+    /**
+     * 静态单例
+     **/
     private static final class FakerCreatorHolder {
         private static final BaseFakerCreator INSTANCE = new OracleFakerCreator();
     }
 
     /**
      * 创建数据库连接配置工具实例，并设置数据库连接url
+     *
      * @param url 数据库连接url
      * @return Faker表创建器
      */
@@ -27,6 +32,7 @@ public class OracleFakerCreator extends BaseFakerCreator {
 
     /**
      * 创建数据库连接配置工具实例，并设置连接的数据库名
+     *
      * @param dbName 数据库名
      * @return Faker表创建器
      */
@@ -60,7 +66,7 @@ public class OracleFakerCreator extends BaseFakerCreator {
 
     @Override
     protected String getDefaultUsername() {
-        return "sys";
+        return "test1";
     }
 
     @Override
@@ -75,71 +81,95 @@ public class OracleFakerCreator extends BaseFakerCreator {
 
     @Override
     protected String getDefaultUrlPrefix() {
-        return "jdbc:oracle:thin:@localhost:1521:";
+        return "jdbc:oracle:thin:@localhost:1521/";
     }
 
     @Override
-    protected void setDbStringTypeList(List<String> dbStringTypeList) {
-        dbStringTypeList.addAll(Arrays.asList(
-                "CHAR", "VARCHAR", "NVARCHAR", "TINYBLOB", "TINYTEXT", "BLOB",
-                "TEXT", "MEDIUMBLOB", "MEDIUMTEXT", "LONGBLOB", "LONGTEXT",
-                "VARBINARY", "BINARY", "UDT", "UNIQUEIDENTIFIER", "XML",
-                "SQLVARIANT", "GEOMETRY", "IMAGE", "GEOGRAPHY"
+    protected void setDbStringTypeSet(Collection<String> dbStringTypeSet) {
+        dbStringTypeSet.addAll(Arrays.asList(
+                "CHAR", "NCHAR", "VARCHAR", "VARCHAR2", "NVARCHAR", "NVARCHAR2", "TINYBLOB",
+                "TINYTEXT", "BLOB", "CLOB", "NCLOB", "BFILE", "TEXT", "MEDIUMBLOB",
+                "MEDIUMTEXT", "LONGBLOB", "LONGTEXT", "VARBINARY", "BINARY", "UDT",
+                "UNIQUEIDENTIFIER", "XML", "SQLVARIANT", "GEOMETRY", "IMAGE", "GEOGRAPHY",
+                "ROWID", "NROWID", "RAW", "LONG", "LONG RAW"
         ));
     }
 
     @Override
     protected void setDatabaseInferMap(Map<String, String> databaseInferMap) {
         // 数值类型
-        databaseInferMap.put("BIGINT",    "INT");
-        databaseInferMap.put("TINYINT",   "INT");
-        databaseInferMap.put("SMALLINT",  "INT");
+        databaseInferMap.put("BIGINT", "INT");
+        databaseInferMap.put("TINYINT", "INT");
+        databaseInferMap.put("SMALLINT", "INT");
         databaseInferMap.put("MEDIUMINT", "INT");
-        databaseInferMap.put("INT",       "INT");
-        databaseInferMap.put("INTEGER",   "INT");
-        databaseInferMap.put("SMALLMONEY",   "INT");
-        databaseInferMap.put("FLOAT",     "FLOAT");
-        databaseInferMap.put("DOUBLE",    "FLOAT");
-        databaseInferMap.put("DECIMAL",   "FLOAT");
-        databaseInferMap.put("BIT",   "FLOAT");
-        databaseInferMap.put("SSNOVERSION",   "FLOAT");
-        databaseInferMap.put("MONEY",   "FLOAT");
-        databaseInferMap.put("NCHAR",   "FLOAT");
-        databaseInferMap.put("NTEXT",   "FLOAT");
-        databaseInferMap.put("NUMERIC",   "FLOAT");
-        databaseInferMap.put("REAL",   "FLOAT");
+        databaseInferMap.put("INT", "INT");
+        databaseInferMap.put("INTEGER", "INT");
+        databaseInferMap.put("SMALLMONEY", "INT");
+        databaseInferMap.put("FLOAT", "FLOAT");
+        databaseInferMap.put("DOUBLE", "FLOAT");
+        databaseInferMap.put("DECIMAL", "FLOAT");
+        databaseInferMap.put("BIT", "FLOAT");
+        databaseInferMap.put("SSNOVERSION", "FLOAT");
+        databaseInferMap.put("MONEY", "FLOAT");
+        databaseInferMap.put("NTEXT", "FLOAT");
+        databaseInferMap.put("NUMERIC", "FLOAT");
+        databaseInferMap.put("NUMBER", "FLOAT");
+        databaseInferMap.put("REAL", "FLOAT");
+        databaseInferMap.put("BINARY_FLOAT", "FLOAT");
+        databaseInferMap.put("BINARY_DOUBLE", "FLOAT");
 
         // 日期和时间类型
-        databaseInferMap.put("DATE",      "TIME");
-        databaseInferMap.put("TIME",      "TIME");
-        databaseInferMap.put("YEAR",      "TIME");
-        databaseInferMap.put("DATETIME",  "TIME");
-        databaseInferMap.put("DATETIME2",  "TIME");
-        databaseInferMap.put("DATETIMEOFFSET",  "TIME");
+        databaseInferMap.put("DATE", "TIME");
+        databaseInferMap.put("TIME", "TIME");
+        databaseInferMap.put("YEAR", "TIME");
+        databaseInferMap.put("DAY", "TIME");
+        databaseInferMap.put("HOUR", "TIME");
+        databaseInferMap.put("MINUTE", "TIME");
+        databaseInferMap.put("SECOND", "TIME");
+        databaseInferMap.put("TIMEZONE_HOUR", "TIME");
+        databaseInferMap.put("TIMEZONE_MINUTE", "TIME");
+        databaseInferMap.put("TIMEZONE_REGION", "TIME");
+        databaseInferMap.put("TIMEZONE_ABBR ", "TIME");
+        databaseInferMap.put("DATETIME", "TIME");
+        databaseInferMap.put("DATETIME2", "TIME");
+        databaseInferMap.put("DATETIMEOFFSET", "TIME");
         databaseInferMap.put("TIMESTAMP", "TIME");
+        databaseInferMap.put("INTERVAL YEAR", "TIME");
+        databaseInferMap.put("INTERVAL DAY", "TIME");
         databaseInferMap.put("SMALLDATETIME", "TIME");
 
         // 字符串类型
-        databaseInferMap.put("CHAR",      "TEXT");
-        databaseInferMap.put("VARCHAR",   "TEXT");
-        databaseInferMap.put("NVARCHAR",   "TEXT");
-        databaseInferMap.put("TINYBLOB",  "TEXT");
-        databaseInferMap.put("TINYTEXT",  "TEXT");
-        databaseInferMap.put("BLOB",      "TEXT");
-        databaseInferMap.put("TEXT",      "TEXT");
-        databaseInferMap.put("MEDIUMBLOB","TEXT");
-        databaseInferMap.put("MEDIUMTEXT","TEXT");
-        databaseInferMap.put("LONGBLOB",  "TEXT");
-        databaseInferMap.put("LONGTEXT",  "TEXT");
-        databaseInferMap.put("VARBINARY",  "TEXT");
-        databaseInferMap.put("BINARY",  "TEXT");
-        databaseInferMap.put("UDT",  "TEXT");
-        databaseInferMap.put("UNIQUEIDENTIFIER",  "TEXT");
-        databaseInferMap.put("XML",  "TEXT");
-        databaseInferMap.put("SQLVARIANT",  "TEXT");
-        databaseInferMap.put("GEOMETRY",  "TEXT");
-        databaseInferMap.put("IMAGE",  "TEXT");
-        databaseInferMap.put("GEOGRAPHY",  "TEXT");
+        databaseInferMap.put("CHAR", "TEXT");
+        databaseInferMap.put("NCHAR", "TEXT");
+        databaseInferMap.put("VARCHAR", "TEXT");
+        databaseInferMap.put("VARCHAR2", "TEXT");
+        databaseInferMap.put("NVARCHAR", "TEXT");
+        databaseInferMap.put("NVARCHAR2", "TEXT");
+        databaseInferMap.put("TINYBLOB", "TEXT");
+        databaseInferMap.put("TINYTEXT", "TEXT");
+        databaseInferMap.put("BLOB", "TEXT");
+        databaseInferMap.put("CLOB", "TEXT");
+        databaseInferMap.put("NCLOB", "TEXT");
+        databaseInferMap.put("BFILE", "TEXT");
+        databaseInferMap.put("TEXT", "TEXT");
+        databaseInferMap.put("MEDIUMBLOB", "TEXT");
+        databaseInferMap.put("MEDIUMTEXT", "TEXT");
+        databaseInferMap.put("LONGBLOB", "TEXT");
+        databaseInferMap.put("LONGTEXT", "TEXT");
+        databaseInferMap.put("VARBINARY", "TEXT");
+        databaseInferMap.put("BINARY", "TEXT");
+        databaseInferMap.put("UDT", "TEXT");
+        databaseInferMap.put("UNIQUEIDENTIFIER", "TEXT");
+        databaseInferMap.put("XML", "TEXT");
+        databaseInferMap.put("SQLVARIANT", "TEXT");
+        databaseInferMap.put("GEOMETRY", "TEXT");
+        databaseInferMap.put("IMAGE", "TEXT");
+        databaseInferMap.put("GEOGRAPHY", "TEXT");
+        databaseInferMap.put("ROWID", "TEXT");
+        databaseInferMap.put("NROWID", "TEXT");
+        databaseInferMap.put("RAW", "TEXT");
+        databaseInferMap.put("LONG", "TEXT");
+        databaseInferMap.put("LONG RAW", "TEXT");
     }
 
 }

@@ -77,8 +77,8 @@ public class SqlServerFakerCreator extends BaseFakerCreator {
     }
 
     @Override
-    protected void setDbStringTypeList(List<String> dbStringTypeList) {
-        dbStringTypeList.addAll(Arrays.asList(
+    protected void setDbStringTypeSet(Collection<String> dbStringTypeSet) {
+        dbStringTypeSet.addAll(Arrays.asList(
                 "CHAR", "VARCHAR", "NVARCHAR", "TINYBLOB", "TINYTEXT", "BLOB",
                 "TEXT", "MEDIUMBLOB", "MEDIUMTEXT", "LONGBLOB", "LONGTEXT",
                 "VARBINARY", "BINARY", "UDT", "UNIQUEIDENTIFIER", "XML",

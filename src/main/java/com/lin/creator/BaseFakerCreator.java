@@ -18,8 +18,8 @@ import java.util.*;
  */
 public abstract class BaseFakerCreator {
 
-    /** 数据库中的字符串类型列表 **/
-    private static List<String> DB_STRING_TYPE_LIST = new LinkedList<String>();
+    /** 数据库中的字符串类型集合 **/
+    private static Set<String> DB_STRING_TYPE_SET = new HashSet<String>();
 
     /** DataType类型名列表 **/
     private static final List<String> DATA_TYPE_LIST = Arrays.asList(
@@ -45,8 +45,8 @@ public abstract class BaseFakerCreator {
     private String driverClassName;
 
     {
-        // 设置数据库中的字符串类型列表
-        setDbStringTypeList(DB_STRING_TYPE_LIST);
+        // 设置数据库中的字符串类型集合
+        setDbStringTypeSet(DB_STRING_TYPE_SET);
 
         // 设置数据库类型推断字典
         setDatabaseInferMap(DATABASE_INFER_MAP);
@@ -406,7 +406,7 @@ public abstract class BaseFakerCreator {
      */
     private static boolean isStringType(String fieldType) {
         // 数据库中的字符串类型列表包含该类型
-        return DB_STRING_TYPE_LIST.contains(fieldType.toUpperCase());
+        return DB_STRING_TYPE_SET.contains(fieldType.toUpperCase());
     }
 
     /**
@@ -447,10 +447,10 @@ public abstract class BaseFakerCreator {
     protected abstract String getDefaultUrlPrefix();
 
     /**
-     * 设置数据库中的字符串类型列表
-     * @param dbStringTypeList 数据库中的字符串类型列表
+     * 设置数据库中的字符串类型集合
+     * @param dbStringTypeSet 数据库中的字符串类型集合
      */
-    protected abstract void setDbStringTypeList(List<String> dbStringTypeList);
+    protected abstract void setDbStringTypeSet(Collection<String> dbStringTypeSet);
 
     /**
      * 设置数据库类型推断字典
