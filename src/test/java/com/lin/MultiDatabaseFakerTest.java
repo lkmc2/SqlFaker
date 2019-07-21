@@ -154,4 +154,39 @@ public class MultiDatabaseFakerTest {
                 .execute();
     }
 
+    @Test
+    public void testH2() {
+        // 创建 H2 数据库连接
+        DBTools.url("jdbc:h2:~/test")
+                .driverClassName("org.h2.Driver")
+                .username("sa")
+                .password("")
+                .connect();
+
+        // 给 user_table 表的 3 个字段填充 5 条数据
+        Faker.tableName("user_table")
+                .param("id", DataType.ID)
+                .param("name", DataType.USERNAME)
+                .param("age", DataType.AGE)
+                .insertCount(5)
+                .onlyShowSql();
+
+        // 给 product 表的 9 个字段填充 5 条数据
+        Faker.tableName("product")
+                .param("id", DataType.ID)
+                .param("name", DataType.USERNAME)
+                .param("price", Values.ofIntRange(10, 100))
+                .param("tenant_id  ", DataType.ID)
+                .param("created_by", DataType.USERNAME)
+                .param("updated_by", DataType.USERNAME)
+                .param("created_at", Values.ofTimeRange(
+                        Times.of(2018, 7, 12),
+                        Times.of(2019, 9, 22, 18, 22, 33)
+                ))
+                .param("updated_at", DataType.TIME)
+                .param("dr", Values.of("0", "1"))
+                .insertCount(5)
+                .onlyShowSql();
+    }
+
 }

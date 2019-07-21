@@ -91,11 +91,18 @@ public class SqliteFakerCreator extends BaseFakerCreator<SqliteFieldInfo> {
         databaseInferMap.put("SMALLINT", "INT");
         databaseInferMap.put("MEDIUMINT", "INT");
         databaseInferMap.put("INT", "INT");
+        databaseInferMap.put("INT2", "INT");
+        databaseInferMap.put("INT8", "INT");
         databaseInferMap.put("INTEGER", "INT");
         databaseInferMap.put("BIGINT", "INT");
+        databaseInferMap.put("UNSIGNED BIG INT", "INT");
         databaseInferMap.put("FLOAT", "FLOAT");
+        databaseInferMap.put("REAL", "FLOAT");
         databaseInferMap.put("DOUBLE", "FLOAT");
+        databaseInferMap.put("DOUBLE PRECISION", "FLOAT");
+        databaseInferMap.put("NUMERIC", "FLOAT");
         databaseInferMap.put("DECIMAL", "FLOAT");
+        databaseInferMap.put("BOOLEAN", "FLOAT");
 
         // 日期和时间类型
         databaseInferMap.put("DATE", "TIME");
@@ -106,10 +113,16 @@ public class SqliteFakerCreator extends BaseFakerCreator<SqliteFieldInfo> {
 
         // 字符串类型
         databaseInferMap.put("CHAR", "TEXT");
+        databaseInferMap.put("NCHAR", "TEXT");
+        databaseInferMap.put("CHARACTER", "TEXT");
         databaseInferMap.put("VARCHAR", "TEXT");
+        databaseInferMap.put("NVARCHAR", "TEXT");
+        databaseInferMap.put("NATIVE CHARACTER", "TEXT");
+        databaseInferMap.put("VARYING CHARACTER", "TEXT");
         databaseInferMap.put("TINYBLOB", "TEXT");
         databaseInferMap.put("TINYTEXT", "TEXT");
         databaseInferMap.put("BLOB", "TEXT");
+        databaseInferMap.put("CLOB", "TEXT");
         databaseInferMap.put("TEXT", "TEXT");
         databaseInferMap.put("MEDIUMBLOB", "TEXT");
         databaseInferMap.put("MEDIUMTEXT", "TEXT");
