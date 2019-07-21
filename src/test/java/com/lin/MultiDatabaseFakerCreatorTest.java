@@ -73,7 +73,7 @@ public class MultiDatabaseFakerCreatorTest {
     public void testH2() {
         // 为 H2 数据库的所有表生成带 Faker 表结构的 java 文件
         // 方式1：简单设置数据库名，并创建Faker表结构
-//        FakerCreator.sqlite().dbName("~/test").build();
+//        FakerCreator.h2().dbName("~/test").build();
 
         // 方式2：完整设置数据库信息，并创建Faker表结构
         FakerCreator.h2()

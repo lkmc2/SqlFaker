@@ -93,10 +93,10 @@ public abstract class BaseFakerCreator<TABLE extends TableInfo, FIELD extends Fi
      * 设置连接的数据库名
      * @param dbName 数据库名
      * @return Faker表创建器
-     * 默认会加上前缀：jdbc:mysql://localhost:3306/
      */
     protected BaseFakerCreator setDbName(String dbName) {
         if (this.url == null) {
+            // url 为空时，url = 数据库对应的前缀 + 数据库名
             this.url = getDefaultUrlPrefix() + dbName;
         }
         this.dbName = dbName;
@@ -107,7 +107,6 @@ public abstract class BaseFakerCreator<TABLE extends TableInfo, FIELD extends Fi
      * 设置连接的数据库用户名
      * @param username 数据库用户名
      * @return Faker表创建器
-     * 默认值为：root
      */
     public BaseFakerCreator username(String username) {
         this.username = username;
@@ -118,7 +117,6 @@ public abstract class BaseFakerCreator<TABLE extends TableInfo, FIELD extends Fi
      * 设置连接的数据库密码
      * @param password 数据库密码
      * @return Faker表创建器
-     * 默认值为：123456
      */
     public BaseFakerCreator password(String password) {
         this.password = password;
