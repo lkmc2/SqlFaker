@@ -501,6 +501,22 @@ public final class DatabaseHelper {
     }
 
     /**
+     * 批量提交事务，但不移除数据库连接
+     */
+    public static void commitBatchTransaction() {
+        Connection conn = getConnection();
+
+        if (conn != null) {
+            try {
+                conn.commit();
+            } catch (SQLException e) {
+                LOGGER.error("提交事务失败");
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    /**
      * 提交事务
      */
     public static void commitTransaction() {

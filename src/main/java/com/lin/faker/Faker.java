@@ -202,7 +202,7 @@ public final class Faker {
 
                     if (this.totalCount % commitSize == 0) {
                         // 每执行 1000 条 sql 就提交事务
-                        DatabaseHelper.commitTransaction();
+                        DatabaseHelper.commitBatchTransaction();
                     }
                 }
             }
