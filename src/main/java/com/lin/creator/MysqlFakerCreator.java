@@ -1,6 +1,7 @@
 package com.lin.creator;
 
 import com.lin.entity.common.CommonFieldInfo;
+import com.lin.entity.common.CommonTableInfo;
 
 import java.util.*;
 
@@ -10,7 +11,7 @@ import java.util.*;
  * @author lkmc2
  * @since 1.0.2
  */
-public class MysqlFakerCreator extends BaseFakerCreator<CommonFieldInfo> {
+public class MysqlFakerCreator extends BaseFakerCreator<CommonTableInfo, CommonFieldInfo> {
 
     /**
      * 静态单例

@@ -1,11 +1,13 @@
 package com.lin.entity.common;
 
+import com.lin.entity.TableInfo;
+
 /**
- * 数据表信息
+ * 通用数据表信息
  * @author lkmc2
  * @since 1.0.1
  */
-public class TableInfo {
+public class CommonTableInfo implements TableInfo {
 
     /** 表名 **/
     private String tableName;
@@ -13,6 +15,7 @@ public class TableInfo {
     /** 表注释 **/
     private String tableComment;
 
+    @Override
     public String getTableName() {
         return tableName;
     }
@@ -21,6 +24,7 @@ public class TableInfo {
         this.tableName = tableName;
     }
 
+    @Override
     public String getTableComment() {
         return tableComment;
     }
@@ -31,7 +35,7 @@ public class TableInfo {
 
     @Override
     public String toString() {
-        return "TableInfo{" +
+        return "CommonTableInfo{" +
                 "tableName='" + tableName + '\'' +
                 ", tableComment='" + tableComment + '\'' +
                 '}';

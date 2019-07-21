@@ -1,8 +1,8 @@
 package com.lin.creator;
 
 import com.lin.entity.FieldInfo;
+import com.lin.entity.TableInfo;
 import com.lin.entity.common.PathInfo;
-import com.lin.entity.common.TableInfo;
 import com.lin.helper.DatabaseHelper;
 import com.lin.utils.DBTools;
 
@@ -18,7 +18,7 @@ import java.util.*;
  * @since 1.0.3
  * @author lkmc2
  */
-public abstract class BaseFakerCreator<T extends FieldInfo> {
+public abstract class BaseFakerCreator<TABLE extends TableInfo, FIELD extends FieldInfo> {
 
     /** 数据库中的字符串类型集合 **/
     private static Set<String> DB_STRING_TYPE_SET = new HashSet<String>();
@@ -54,17 +54,26 @@ public abstract class BaseFakerCreator<T extends FieldInfo> {
         setDatabaseInferMap(DATABASE_INFER_MAP);
     }
 
-    /** 记录泛型信息的变量 **/
-    private Class<T> clazz = null;
+    /** 记录表信息的泛型 **/
+    private Class<TABLE> tableInfoClazz = null;
+
+    /** 记录字段信息的泛型 **/
+    private Class<FIELD> fieldInfoClazz = null;
 
     {
         Type type = getClass().getGenericSuperclass();
         if( type instanceof ParameterizedType){
             ParameterizedType pType = (ParameterizedType)type;
-            Type clazz = pType.getActualTypeArguments()[0];
-            if( clazz instanceof Class ){
+            Type tableClazz = pType.getActualTypeArguments()[0];
+            Type fieldClazz = pType.getActualTypeArguments()[1];
+            if( tableClazz instanceof Class ){
                 // noinspection unchecked
-                this.clazz = (Class<T>) clazz;
+                this.tableInfoClazz = (Class<TABLE>) tableClazz;
+            }
+
+            if( fieldClazz instanceof Class ){
+                // noinspection unchecked
+                this.fieldInfoClazz = (Class<FIELD>) fieldClazz;
             }
         }
     }
@@ -164,7 +173,7 @@ public abstract class BaseFakerCreator<T extends FieldInfo> {
         String queryTablesInfoSql = getQueryTablesInfoSql();
 
         // 获取所有的表信息（表名、表注释）列表
-        List<TableInfo> tableInfoList = DatabaseHelper.queryEntityList(TableInfo.class, queryTablesInfoSql);
+        List<TABLE> tableInfoList = DatabaseHelper.queryEntityList(tableInfoClazz, queryTablesInfoSql);
 
         // 生成Java文件的内容
         StringBuilder fileContent = new StringBuilder();
@@ -181,9 +190,9 @@ public abstract class BaseFakerCreator<T extends FieldInfo> {
         fileContent.append("\t").append("public static void main(String[] args) {").append("\n");
         fileContent.append("\t\t").append("// 创建数据库连接\n");
         fileContent.append("\t\t").append(String.format("DBTools.url(\"%s\")", this.url)).append("\n");
+        fileContent.append("\t\t\t\t").append(String.format(".driverClassName(\"%s\")", this.driverClassName)).append("\n");
         fileContent.append("\t\t\t\t").append(String.format(".username(\"%s\")", this.username)).append("\n");
         fileContent.append("\t\t\t\t").append(String.format(".password(\"%s\")", this.password)).append("\n");
-        fileContent.append("\t\t\t\t").append(String.format(".driverClassName(\"%s\")", this.driverClassName)).append("\n");
         fileContent.append("\t\t\t\t").append(".connect();").append("\n\n");
 
         // 遍历所有表信息
@@ -195,7 +204,7 @@ public abstract class BaseFakerCreator<T extends FieldInfo> {
             String queryFieldsInfoSql = getQueryFieldsInfoSql(tableName);
 
             // 获取该表所有的字段信息列表
-            List<T> fieldInfoList = DatabaseHelper.queryEntityList(clazz, queryFieldsInfoSql);
+            List<FIELD> fieldInfoList = DatabaseHelper.queryEntityList(fieldInfoClazz, queryFieldsInfoSql);
 
             // 创建一个Faker表
             String fakerTable = createFakerTable(tableName, fieldInfoList);
@@ -308,12 +317,12 @@ public abstract class BaseFakerCreator<T extends FieldInfo> {
      * @param fieldInfoList 字段信息列表
      * @return Faker表结构表示
      */
-    private static <T extends FieldInfo> String createFakerTable(String tableName, List<T> fieldInfoList) {
+    private static <FIELD extends FieldInfo> String createFakerTable(String tableName, List<FIELD> fieldInfoList) {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("\t\tFaker.tableName(\"%s\")\n", tableName));
 
         // 遍历生成参数信息
-        for (T fieldInfo : fieldInfoList) {
+        for (FIELD fieldInfo : fieldInfoList) {
             sb.append(String.format("\t\t\t\t.param(\"%s\", %s)%s\n",
                     fieldInfo.getFieldName(), fieldToInferType(fieldInfo), addCommon(fieldInfo)));
         }

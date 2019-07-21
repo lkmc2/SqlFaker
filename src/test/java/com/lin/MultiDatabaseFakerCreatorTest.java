@@ -18,9 +18,9 @@ public class MultiDatabaseFakerCreatorTest {
         // 方式2：完整设置数据库信息，并创建Faker表结构
         FakerCreator.mysql()
                 .url("jdbc:mysql://localhost:3306/facker")
+                .driverClassName("com.mysql.cj.jdbc.Driver")
                 .username("root")
                 .password("123456")
-                .driverClassName("com.mysql.cj.jdbc.Driver")
                 .build();
     }
 
@@ -33,9 +33,9 @@ public class MultiDatabaseFakerCreatorTest {
         // 方式2：完整设置数据库信息，并创建Faker表结构
         FakerCreator.sqlServer()
                 .url("jdbc:sqlserver://localhost:1433;DatabaseName=facker")
+                .driverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
                 .username("sa")
                 .password("123456")
-                .driverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
                 .build();
     }
 
@@ -48,9 +48,9 @@ public class MultiDatabaseFakerCreatorTest {
         // 方式2：完整设置数据库信息，并创建Faker表结构
         FakerCreator.oracle()
                 .url("jdbc:oracle:thin:@localhost:1521/orcl")
+                .driverClassName("oracle.jdbc.driver.OracleDriver")
                 .username("test1")
                 .password("123456")
-                .driverClassName("oracle.jdbc.driver.OracleDriver")
                 .build();
     }
 
@@ -63,9 +63,24 @@ public class MultiDatabaseFakerCreatorTest {
         // 方式2：完整设置数据库信息，并创建Faker表结构
         FakerCreator.sqlite()
                 .url("jdbc:sqlite:F:/SqliteWorkplace/my_sqlite.db")
+                .driverClassName("org.sqlite.JDBC")
                 .username("")
                 .password("")
-                .driverClassName("org.sqlite.JDBC")
+                .build();
+    }
+
+    @Test
+    public void testH2() {
+        // 为 H2 数据库的所有表生成带 Faker 表结构的 java 文件
+        // 方式1：简单设置数据库名，并创建Faker表结构
+//        FakerCreator.sqlite().dbName("~/test").build();
+
+        // 方式2：完整设置数据库信息，并创建Faker表结构
+        FakerCreator.h2()
+                .url("jdbc:h2:~/test")
+                .driverClassName("org.h2.Driver")
+                .username("sa")
+                .password("")
                 .build();
     }
 

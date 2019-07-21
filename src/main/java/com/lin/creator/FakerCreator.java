@@ -22,8 +22,7 @@ public class FakerCreator {
      * @return Faker表创建器
      */
     public static FakerCreator mysql() {
-        databaseType = DatabaseType.MYSQL;
-        return FakerCreatorHolder.INSTANCE;
+        return setDatabaseType(DatabaseType.MYSQL);
     }
 
     /**
@@ -31,8 +30,7 @@ public class FakerCreator {
      * @return Faker表创建器
      */
     public static FakerCreator sqlServer() {
-       databaseType = DatabaseType.SQL_SERVER;
-        return FakerCreatorHolder.INSTANCE;
+        return setDatabaseType(DatabaseType.SQL_SERVER);
     }
 
     /**
@@ -40,8 +38,7 @@ public class FakerCreator {
      * @return Faker表创建器
      */
     public static FakerCreator oracle() {
-        databaseType = DatabaseType.ORACLE;
-        return FakerCreatorHolder.INSTANCE;
+        return setDatabaseType(DatabaseType.ORACLE);
     }
 
     /**
@@ -49,7 +46,24 @@ public class FakerCreator {
      * @return Faker表创建器
      */
     public static FakerCreator sqlite() {
-        databaseType = DatabaseType.SQLITE;
+        return setDatabaseType(DatabaseType.SQLITE);
+    }
+
+    /**
+     * 获取 H2 数据库的 Faker 表创建器
+     * @return Faker表创建器
+     */
+    public static FakerCreator h2() {
+        return setDatabaseType(DatabaseType.H2);
+    }
+
+    /**
+     * 设置数据库类型，并获取 Faker 表创建器
+     * @param dbType 数据库类型
+     * @return Faker 表创建器
+     */
+    private static FakerCreator setDatabaseType(DatabaseType dbType) {
+        databaseType = dbType;
         return FakerCreatorHolder.INSTANCE;
     }
 
@@ -68,6 +82,8 @@ public class FakerCreator {
                 return OracleFakerCreator.url(url);
             case SQLITE:
                 return SqliteFakerCreator.url(url);
+            case H2:
+                return H2FakerCreator.url(url);
             default:
                 throw new RuntimeException("未找到合适的数据库类型！");
         }
@@ -88,6 +104,8 @@ public class FakerCreator {
                 return OracleFakerCreator.dbName(dbName);
             case SQLITE:
                 return SqliteFakerCreator.dbName(dbName);
+            case H2:
+                return H2FakerCreator.dbName(dbName);
             default:
                 throw new RuntimeException("未找到合适的数据库类型！");
         }

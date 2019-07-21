@@ -13,5 +13,7 @@ public enum DatabaseType {
     /** Oracle 数据库 **/
     ORACLE,
     /** Sqlite 数据库 **/
-    SQLITE
+    SQLITE,
+    /** H2 数据库 **/
+    H2
 }

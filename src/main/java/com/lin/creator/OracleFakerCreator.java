@@ -1,6 +1,7 @@
 package com.lin.creator;
 
 import com.lin.entity.common.CommonFieldInfo;
+import com.lin.entity.common.CommonTableInfo;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -12,7 +13,7 @@ import java.util.Map;
  * @author lkmc2
  * @since 1.0.4
  */
-public class OracleFakerCreator extends BaseFakerCreator<CommonFieldInfo> {
+public class OracleFakerCreator extends BaseFakerCreator<CommonTableInfo, CommonFieldInfo> {
 
     /**
      * 静态单例
