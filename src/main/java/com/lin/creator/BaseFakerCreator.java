@@ -1,14 +1,16 @@
 package com.lin.creator;
 
-import com.lin.entity.mysql.FieldInfo;
-import com.lin.entity.mysql.PathInfo;
-import com.lin.entity.mysql.TableInfo;
+import com.lin.entity.FieldInfo;
+import com.lin.entity.common.PathInfo;
+import com.lin.entity.common.TableInfo;
 import com.lin.helper.DatabaseHelper;
 import com.lin.utils.DBTools;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.*;
 
 /**
@@ -16,7 +18,7 @@ import java.util.*;
  * @since 1.0.3
  * @author lkmc2
  */
-public abstract class BaseFakerCreator {
+public abstract class BaseFakerCreator<T extends FieldInfo> {
 
     /** 数据库中的字符串类型集合 **/
     private static Set<String> DB_STRING_TYPE_SET = new HashSet<String>();
@@ -50,6 +52,21 @@ public abstract class BaseFakerCreator {
 
         // 设置数据库类型推断字典
         setDatabaseInferMap(DATABASE_INFER_MAP);
+    }
+
+    /** 记录泛型信息的变量 **/
+    private Class<T> clazz = null;
+
+    {
+        Type type = getClass().getGenericSuperclass();
+        if( type instanceof ParameterizedType){
+            ParameterizedType pType = (ParameterizedType)type;
+            Type clazz = pType.getActualTypeArguments()[0];
+            if( clazz instanceof Class ){
+                // noinspection unchecked
+                this.clazz = (Class<T>) clazz;
+            }
+        }
     }
 
     /**
@@ -178,7 +195,7 @@ public abstract class BaseFakerCreator {
             String queryFieldsInfoSql = getQueryFieldsInfoSql(tableName);
 
             // 获取该表所有的字段信息列表
-            List<FieldInfo> fieldInfoList = DatabaseHelper.queryEntityList(FieldInfo.class, queryFieldsInfoSql);
+            List<T> fieldInfoList = DatabaseHelper.queryEntityList(clazz, queryFieldsInfoSql);
 
             // 创建一个Faker表
             String fakerTable = createFakerTable(tableName, fieldInfoList);
@@ -291,12 +308,12 @@ public abstract class BaseFakerCreator {
      * @param fieldInfoList 字段信息列表
      * @return Faker表结构表示
      */
-    private static String createFakerTable(String tableName, List<FieldInfo> fieldInfoList) {
+    private static <T extends FieldInfo> String createFakerTable(String tableName, List<T> fieldInfoList) {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("\t\tFaker.tableName(\"%s\")\n", tableName));
 
         // 遍历生成参数信息
-        for (FieldInfo fieldInfo : fieldInfoList) {
+        for (T fieldInfo : fieldInfoList) {
             sb.append(String.format("\t\t\t\t.param(\"%s\", %s)%s\n",
                     fieldInfo.getFieldName(), fieldToInferType(fieldInfo), addCommon(fieldInfo)));
         }

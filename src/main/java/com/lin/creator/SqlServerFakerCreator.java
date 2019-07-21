@@ -1,5 +1,7 @@
 package com.lin.creator;
 
+import com.lin.entity.common.CommonFieldInfo;
+
 import java.util.*;
 
 /**
@@ -8,7 +10,7 @@ import java.util.*;
  * @author lkmc2
  * @since 1.0.3
  */
-public class SqlServerFakerCreator extends BaseFakerCreator {
+public class SqlServerFakerCreator extends BaseFakerCreator<CommonFieldInfo> {
 
     /**
      * 静态单例

@@ -1,11 +1,13 @@
-package com.lin.entity.mysql;
+package com.lin.entity.common;
+
+import com.lin.entity.FieldInfo;
 
 /**
- * 数据库表字段信息
+ * 通用数据库表字段信息
  * @author lkmc2
  * @since 1.0.1
  */
-public class FieldInfo {
+public class CommonFieldInfo implements FieldInfo {
 
     /** 字段名 **/
     private String fieldName;
@@ -17,6 +19,7 @@ public class FieldInfo {
     private String dataType;
 
 
+    @Override
     public String getFieldName() {
         return fieldName;
     }
@@ -25,6 +28,7 @@ public class FieldInfo {
         this.fieldName = fieldName;
     }
 
+    @Override
     public String getComments() {
         return comments;
     }
@@ -33,6 +37,7 @@ public class FieldInfo {
         this.comments = comments;
     }
 
+    @Override
     public String getDataType() {
         return dataType;
     }
@@ -43,7 +48,7 @@ public class FieldInfo {
 
     @Override
     public String toString() {
-        return "FieldInfo{" +
+        return "CommonFieldInfo{" +
                 "fieldName='" + fieldName + '\'' +
                 ", comments='" + comments + '\'' +
                 ", dataType='" + dataType + '\'' +

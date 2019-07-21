@@ -11,5 +11,7 @@ public enum DatabaseType {
     /** MySQL 数据库 **/
     MYSQL,
     /** Oracle 数据库 **/
-    ORACLE
+    ORACLE,
+    /** Sqlite 数据库 **/
+    SQLITE
 }

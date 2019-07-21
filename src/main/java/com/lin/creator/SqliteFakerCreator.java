@@ -1,22 +1,25 @@
 package com.lin.creator;
 
 import com.lin.entity.common.CommonFieldInfo;
+import com.lin.entity.sqlite.SqliteFieldInfo;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Map;
 
 /**
- * MySQL 数据库 Faker 表创建器
+ * Sqlite 数据库 Faker 表创建器
  *
  * @author lkmc2
- * @since 1.0.2
+ * @since 1.0.4
  */
-public class MysqlFakerCreator extends BaseFakerCreator<CommonFieldInfo> {
+public class SqliteFakerCreator extends BaseFakerCreator<SqliteFieldInfo> {
 
     /**
      * 静态单例
      **/
     private static final class FakerCreatorHolder {
-        private static final BaseFakerCreator INSTANCE = new MysqlFakerCreator();
+        private static final BaseFakerCreator INSTANCE = new SqliteFakerCreator();
     }
 
     /**
@@ -41,16 +44,16 @@ public class MysqlFakerCreator extends BaseFakerCreator<CommonFieldInfo> {
 
     @Override
     protected String getQueryTablesInfoSql() {
-        // 获取所有的表信息（表名、表注释）
-        return String.format(
-                "select table_name as tableName, table_comment as tableComment " +
-                "from information_schema.tables " +
-                "where table_schema='%s'", this.dbName);
+        // 获取所有的表名（该数据没有表注释）
+        return
+                "SELECT name as tableName " +
+                "FROM sqlite_master " +
+                "WHERE type = 'table'";
     }
 
     @Override
     protected String getQueryFieldsInfoSql(String tableName) {
-        // 获取表中信息（字段名、字段类型、字段注释）
+        // 获取表中信息（字段名、字段类型），该数据库没有字段注释
         return String.format(
                 "select column_name as fieldName,column_comment as comments,data_type as dataType " +
                 "from information_schema.columns " +
@@ -60,22 +63,22 @@ public class MysqlFakerCreator extends BaseFakerCreator<CommonFieldInfo> {
 
     @Override
     protected String getDefaultUsername() {
-        return "root";
+        return "";
     }
 
     @Override
     protected String getDefaultPassword() {
-        return "123456";
+        return "";
     }
 
     @Override
     protected String getDefaultDriverClassName() {
-        return "com.mysql.jdbc.Driver";
+        return "org.sqlite.JDBC";
     }
 
     @Override
     protected String getDefaultUrlPrefix() {
-        return "jdbc:mysql://localhost:3306/";
+        return "jdbc:sqlite:";
     }
 
     @Override

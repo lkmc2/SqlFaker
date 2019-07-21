@@ -54,4 +54,19 @@ public class MultiDatabaseFakerCreatorTest {
                 .build();
     }
 
+    @Test
+    public void testSqilte() {
+        // 为 Sqlite 数据库的所有表生成带 Faker 表结构的 java 文件
+        // 方式1：简单设置数据库名，并创建Faker表结构
+//        FakerCreator.sqlite().dbName("F:/SqliteWorkplace/my_sqlite.db").build();
+
+        // 方式2：完整设置数据库信息，并创建Faker表结构
+        FakerCreator.sqlite()
+                .url("jdbc:sqlite:F:/SqliteWorkplace/my_sqlite.db")
+                .username("")
+                .password("")
+                .driverClassName("org.sqlite.JDBC")
+                .build();
+    }
+
 }

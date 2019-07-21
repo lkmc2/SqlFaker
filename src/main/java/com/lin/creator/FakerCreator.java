@@ -45,6 +45,15 @@ public class FakerCreator {
     }
 
     /**
+     * 获取 Sqlite 数据库的 Faker 表创建器
+     * @return Faker表创建器
+     */
+    public static FakerCreator sqlite() {
+        databaseType = DatabaseType.SQLITE;
+        return FakerCreatorHolder.INSTANCE;
+    }
+
+    /**
      * 设置数据库的 url 地址
      * @param url 数据库的 url 地址
      * @return 数据库的 Faker 表创建器
@@ -57,6 +66,8 @@ public class FakerCreator {
                 return SqlServerFakerCreator.url(url);
             case ORACLE:
                 return OracleFakerCreator.url(url);
+            case SQLITE:
+                return SqliteFakerCreator.url(url);
             default:
                 throw new RuntimeException("未找到合适的数据库类型！");
         }
@@ -75,6 +86,8 @@ public class FakerCreator {
                 return SqlServerFakerCreator.dbName(dbName);
             case ORACLE:
                 return OracleFakerCreator.dbName(dbName);
+            case SQLITE:
+                return SqliteFakerCreator.dbName(dbName);
             default:
                 throw new RuntimeException("未找到合适的数据库类型！");
         }

@@ -1,4 +1,4 @@
-package com.lin.entity.mysql;
+package com.lin.entity.common;
 
 /**
  * 路径信息
