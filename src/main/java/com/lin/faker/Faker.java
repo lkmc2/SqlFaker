@@ -10,7 +10,12 @@ import com.lin.random.RandomData;
 import com.lin.utils.FlyweightUtils;
 import com.lin.utils.StringUtils;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
+
+import static com.lin.constant.Constants.JDBC_H2;
+import static com.lin.constant.Constants.JDBC_SQL_SERVER;
 
 /**
  * 数据伪造器
@@ -181,14 +186,10 @@ public final class Faker {
                 // 参数值，如：'jack','13','0','1999-9-9 12:12:12'
                 String paramValue = paramNameAndValue[1];
 
-                // 拼接成insert语句
+                // 拼接成 sql insert 语句
                 String sql = String.format("insert into %s(%s) values(%s)", tableName, paramName, paramValue);
-
-                // 根据 url 判断是否 sql server 数据库，进行特别处理
-                String url = DatabaseHelper.getDataSource().getUrl();
-                if (url.contains("sqlserver")) {
-                    sql = String.format("insert into [dbo].[%s](%s) values(%s)", tableName, paramName, paramValue);
-                }
+                // 将 sql 转换成对应数据库类型的 sql
+                sql = handleWithSpecifyDatabase(paramName, paramValue, sql);
 
                 LOGGER.info(sql);
 
@@ -234,6 +235,57 @@ public final class Faker {
         }
     }
 
+    /** 日期格式化器 **/
+    private ThreadLocal<SimpleDateFormat> dateFormatter = new ThreadLocal<SimpleDateFormat>() {
+        @Override
+        protected SimpleDateFormat initialValue() {
+            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        }
+    };
+
+    /**
+     * 将 sql 转换成对应数据库类型的 sql
+     * @param paramName 参数名列表字符串
+     * @param paramValue 参数值列表字符串
+     * @param sql 默认生成的 sql 语句
+     * @return 对应数据库类型的 sql
+     */
+    private String handleWithSpecifyDatabase(String paramName, String paramValue, String sql) {
+        // 获取数据库 url 地址
+        String url = DatabaseHelper.getDataSource().getUrl();
+
+        // 根据 url 判断是否 sql server 数据库，进行特别处理
+        if (url.contains(JDBC_SQL_SERVER)) {
+            sql = String.format("insert into [dbo].[%s](%s) values(%s)", tableName, paramName, paramValue);
+        }
+
+        // 根据 url 判断是否 H2 数据库，进行特别处理
+        if (url.contains(JDBC_H2)) {
+            // 将参数值列表字符串拆分成数组
+            String[] valueArray = paramValue.split(",");
+
+            StringBuilder sb = new StringBuilder();
+
+            for (String value : valueArray) {
+                try {
+                    dateFormatter.get().parse(value.replace("'", ""));
+                    // 可以解析成日期的字符串加上 parsedatetime 函数处理
+                    sb.append(String.format("parsedatetime(%s, 'yyyy-MM-dd HH:mm:ss')", value));
+                } catch (ParseException e) {
+                    // 不可以解析成日期的字符串取原来的值
+                    sb.append(value);
+                }
+                sb.append(",");
+            }
+
+            // 生成对应的参数值列表字符串
+            paramValue = StringUtils.deleteLastComma(sb);
+
+            sql = String.format("insert into %s(%s) values(%s)", tableName, paramName, paramValue);
+        }
+        return sql;
+    }
+
     /**
      * 生成参数名和参数值列表数组
      * 数组返回值示范：
@@ -251,7 +303,7 @@ public final class Faker {
             Object paramType = entry.getValue();
 
             // 添加参数名
-            paramNameSb.append(paramName).append(",");
+            paramNameSb.append(paramName.trim()).append(",");
 
             // 创建参数值（添加参数值）
             createParamValue(paramType, paramValueSb);
@@ -271,7 +323,6 @@ public final class Faker {
      * @param paramType 参数类型
      * @param paramValueSb 参数值字符串
      */
-    @SuppressWarnings("unchecked")
     private void createParamValue(Object paramType, StringBuilder paramValueSb) {
         Asserts.isTrue(paramType instanceof DataType
                         || paramType instanceof RandomData

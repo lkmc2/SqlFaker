@@ -169,7 +169,7 @@ public class MultiDatabaseFakerTest {
                 .param("name", DataType.USERNAME)
                 .param("age", DataType.AGE)
                 .insertCount(5)
-                .onlyShowSql();
+                .execute();
 
         // 给 product 表的 9 个字段填充 5 条数据
         Faker.tableName("product")
@@ -186,7 +186,7 @@ public class MultiDatabaseFakerTest {
                 .param("updated_at", DataType.TIME)
                 .param("dr", Values.of("0", "1"))
                 .insertCount(5)
-                .onlyShowSql();
+                .execute();
     }
 
 }

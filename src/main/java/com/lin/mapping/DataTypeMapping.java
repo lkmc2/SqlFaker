@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public final class DataTypeMapping {
 
-    // 数据类型映射关系Map
+    /** 数据类型映射关系Map **/
     private static final Map<DataType, Class<? extends RandomData>> DATA_TYPE_MAP;
 
     static {
