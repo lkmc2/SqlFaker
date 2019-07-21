@@ -1,6 +1,5 @@
 package com.lin.creator;
 
-import com.lin.entity.common.CommonFieldInfo;
 import com.lin.entity.sqlite.SqliteFieldInfo;
 
 import java.util.Arrays;
@@ -54,11 +53,7 @@ public class SqliteFakerCreator extends BaseFakerCreator<SqliteFieldInfo> {
     @Override
     protected String getQueryFieldsInfoSql(String tableName) {
         // 获取表中信息（字段名、字段类型），该数据库没有字段注释
-        return String.format(
-                "select column_name as fieldName,column_comment as comments,data_type as dataType " +
-                "from information_schema.columns " +
-                "where table_name='%s' and table_schema = '%s' " +
-                "order by ordinal_position", tableName, this.dbName);
+        return String.format("PRAGMA table_info(%s)", tableName);
     }
 
     @Override
