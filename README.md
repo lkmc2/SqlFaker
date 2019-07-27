@@ -1,6 +1,20 @@
 # SqlFaker
 #### 轻量级、易拓展的数据库智能填充Java开源库
-[![Maven Central](https://img.shields.io/badge/maven--central-v1.0.3-blue.svg)](https://search.maven.org/search?q=g:%22com.github.lkmc2%22%20AND%20a:%22sql-faker%22)[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Maven Central](https://img.shields.io/maven-central/v/com.github.lkmc2/sql-faker.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22com.github.lkmc2%22%20AND%20a:%22sql-faker%22)[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
+
+
+## 简介
+
+SqlFaker是一个Java开发的可快速为数据库生成大量仿真的工具，仅需简单的配置，即可为数据库表批量插入有规律的类似真实数据的内容，可用于数据库调优等操作。
+
+
+
+## 详细文档说明
+
+GitBook：<https://lkmc2.github.io/SqlFakerGitPage>
+
+
 
 ## 开源库特性
 
@@ -41,25 +55,27 @@ insert into user(name,age,sex,address,birthday) values('任徐',54,'河南省新
 
 
 
-## 更新日志
++ ## 更新日志
 
-+ v1.0.3：添加针对SQL Server的FakerCreator。
-+ v1.0.2：添加针对MySQL的FakerCreator。
-+ v1.0.1：提高数据插入执行速度。
-+ v1.0.0：可一次插入百万级别的仿真数据到数据库中。
+  - v1.0.5：支持一次性插入亿万级别的数据。
+  - v1.0.4：添加针对Oracle、Sqlite、H2的FakerCreator，并添加可生成有序数据的Generator类。
+  - v1.0.3：添加针对SQL Server的FakerCreator。
+  - v1.0.2：添加针对MySQL的FakerCreator。
+  - v1.0.1：提高数据插入执行速度。
+  - v1.0.0：可一次插入百万级别的仿真数据到数据库中。
 
 
 
 ## 依赖添加
 
-本开源库已包含commons-dbcp2(2.0.1)、commons-dbutils(1.6)、junit(4.1.2)以及mysql-connector-java(5.1.46)、sqljdbc4(4.2)的依赖。
+本开源库已包含commons-dbcp2(2.0.1)、commons-dbutils(1.6)、junit(4.1.2)以及mysql-connector-java(5.1.46)、sqlite-jdbc(3.28.0)、h2(1.4.199)的依赖。
 
 ``` xml
 <!-- SqlFaker 数据库数据生成器 -->
 <dependency>
   <groupId>com.github.lkmc2</groupId>
   <artifactId>sql-faker</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.5</version>
 </dependency>
 ```
 
@@ -155,7 +171,7 @@ Faker.tableName("user")
 
 ### 二、插入数据的方式
 
-本开源库一共支持三种插入数据的方式，可以混合使用。
+本开源库一共支持4种插入数据的方式，可以混合使用。
 
 #### 1. 使用DataType指定数据类型
 
@@ -273,7 +289,116 @@ values(
 ```
 
 
-#### 3. 实现RandomData接口，提供可随机生成的返回值
+
+#### 3.使用 Generator.of()系列方法生成有序取值范围
+
+Generator类共有以下3种生成有序取值范围方法，如下表：
+
+|            方法名             |                取值范围                |         示例值         |
+| :---------------------------: | :------------------------------------: | :--------------------: |
+|   Generator.of(可变长数组)    | 从可变长数组中依次抽取一个元素，可循环 | "1001", "1002", "1003" |
+| Generator.ofIntStart(起始值)  |  在[起始值, 结束值]的范围内取一个整数  |          500           |
+| Generator.ofLongStart(起始值) |       从起始值开始，每次取值都+1       |          1000          |
+
+另外，Generator.of(可变长数组)方法中还有用于设定可变长数组中每个元素出现次数的方法：
+
+|        方法名         |                 说明                 |
+| :-------------------: | :----------------------------------: |
+| repeatCount(出现次数) | 用于设定可变长数组中每个元素出现次数 |
+
+
+
+**使用示例1**：
+
+```java
+// 给user表的1个字段填充10条数据
+// Generator.of()方法中的值会依次出现，抵达最后一个元素后将从第一个元素开始循环
+Faker.tableName("user")
+     .param("deptNo", Generator.of("1001", "1002", "1003"))
+     .insertCount(10)
+     .execute();
+```
+
+对应生成的SQL语句如下：
+
+```sql
+insert into user(deptNo) values('1001')
+insert into user(deptNo) values('1002')
+insert into user(deptNo) values('1003')
+insert into user(deptNo) values('1001')
+insert into user(deptNo) values('1002')
+insert into user(deptNo) values('1003')
+insert into user(deptNo) values('1001')
+insert into user(deptNo) values('1002')
+insert into user(deptNo) values('1003')
+insert into user(deptNo) values('1001')
+```
+
+
+
+**使用示例2**：
+
+```java
+// 给user表的2个字段填充10条数据
+// Generator.of()方法中的值会依次出现，抵达最后一个元素后将从第一个元素开始循环
+// repeatCount()方法可指定Generator.of()参数中的每个值出现的次数
+// 如jack会出现3次后，再轮到andy出现3次，wang出现3次，以此类推
+Faker.tableName("user")
+     .param("name", Generator.of("jack", "andy", "wang").repeatCount(3))
+     .param("deptNo", Generator.of("1001", "1002", "1003"))
+     .insertCount(10)
+     .execute();
+```
+
+对应生成的SQL语句如下：
+
+```sql
+insert into user(name,deptNo) values('jack','1001')
+insert into user(name,deptNo) values('jack','1002')
+insert into user(name,deptNo) values('jack','1003')
+insert into user(name,deptNo) values('andy','1001')
+insert into user(name,deptNo) values('andy','1002')
+insert into user(name,deptNo) values('andy','1003')
+insert into user(name,deptNo) values('wang','1001')
+insert into user(name,deptNo) values('wang','1002')
+insert into user(name,deptNo) values('wang','1003')
+insert into user(name,deptNo) values('jack','1001')
+```
+
+
+
+**使用示例3**：
+
+```java
+// 给user表的4个字段填充10条数据
+// Generator.ofLongStart()和Generator.ofIntStart()方法，在指定初始值后，每次取值都会+1
+Faker.tableName("user")
+     .param("id", Generator.ofLongStart(10000L))
+     .param("name", Generator.of("jack", "andy", "wang").repeatCount(3))
+     .param("deptNo", Generator.of("1001", "1002", "1003"))
+     .param("serialNum", Generator.ofIntStart(500))
+     .insertCount(10)
+     .execute();
+```
+
+对应生成的SQL语句如下：
+
+```sql
+insert into user(id,name,deptNo,serialNum) values('10000','jack','1001','500')
+insert into user(id,name,deptNo,serialNum) values('10001','jack','1002','501')
+insert into user(id,name,deptNo,serialNum) values('10002','jack','1003','502')
+insert into user(id,name,deptNo,serialNum) values('10003','andy','1001','503')
+insert into user(id,name,deptNo,serialNum) values('10004','andy','1002','504')
+insert into user(id,name,deptNo,serialNum) values('10005','andy','1003','505')
+insert into user(id,name,deptNo,serialNum) values('10006','wang','1001','506')
+insert into user(id,name,deptNo,serialNum) values('10007','wang','1002','507')
+insert into user(id,name,deptNo,serialNum) values('10008','wang','1003','508')
+insert into user(id,name,deptNo,serialNum) values('10009','jack','1001','509')
+```
+
+
+
+#### 4. 实现RandomData接口，提供可随机生成的返回值
 
 RandomData接口的代码如下：
 
@@ -323,9 +448,11 @@ values('Andy Wang', 23, '四川省绵阳市盐亭县北利路73号')
 
 
 
-## 使用Faker表创建器快速生成Java文件
+## 反向生成Java文件
 
-注意：目前仅针为**MySQL**和**SQL Server**数据库设计了Faker表创建器。
+**注意**：目前仅针为**MySQL**、**SQL Server**、**Oracle**、**Sqlite**和**H2**数据库设计了Faker表创建器。
+
+以下的例子仅针对MySQL，其他数据库请参考[这里](https://lkmc2.github.io/SqlFakerGitPage)。
 
 
 
@@ -336,22 +463,22 @@ values('Andy Wang', 23, '四川省绵阳市盐亭县北利路73号')
 ```sql
 create table user_table
 (
-  id   varchar(32) not null primary key,
-  name varchar(120) null,
-  age  int          null
+  id   varchar(32) primary key,
+  name varchar(120),
+  age  int
 ) comments '用户表';
 
 create table product
 (
-  id         varchar(32) not null primary key,
-  name       varchar(32) null,
-  price      int         null,
-  tenant_id  varchar(32) null,
-  created_by varchar(32) null,
-  updated_by varchar(32) null,
-  created_at date        null,
-  updated_at date        null,
-  dr         int(1)      null
+  id         varchar(32) primary key,
+  name       varchar(32),
+  price      int,
+  tenant_id  varchar(32),
+  created_by varchar(32),
+  updated_by varchar(32),
+  created_at date,
+  updated_at date,
+  dr         int(1)
 ) comments '产品表';
 ```
 
@@ -361,26 +488,22 @@ create table product
 
 ```java
 // 为 MySQL 数据库的所有表生成带 Faker 表结构的 java 文件
-// 方式1：简单设置数据库名，使用默认url、用户名和密码，并创建Faker表结构
-MysqlFakerCreator.dbName("test").build();
 
-// 方式2：完整设置数据库信息，并创建Faker表结构
-MysqlFakerCreator.url("jdbc:mysql://localhost:3306/test")
-                .username("root")
-                .password("123456")
-    		.driverClassName("com.mysql.jdbc.Driver")
-                .build();
-
-// 为 Sql Server 数据库的所有表生成带 Faker 表结构的 java 文件
 // 方式1：简单设置数据库名，并创建Faker表结构
-SqlServerFakerCreator.dbName("test").build();
+// 使用方式1时，会使用如下默认的数据库参数进行连接
+// url: jdbc:mysql://localhost:3306/数据库名
+// 数据库驱动：com.mysql.jdbc.Driver
+// 用户名：root
+// 密码：123456
+FakerCreator.mysql().dbName("test").build();
 
 // 方式2：完整设置数据库信息，并创建Faker表结构
-SqlServerFakerCreator.url("jdbc:sqlserver://localhost:1433;DatabaseName=test")
-                .username("sa")
-                .password("123456")
-                .driverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver")
-                .build();
+FakerCreator.mysql()
+            .url("jdbc:mysql://localhost:3306/facker")
+            .driverClassName("com.mysql.jdbc.Driver")
+            .username("root")
+            .password("123456")
+            .build();
 ```
 
 

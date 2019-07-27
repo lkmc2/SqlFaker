@@ -10,7 +10,7 @@
     <groupId>com.github.lkmc2</groupId>
     <artifactId>sql-faker</artifactId>
 
-    <version>1.0.3</version>
+    <version>1.0.5</version>
     <packaging>jar</packaging>
 
     <licenses>
