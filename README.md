@@ -61,14 +61,13 @@ insert into user(name,age,sex,address,birthday) values('任徐',54,'河南省新
 
 
 
-+ ## 更新日志
-
-  - v1.0.5：支持一次性插入亿万级别的数据。
-  - v1.0.4：添加针对Oracle、Sqlite、H2的FakerCreator，并添加可生成有序数据的Generator类。
-  - v1.0.3：添加针对SQL Server的FakerCreator。
-  - v1.0.2：添加针对MySQL的FakerCreator。
-  - v1.0.1：提高数据插入执行速度。
-  - v1.0.0：可一次插入百万级别的仿真数据到数据库中。
+## 更新日志
+- v1.0.5：支持一次性插入亿万级别的数据。
+- v1.0.4：添加针对Oracle、Sqlite、H2的FakerCreator，并添加可生成有序数据的Generator类。
+- v1.0.3：添加针对SQL Server的FakerCreator。
+- v1.0.2：添加针对MySQL的FakerCreator。
+- v1.0.1：提高数据插入执行速度。
+- v1.0.0：可一次插入百万级别的仿真数据到数据库中。
 
 
 
