@@ -16,7 +16,7 @@ GitBook：<https://lkmc2.github.io/SqlFakerGitPage>
 
 
 
-+ ## 开源库特性
+## 开源库特性
 
 + 支持主流的MySQL、Oracle、SQL Server、Sqlite、H2等数据库
 
