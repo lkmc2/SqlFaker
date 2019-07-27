@@ -254,35 +254,38 @@ public final class Faker {
         // 获取数据库 url 地址
         String url = DatabaseHelper.getDataSource().getUrl();
 
-        // 根据 url 判断是否 sql server 数据库，进行特别处理
-        if (url.contains(JDBC_SQL_SERVER)) {
-            sql = String.format("insert into [dbo].[%s](%s) values(%s)", tableName, paramName, paramValue);
-        }
-
-        // 根据 url 判断是否 H2 数据库，进行特别处理
-        if (url.contains(JDBC_H2)) {
-            // 将参数值列表字符串拆分成数组
-            String[] valueArray = paramValue.split(",");
-
-            StringBuilder sb = new StringBuilder();
-
-            for (String value : valueArray) {
-                try {
-                    dateFormatter.get().parse(value.replace("'", ""));
-                    // 可以解析成日期的字符串加上 parsedatetime 函数处理
-                    sb.append(String.format("parsedatetime(%s, 'yyyy-MM-dd HH:mm:ss')", value));
-                } catch (ParseException e) {
-                    // 不可以解析成日期的字符串取原来的值
-                    sb.append(value);
-                }
-                sb.append(",");
+        if (url != null && !url.isEmpty()) {
+            // 根据 url 判断是否 sql server 数据库，进行特别处理
+            if (url.contains(JDBC_SQL_SERVER)) {
+                sql = String.format("insert into [dbo].[%s](%s) values(%s)", tableName, paramName, paramValue);
             }
 
-            // 生成对应的参数值列表字符串
-            paramValue = StringUtils.deleteLastComma(sb);
+            // 根据 url 判断是否 H2 数据库，进行特别处理
+            if (url.contains(JDBC_H2)) {
+                // 将参数值列表字符串拆分成数组
+                String[] valueArray = paramValue.split(",");
 
-            sql = String.format("insert into %s(%s) values(%s)", tableName, paramName, paramValue);
+                StringBuilder sb = new StringBuilder();
+
+                for (String value : valueArray) {
+                    try {
+                        dateFormatter.get().parse(value.replace("'", ""));
+                        // 可以解析成日期的字符串加上 parsedatetime 函数处理
+                        sb.append(String.format("parsedatetime(%s, 'yyyy-MM-dd HH:mm:ss')", value));
+                    } catch (ParseException e) {
+                        // 不可以解析成日期的字符串取原来的值
+                        sb.append(value);
+                    }
+                    sb.append(",");
+                }
+
+                // 生成对应的参数值列表字符串
+                paramValue = StringUtils.deleteLastComma(sb);
+
+                sql = String.format("insert into %s(%s) values(%s)", tableName, paramName, paramValue);
+            }
         }
+
         return sql;
     }
 

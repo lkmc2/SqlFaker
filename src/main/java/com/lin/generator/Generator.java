@@ -21,20 +21,20 @@ public class Generator {
 
     /**
      * 创建 Integer 类型顺序值生成器
-     * @param start 起始值
+     * @param startValue 起始值
      * @return Integer 类型顺序值生成器
      */
-    public static IntegerRandom ofInt(final int start) {
-        return new IntegerRandom(start);
+    public static IntegerRandom ofIntStart(final int startValue) {
+        return new IntegerRandom(startValue);
     }
 
     /**
      * 创建 Long 类型顺序值生成器
-     * @param start 起始值
+     * @param startValue 起始值
      * @return Long 类型顺序值生成器
      */
-    public static LongRandom ofLong(final long start) {
-        return new LongRandom(start);
+    public static LongRandom ofLongStart(final long startValue) {
+        return new LongRandom(startValue);
     }
 
     /** 可以指定可变参数中每一个值重复出现次数的生成器 **/
