@@ -16,13 +16,19 @@ GitBook：<https://lkmc2.github.io/SqlFakerGitPage>
 
 
 
-## 开源库特性
++ ## 开源库特性
 
-+ 支持主流的MySQL、Oracle、SQL Server、H2等数据库
++ 支持主流的MySQL、Oracle、SQL Server、Sqlite、H2等数据库
+
 + 支持8种常见数据库字段类型的智能填充，并支持自定义拓展
-+ 支持一次性插入百万级别的数据
+
++ 支持一次性插入亿万级别的数据
+
++ 支持JDK1.6及以上版本
+
 + 支持事务
-+ 支持JDK1.6
+
+  
 
 ## 使用示范
 
