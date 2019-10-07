@@ -3,13 +3,13 @@ package com.lin;
 import com.lin.custom.EnglishNameRandom;
 import com.lin.datatype.DataType;
 import com.lin.faker.Faker;
+import com.lin.generator.Generator;
 import com.lin.utils.DBTools;
 import com.lin.value.Times;
 import com.lin.value.Values;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 
@@ -132,6 +132,20 @@ public class FakerParamMapTest {
         Faker.tableName("user")
                 .param("type", Values.ofList(dataList))
                 .insertCount(5)
+                .onlyShowSql();
+    }
+
+    @Test
+    public void testInsertUseOfListExample() {
+        List<Integer> numberList = Arrays.asList(1001, 2002, 3003);
+        List<String>  moodList = Arrays.asList("开心", "难过", "平静");
+
+        // 给user表的3个字段填充10条数据
+        Faker.tableName("user")
+                .param("id", Generator.ofLongStart(10000L))
+                .param("number", Generator.ofList(numberList).repeatCount(3))
+                .param("mood", Generator.ofList(moodList))
+                .insertCount(10)
                 .onlyShowSql();
     }
 

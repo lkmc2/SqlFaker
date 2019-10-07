@@ -62,6 +62,7 @@ insert into user(name,age,sex,address,birthday) values('任徐',54,'河南省新
 
 
 ## 更新日志
+- v1.0.6：添加对List类型的动态参数支持。
 - v1.0.5：支持一次性插入亿万级别的数据。
 - v1.0.4：添加针对Oracle、Sqlite、H2的FakerCreator，并添加可生成有序数据的Generator类。
 - v1.0.3：添加针对SQL Server的FakerCreator。
@@ -232,16 +233,17 @@ values(
 Values类共有以下8种生成取值范围方法，如下表：
 
 
-|               方法名                |                  取值范围                  |         示例值         |
-| :------------------------------: | :------------------------------------: | :-----------------: |
-|         Values.of(可变长数组)         |             从可变长数组中任意抽取一个值             |  "优品", "良品", "次品"   |
-|    Values.ofIntRange(起始值,结束值)    |          在[起始值, 结束值]的范围内取一个整数          |         33          |
-|   Values.ofLongRange(起始值,结束值)    |         在[起始值, 结束值)的范围内取一个长整型数         |     777777777L      |
-|   Values.ofFloatRange(起始值,结束值)   |  在[起始值, 结束值]的范围内取一个单精度浮点数，默认精确到小数点后2位  |       22.22f        |
-| Values.ofFloatRange(起始值,结束值,精度)  | 在[起始值, 结束值]的范围内取一个单精度浮点数，精度根据参数设置，最多6位 |     123.333333f     |
-|  Values.ofDoubleRange(起始值,结束值)   |  在[起始值, 结束值]的范围内取一个双精度浮点数，默认精确到小数点后2位  |       788.31d       |
-| Values.ofDoubleRange(起始值,结束值,精度) | 在[起始值, 结束值]的范围内取一个双精度浮点数，精度根据参数设置，最多6位 |     1820.4231d      |
-|  Values.ofTimeRange(开始时间，结束时间)   |      在[开始时间, 结束时间]的范围内取一个时间，精确到秒       | 2018-03-14 13:21:11 |
+|                  方法名                  |                           取值范围                           |         示例值         |
+| :--------------------------------------: | :----------------------------------------------------------: | :--------------------: |
+|          Values.of(可变长数组)           |                 从可变长数组中任意抽取一个值                 | "优品", "良品", "次品" |
+|         Values.ofList(List列表)          |                    从列表中任意抽取一个值                    | "今天", "明天", "后天" |
+|     Values.ofIntRange(起始值,结束值)     |             在[起始值, 结束值]的范围内取一个整数             |           33           |
+|    Values.ofLongRange(起始值,结束值)     |           在[起始值, 结束值)的范围内取一个长整型数           |       777777777L       |
+|    Values.ofFloatRange(起始值,结束值)    | 在[起始值, 结束值]的范围内取一个单精度浮点数，默认精确到小数点后2位 |         22.22f         |
+| Values.ofFloatRange(起始值,结束值,精度)  | 在[起始值, 结束值]的范围内取一个单精度浮点数，精度根据参数设置，最多6位 |      123.333333f       |
+|   Values.ofDoubleRange(起始值,结束值)    | 在[起始值, 结束值]的范围内取一个双精度浮点数，默认精确到小数点后2位 |        788.31d         |
+| Values.ofDoubleRange(起始值,结束值,精度) | 在[起始值, 结束值]的范围内取一个双精度浮点数，精度根据参数设置，最多6位 |       1820.4231d       |
+|  Values.ofTimeRange(开始时间，结束时间)  |      在[开始时间, 结束时间]的范围内取一个时间，精确到秒      |  2018-03-14 13:21:11   |
 
 另外，Times类中还有用于设定时间的两个方法：
 
@@ -260,6 +262,7 @@ Values类共有以下8种生成取值范围方法，如下表：
 // 给product表的9个字段填充1条数据
 Faker.tableName("product")
       .param("type", Values.of("优品", "良品", "次品"))
+      .param("date_info", Values.ofList(Arrays.asList("今天", "明天", "后天")))
       .param("person_count", Values.ofIntRange(20, 50))
       .param("total_count", Values.ofLongRange(555555555L, 888888888L))
       .param("enter_price", Values.ofFloatRange(12.33f, 34.57f))
@@ -282,12 +285,12 @@ Faker.tableName("product")
 ```sql
 insert into 
 product(
-  type, person_count, total_count,
+  type, date_info, person_count, total_count,
   enter_price, outcome_price, speed,
   salary, firstTime, secondTime
 ) 
 values(
-  '良品', 33, 777777777,
+  '良品', '明天', 33, 777777777,
   22.22, 123.333333, 788.31,
   1820.4231, '2018-03-14 00:00:00', '2018-03-14 13:21:11'
 )
@@ -302,10 +305,11 @@ Generator类共有以下3种生成有序取值范围方法，如下表：
 |            方法名             |                取值范围                |         示例值         |
 | :---------------------------: | :------------------------------------: | :--------------------: |
 |   Generator.of(可变长数组)    | 从可变长数组中依次抽取一个元素，可循环 | "1001", "1002", "1003" |
+|  Generator.ofList(List列表)   |    从列表中依次抽取一个元素，可循环    | "开心", "难过", "平静" |
 | Generator.ofIntStart(起始值)  |  在[起始值, 结束值]的范围内取一个整数  |          500           |
 | Generator.ofLongStart(起始值) |       从起始值开始，每次取值都+1       |          1000          |
 
-另外，Generator.of(可变长数组)方法中还有用于设定可变长数组中每个元素出现次数的方法：
+另外，Generator.of(可变长数组)和Generator.ofList(List列表)方法中还有用于设定可变长数组中每个元素出现次数的方法：
 
 |        方法名         |                 说明                 |
 | :-------------------: | :----------------------------------: |
@@ -381,6 +385,7 @@ Faker.tableName("user")
      .param("id", Generator.ofLongStart(10000L))
      .param("name", Generator.of("jack", "andy", "wang").repeatCount(3))
      .param("deptNo", Generator.of("1001", "1002", "1003"))
+     .param("state", Generator.ofList("1001", "1002", "1003"))
      .param("serialNum", Generator.ofIntStart(500))
      .insertCount(10)
      .execute();
@@ -400,6 +405,41 @@ insert into user(id,name,deptNo,serialNum) values('10007','wang','1002','507')
 insert into user(id,name,deptNo,serialNum) values('10008','wang','1003','508')
 insert into user(id,name,deptNo,serialNum) values('10009','jack','1001','509')
 ```
+
+
+
+**使用示例4**：
+
+```java
+List<Integer> numberList = Arrays.asList(1001, 2002, 3003);
+List<String>  moodList = Arrays.asList("开心", "难过", "平静");
+
+// 给user表的3个字段填充10条数据
+Faker.tableName("user")
+     .param("id", Generator.ofLongStart(10000L))
+     .param("number", Generator.ofList(numberList).repeatCount(3))
+     .param("mood", Generator.ofList(moodList))
+     .insertCount(10)
+     .execute();
+```
+
+对应生成的SQL语句如下：
+
+```sql
+insert into user(id,number,mood) values('10000','1001','开心')
+insert into user(id,number,mood) values('10001','1001','难过')
+insert into user(id,number,mood) values('10002','1001','平静')
+insert into user(id,number,mood) values('10003','2002','开心')
+insert into user(id,number,mood) values('10004','2002','难过')
+insert into user(id,number,mood) values('10005','2002','平静')
+insert into user(id,number,mood) values('10006','3003','开心')
+insert into user(id,number,mood) values('10007','3003','难过')
+insert into user(id,number,mood) values('10008','3003','平静')
+insert into user(id,number,mood) values('10009','1001','开心')
+```
+
+
+
 
 
 
