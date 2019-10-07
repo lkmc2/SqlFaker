@@ -4,8 +4,10 @@ import com.lin.random.RandomData;
 import com.lin.random.base.BaseRandomCreator;
 import com.lin.utils.RandomUtils;
 
+import java.util.List;
+
 /**
- * 值的范围
+ * 值的范围创建器
  * @author lkmc2
  * @since 1.0.0
  */
@@ -22,6 +24,22 @@ public final class Values {
             @Override
             public T[] createOptionsArray() {
                 return data;
+            }
+        };
+    }
+
+    /**
+     * 设置候选值列表
+     * @param dataList 候选值列表
+     * @param <T> 参数值泛型
+     * @return 随机值生成器
+     */
+    public static <T> RandomData<T> ofList(final List<T> dataList) {
+        return new RandomData<T>() {
+            @Override
+            public T next() {
+                // 从列表中随机获取一个值
+                return RandomUtils.selectOneInList(dataList);
             }
         };
     }

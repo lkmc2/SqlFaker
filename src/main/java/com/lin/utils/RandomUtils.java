@@ -3,6 +3,7 @@ package com.lin.utils;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -12,10 +13,10 @@ import java.util.Random;
  */
 public final class RandomUtils {
 
-    // 随机数生成器
+    /** 随机数生成器 **/
     private static final Random RANDOM = new Random();
 
-    // 日期格式转换器
+    /** 日期格式转换器 **/
     private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     /**
@@ -29,14 +30,26 @@ public final class RandomUtils {
 
     /**
      * 在数组中随机选取一个值
-     * @param array 数据
+     * @param array 数据数组
      * @param <T> 数据类型
-     * @return 数据中任意一个值
+     * @return 数组中任意一个值
      */
     public static <T> T selectOneInArray(T[] array) {
         // 根据数组长度自动生成随机数
         int index = randomByLength(array.length);
         return array[index];
+    }
+
+    /**
+     * 在列表中随机选取一个值
+     * @param dataList 数据列表
+     * @param <T> 数据类型
+     * @return 列表中任意一个值
+     */
+    public static <T> T selectOneInList(List<T> dataList) {
+        // 根据列表长度自动生成随机数
+        int index = randomByLength(dataList.size());
+        return dataList.get(index);
     }
 
     /**

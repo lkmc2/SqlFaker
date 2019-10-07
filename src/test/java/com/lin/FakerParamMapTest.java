@@ -9,6 +9,10 @@ import com.lin.value.Values;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * 数据伪造器测试
  * @author lkmc2
@@ -94,6 +98,39 @@ public class FakerParamMapTest {
         // 自定义随机数数组，从【'A', 'C'】中抽取一个作为type的值
         Faker.tableName("user")
                 .param("type", Values.of('A', 'C'))
+                .insertCount(5)
+                .onlyShowSql();
+    }
+
+    @Test
+    public void testInsertUseOfListMethodWithString() {
+        List<String> dataList = Arrays.asList("天津", "武汉", "北海", "云南");
+
+        // 自定义随机数列表，从【"天津", "武汉", "北海", "云南"】中抽取一个作为地址的值
+        Faker.tableName("user")
+                .param("address", Values.ofList(dataList))
+                .insertCount(5)
+                .onlyShowSql();
+    }
+
+    @Test
+    public void testInsertUseOfListMethodWithInteger() {
+        List<Integer> dataList = Arrays.asList(1, 3, 5, 7);
+
+        // 自定义随机数列表，从【1, 3, 5, 7】中抽取一个作为年龄的值
+        Faker.tableName("user")
+                .param("age", Values.ofList(dataList))
+                .insertCount(5)
+                .onlyShowSql();
+    }
+
+    @Test
+    public void testInsertUseOfListMethodWithChar() {
+        List<Character> dataList = Arrays.asList('A', 'C');
+
+        // 自定义随机数列表，从【'A', 'C'】中抽取一个作为type的值
+        Faker.tableName("user")
+                .param("type", Values.ofList(dataList))
                 .insertCount(5)
                 .onlyShowSql();
     }
