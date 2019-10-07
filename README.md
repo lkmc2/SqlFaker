@@ -81,7 +81,7 @@ insert into user(name,age,sex,address,birthday) values('任徐',54,'河南省新
 <dependency>
   <groupId>com.github.lkmc2</groupId>
   <artifactId>sql-faker</artifactId>
-  <version>1.0.5</version>
+  <version>1.0.6</version>
 </dependency>
 ```
 
@@ -230,7 +230,7 @@ values(
 
 #### 2. 使用 Values.of()系列方法生成取值范围
 
-Values类共有以下8种生成取值范围方法，如下表：
+Values类共有以下9种生成取值范围方法，如下表：
 
 
 |                  方法名                  |                           取值范围                           |         示例值         |
@@ -259,7 +259,7 @@ Values类共有以下8种生成取值范围方法，如下表：
 
 
 ```java
-// 给product表的9个字段填充1条数据
+// 给product表的10个字段填充1条数据
 Faker.tableName("product")
       .param("type", Values.of("优品", "良品", "次品"))
       .param("date_info", Values.ofList(Arrays.asList("今天", "明天", "后天")))
@@ -300,7 +300,7 @@ values(
 
 #### 3.使用 Generator.of()系列方法生成有序取值范围
 
-Generator类共有以下3种生成有序取值范围方法，如下表：
+Generator类共有以下4种生成有序取值范围方法，如下表：
 
 |            方法名             |                取值范围                |         示例值         |
 | :---------------------------: | :------------------------------------: | :--------------------: |
