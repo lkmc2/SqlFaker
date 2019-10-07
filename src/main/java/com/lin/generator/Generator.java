@@ -2,6 +2,9 @@ package com.lin.generator;
 
 import com.lin.random.RandomData;
 
+import java.lang.reflect.Array;
+import java.util.List;
+
 /**
  * 顺序值生成器
  * @author lkmc2
@@ -11,12 +14,30 @@ public class Generator {
 
     /**
      * 创建可以指定可变参数中每一个值出现次数的生成器
-     * @param valueList 值列表
+     * @param valueList 值列表（可变长数组）
      * @return 顺序值生成器
      */
     @SuppressWarnings("unchecked")
     public static <T> RepeatCountRandom of(T... valueList) {
         return new RepeatCountRandom(valueList);
+    }
+
+    /**
+     * 创建可以指定可变参数中每一个值出现次数的生成器
+     * @param valueList 值列表
+     * @return 顺序值生成器
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> RepeatCountRandom ofList(final List<T> valueList) {
+        int listSize = valueList.size();
+
+        String[] array = (String[]) Array.newInstance(String.class, listSize);
+
+        for (int i = 0; i < listSize; i++) {
+            array[i] = String.valueOf(valueList.get(i));
+        }
+
+        return new RepeatCountRandom(array);
     }
 
     /**
