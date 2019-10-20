@@ -64,26 +64,31 @@
         </dependency>
 
         <!--MySQL驱动（可换成其他数据库驱动，如：Oracle、SQL Server、H2等dbcp2连接池支持的数据库）-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.46</version>
-            <scope>runtime</scope>
-        </dependency>
-
-        <!-- MySQL驱动，适用于 MySQL 8.0 -->
         <!--<dependency>-->
             <!--<groupId>mysql</groupId>-->
             <!--<artifactId>mysql-connector-java</artifactId>-->
-            <!--<version>8.0.16</version>-->
+            <!--<version>5.1.46</version>-->
         <!--</dependency>-->
+
+        <!-- JOOQ 数据库连接框架 -->
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+            <version>3.12.1</version>
+        </dependency>
+
+        <!-- MySQL驱动，适用于 MySQL 8.0 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.16</version>
+        </dependency>
 
         <!-- SQL Server jdbc 依赖 -->
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>sqljdbc4</artifactId>
             <version>4.2</version>
-            <scope>runtime</scope>
         </dependency>
 
         <!-- Oracle jdbc 依赖 -->
