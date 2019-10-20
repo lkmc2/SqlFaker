@@ -23,16 +23,8 @@ public final class SqlSelector {
      * @return 表中的一列数据
      */
     public static List<String> selectColumn(String tableName, String columnName) {
-        Connection connection = DatabaseHelper.getConnection();
-        Asserts.isTrue(connection != null, "数据库连接获取失败，请先在 DBTools 中设置连接参数");
-
         String sql = String.format("select distinct %s from %s", columnName, tableName);
-
-        // 执行 sql 并获取查询结果
-        Result<Record> records = DSL.using(connection).fetch(sql);
-
-        // 获取第 1 列的值
-        return records.getValues(0, String.class);
+        return selectColumn(sql);
     }
 
     /**
