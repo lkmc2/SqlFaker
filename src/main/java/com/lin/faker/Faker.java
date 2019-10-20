@@ -42,6 +42,9 @@ public final class Faker {
     /** 日志记录器 **/
     private static final Logger LOGGER = LoggerFactory.getLogger(Faker.class);
 
+    /** 打印日志的次数限制 **/
+    private static final int PRINT_LOG_LIMIT_COUNT = 100;
+
 
     // 初始化参数存储Map和数据类型映射Map/
     {
@@ -57,7 +60,7 @@ public final class Faker {
     }
 
     /**
-     * 获取Facker类实例，并设置数据库表名
+     * 获取Faker类实例，并设置数据库表名
      * @param tableName 数据库表名
      * @return 数据伪造器
      */
@@ -191,7 +194,10 @@ public final class Faker {
                 // 将 sql 转换成对应数据库类型的 sql
                 sql = handleWithSpecifyDatabase(paramName, paramValue, sql);
 
-                LOGGER.info(sql);
+                // 限制只打印指定条数的日志信息
+                if (count < PRINT_LOG_LIMIT_COUNT) {
+                    LOGGER.info(sql);
+                }
 
                 // 如果需要插入到数据库，执行生成的 sql 语句
                 if (this.isInsertDataToDb) {
