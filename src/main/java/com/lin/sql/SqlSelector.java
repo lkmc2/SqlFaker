@@ -12,7 +12,7 @@ import	java.util.List;
 /**
  * SQL 选择器
  * @author lkmc2
- * @date 2019/10/20 12:04
+ * @since 1.0.7
  */
 public final class SqlSelector {
 
